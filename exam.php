@@ -1,0 +1,183 @@
+<?php
+require 'load.php';
+use \LeanCloud\Query;
+use \LeanCloud\User;
+$query = new Query("Element");
+if($_POST['question'] != ""){
+	$question=$_POST['question'];
+	$answer=$_POST['answer'];
+	$mode=(string)$_POST['mode'];
+	if($mode=="")$mode="2";
+	switch ($mode){
+		case "0":case"1":case"2":
+			$query->equalTo("ElementName", $question);
+			break;
+		case "3":case"4":case"5":
+			$query->equalTo("ElementAbbr", $question);
+			break;
+		case "6":case"7":case"8":
+			$query->equalTo("ElementNumber", (int)$question);
+			break;
+		case "9":case"10":case"11":
+			$query->equalTo("ElementIUPACname", $question);
+			break;
+	}
+	switch ($mode){
+        case "3":case"6":case"9":
+            $query->select('ElementName');
+			$todo = $query->first();
+			$correct_answer = $todo->get("ElementName");
+            break;
+        case "0":case"7":case"10":
+            $query->select('ElementAbbr');
+			$todo = $query->first();
+			$correct_answer = $todo->get("ElementAbbr");
+            break;
+        case "1":case"4":case"11":
+            $query->select('ElementNumber');
+			$todo = $query->first();
+			$correct_answer = (string)($todo->get("ElementNumber"));
+            break;
+        case "2":case"5":case"8":
+            $query->select('ElementIUPACname');
+			$todo = $query->first();
+			$correct_answer = $todo->get("ElementIUPACname");
+            break;
+    }
+	if($correct_answer==$answer){
+		$result= "回答正确！";
+		if ($currentUser != null) {
+			$score=(int)($currentUser->get("examCorrectNumber"));
+			$score++;
+			$currentUser->set("examCorrectNumber", (string) $score);
+			$currentUser->save();
+		}
+	}else{
+		$result= "回答错误，正确答案为：".$correct_answer."，题目为：".$question."，您的答案为：".$answer;
+		if ($currentUser != null) {
+			$score=(int)($currentUser->get("examIncorrectnumber"));
+			$score++;
+			$currentUser->set("examIncorrectnumber", (string) $score);
+			$currentUser->save();
+		}
+	}
+	header('Location: exam.php?result='.$result);
+	exit;
+}else{
+?>
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>元素记忆 -- 化学e+</title>
+<?php include 'head.php';?>
+  </head>
+  <body>
+<?php include 'header.php';
+?>
+    <section class="main-content">
+	<? 
+	include 'title.php';?>
+		<h2>元素记忆</h2>
+<?php
+if($_GET['result'] != ""){
+	echo "<p>".$_GET['result']."</p>";
+}
+?>
+<table>
+<?php
+if ($currentUser != null) {
+	$max=(int)($currentUser->get("elementnumber_limit"));
+	$mode=($currentUser->get("examMode"));
+	if($max==0)$max=118;
+	if($mode=="")$mode="2";
+}else{
+	$max=118;
+	$mode="2";
+}
+$query = new Query("Element");
+$n=rand(1,$max);
+$query->equalTo("ElementNumber", $n);
+switch ($mode){
+    case "0":case"1":case"2":
+        $query->select('ElementName');
+		$todo = $query->first();
+		$Question = $todo->get("ElementName");
+		break;
+    case "3":case"4":case"5":
+        $query->select('ElementAbbr');
+		$todo = $query->first();
+		$Question = $todo->get("ElementAbbr");
+		break;
+    case "6":case"7":case"8":
+        $Question = (string)$n;
+        break;
+    case "9":case"10":case"11":
+        $query->select('ElementIUPACname');
+		$todo = $query->first();
+		$Question = $todo->get("ElementIUPACname");
+		break;
+}
+echo "<tr><td>题目</td><td>".$Question."</td></tr>";
+$numbers=array();
+$numbers[]=$n;
+
+for($i2 = 1;$i2<4;$i2++){
+   $numbers[] = rand(1,$max);
+   for($i3=0;$i3<$i2;$i3++) {
+       while ($numbers[$i2]==$numbers[$i3]) $numbers[$i2] = rand(1,$max);
+   }
+}
+
+for($i=0,$k=count($numbers);$i<$k;$i++) {
+    for ($j=$i+1;$j<$k;$j++) {
+        if($numbers[$i]<$numbers[$j]){
+            $temp = $numbers[$j];
+            $numbers[$j] = $numbers[$i];
+            $numbers[$i] = $temp;
+        }
+    }
+}
+for($i2 = 0;$i2<4;$i2++){
+	$query->equalTo("ElementNumber", $numbers[$i2]);
+	switch ($mode){
+        case "3":case"6":case"9":
+            $query->select('ElementName');
+			$todo = $query->first();
+			$option = $todo->get("ElementName");
+            break;
+        case "0":case"7":case"10":
+            $query->select('ElementAbbr');
+			$todo = $query->first();
+			$option = $todo->get("ElementAbbr");
+            break;
+        case "1":case"4":case"11":
+            $query->select('ElementNumber');
+			$todo = $query->first();
+			$option = $todo->get("ElementNumber");
+            break;
+        case "2":case"5":case"8":
+            $query->select('ElementIUPACname');
+			$todo = $query->first();
+			$option = $todo->get("ElementIUPACname");
+            break;
+    }
+	echo "<tr><td>".($i2+1)."</td><td><form name='form".$i2."' method='post' action='exam.php'><input type='hidden' name='mode' value='".$mode."'/> <input type='hidden' name='question' value='".$Question."'/> <input type='hidden' name='answer' value='".$option."'/><a href='javascript:document.form".$i2.".submit();'>".$option."</a></form></td></tr>";
+}   
+?>
+</table>
+<?php
+if ($currentUser != null) {
+	$correct=(int)($currentUser->get("examCorrectNumber"));
+	$incorrect=(int)($currentUser->get("examIncorrectnumber"));
+	$sum=$correct+$incorrect;
+	$rate=(double)$correct/(double)$sum*100;
+	echo '共回答'.$sum.'题，其中'.$correct.'题正确，正确率为'.sprintf("%.2f", $rate).'%';
+}
+?>
+<?php include 'foot.php';?>
+    </section>
+  </body>
+</html>
+<?php
+}
