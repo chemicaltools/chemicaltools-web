@@ -32,8 +32,10 @@ forEach($todos as $todo) {
 		$name = $todo->get("username");
 		$name=substr($name,0,strpos($name,"@"));
 	}
-	$arr[]=(int)$examCorrectNumber;
-	$namearr[]=$name;
+	if((int)$examCorrectNumber>0){
+		$arr[]=(int)$examCorrectNumber;
+		$namearr[]=$name;
+	}
 }
     for($i=0,$k=count($arr);$i<$k;$i++) {
         for ($j=$i+1;$j<$k;$j++) {
