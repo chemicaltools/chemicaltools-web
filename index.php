@@ -21,7 +21,7 @@ if ($currentUser != null) {
 	$rate=(double)$correct/(double)$sum*100;
 	$exam= '共回答'.$sum.'题，其中'.$correct.'题正确，正确率为'.sprintf("%.2f", $rate).'%';
 ?>
-<h2>元素查询</h2>
+<h2><a href="element.html">元素查询</a></h2>
 <p><?=nl2br($element)?></p>
 <h2>质量计算</h2>
 <p><?=nl2br($mass)?></p>

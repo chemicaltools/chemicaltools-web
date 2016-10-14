@@ -56,7 +56,7 @@ if ($currentUser != null) {
 ?>
 <table>
 <tr>
-     <td>用户名:</td>
+     <td>Email:</td>
      <td><input type="text" name="username"></td>
 </tr>
 <tr>
