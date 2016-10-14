@@ -112,6 +112,8 @@ a.nocolor:active {color: #fff;text-decoration:none;}
 
 .main-content :first-child {
   margin-top: 0; }
+.main-content input {
+  max-width: 150px; }
 .main-content img {
   max-width: 100%; }
 .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
@@ -182,16 +184,20 @@ a.nocolor:active {color: #fff;text-decoration:none;}
   .main-content blockquote > :last-child {
     margin-bottom: 0; }
 .main-content table {
+	border: none;
   display: block;
   width: 100%;
   overflow: auto;
   word-break: normal;
   word-break: keep-all; }
   .main-content table th {
-    font-weight: bold; }
+    font-weight: bold;
+	border: none;
+	}
   .main-content table th, .main-content table td {
     padding: 0.5rem 1rem;
-    border: 1px solid #e9ebec; }
+ /*   border: 1px solid #e9ebec;*/
+  border: none; }
 .main-content dl {
   padding: 0; }
   .main-content dl dt {

@@ -13,9 +13,7 @@
 	include 'title.php';?>
 		<h2>元素查询</h2>
 		<form method='post' action='element.php'>
-		<table><tr><td><input type="text" name="input"/></td>
-<td><input type="submit" value="查询"></td></tr></table>
-</form>
+		<table><tr><table><tr><td><input type="text" name="input"/></td><td><input type="submit" value="查询"></td></tr></table></tr>
 <?php
 use \LeanCloud\Query;
 use \LeanCloud\User;
@@ -41,7 +39,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
 		$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
 		"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
 		$outputHtml=$output."\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
-		echo "<p>".nl2br($outputHtml)."</p>";
+		echo "<tr><table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table></tr>";
 		if ($currentUser != null) {
 			$currentUser->set("historyElementOutput", $output);
 			$currentUser->set("historyElementOutputHtml", $outputHtml);
@@ -54,11 +52,12 @@ if($_POST['input']!=""||$_GET['input']!=""){
 	}
 }else{
 	if ($currentUser != null) {
+		$ElementNumber=$currentUser->get("historyElementNumber");
 		$outputHtml=$currentUser->get("historyElementOutputHtml");
-		echo "<p>".nl2br($outputHtml)."</p>";
+		echo "<tr><table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table></tr>";
 	}
 }
-?>
+?></table></form>
 <?php include 'foot.php';?>
     </section>
   </body>
