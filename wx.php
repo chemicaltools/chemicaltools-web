@@ -43,6 +43,7 @@ class wechatCallbackapiTest
                 $toUsername = $postObj->ToUserName;
                 $keyword = trim($postObj->Content);
                 $time = time();
+				$ev = $postObj->Event;
                 $textTpl = "<xml>
 							<ToUserName><![CDATA[%s]]></ToUserName>
 							<FromUserName><![CDATA[%s]]></FromUserName>
@@ -50,6 +51,12 @@ class wechatCallbackapiTest
 							<MsgType><![CDATA[%s]]></MsgType>
 							<Content><![CDATA[%s]]></Content>
 							</xml>";             
+				if ($ev == "subscribe"){
+					$msgType = "text";
+					$contentStr = "欢迎使用化学e+，您可以输入元素名称/符号/原子序数/IUPAC名查询元素。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
+					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+					echo $resultStr;
+				}
 				if(!empty( $keyword ))
                 {
 					$input=$keyword;
