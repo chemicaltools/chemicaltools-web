@@ -30,7 +30,7 @@ if ($currentUser != null) {
 <p><?=nl2br($element)?></p>
 <h2><img src="/ico/lime_apple.png" width=30 height=30><a href="mass.php">质量计算</a></h2>
 <p><?=nl2br($mass)?></p>
-<h2><img src="/ico/gray_apple.png" width=30 height=30>酸碱计算</h2>
+<h2><img src="/ico/gray_apple.png" width=30 height=30><a href="acid.php">酸碱计算</a></h2>
 <p><?=nl2br($acid)?></p>
 <h2><img src="/ico/orange_apple.png" width=30 height=30><a href="exam.php">元素记忆</a></h2>
 <p><?=nl2br($exam)?></p>

@@ -13,7 +13,7 @@
 	include 'title.php';?>
 		<h2>质量计算</h2>
 		<form method='post' action='mass.php'>
-		<table><tr><table><tr><td><input type="text" name="input"/></td><td><input type="submit" value="计算"></td></tr></table></tr>
+		<table><tr><table><tr><td><input type="text" name="input" placeholder="请输入物质的化学式"/></td><td><input type="submit" value="计算"></td></tr></table></tr>
 <?php
 use \LeanCloud\Query;
 use \LeanCloud\User;

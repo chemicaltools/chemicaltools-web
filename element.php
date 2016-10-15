@@ -13,7 +13,7 @@
 	include 'title.php';?>
 		<h2>元素查询</h2>
 		<form method='post' action='element.php'>
-		<table><tr><table><tr><td><input type="text" name="input"/></td><td><input type="submit" value="查询"></td></tr></table></tr>
+		<table><tr><table><tr><td><input type="text" name="input" placeholder="请输入元素名称、符号、原子序数或IUPAC名"/></td><td><input type="submit" value="查询"></td></tr></table></tr>
 <?php
 use \LeanCloud\Query;
 use \LeanCloud\User;
