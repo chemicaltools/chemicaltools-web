@@ -7,7 +7,7 @@ if($_POST['username'] != ""&&$_POST['password'] != "")
 	try {
 		User::logIn($_POST['username'],$_POST['password']);
 		$token = User::getCurrentSessionToken();
-		setcookie('token',$token);
+		setcookie('token',$token,time() + 259200);
 	} catch (CloudException $ex) {
 		$error=true;
 	}
