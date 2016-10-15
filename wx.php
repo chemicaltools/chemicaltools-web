@@ -79,7 +79,7 @@ class wechatCallbackapiTest
 						$ElementOrigin=$todo->get("ElementOrigin");
 						$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
 						"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
-						$outputHtml=$output."\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
+						$outputHtml=$output."\n\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
 						$contentStr=$outputHtml;
 					}else{
 						$contentStr="输入错误！";

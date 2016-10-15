@@ -23,7 +23,7 @@ if ($currentUser != null) {
 ?>
 <h2><a href="element.html">元素查询</a></h2>
 <p><?=nl2br($element)?></p>
-<h2>质量计算</h2>
+<h2><a href="mass.html">质量计算</a></h2>
 <p><?=nl2br($mass)?></p>
 <h2>酸碱计算</h2>
 <p><?=nl2br($acid)?></p>
