@@ -4,9 +4,16 @@
   */
 
 //define your token
+require 'leancloud/src/autoload.php';
+use \LeanCloud\Client;
+use \LeanCloud\Object;
+use \LeanCloud\Query;
+Client::initialize("wUzGKF5dp34OqCeaI0VwVG8E-gzGzoHsz", "QiyXtJjBHFJCIVYQRbrKFiB7", "cnW0tSpfljie0GIfqT19iBD5");
+
 define("TOKEN", "zengjinzhe");
 $wechatObj = new wechatCallbackapiTest();
-$wechatObj->valid();
+//$wechatObj->valid();
+$wechatObj->responseMsg();
 
 class wechatCallbackapiTest
 {
@@ -42,12 +49,35 @@ class wechatCallbackapiTest
 							<CreateTime>%s</CreateTime>
 							<MsgType><![CDATA[%s]]></MsgType>
 							<Content><![CDATA[%s]]></Content>
-							<FuncFlag>0</FuncFlag>
 							</xml>";             
 				if(!empty( $keyword ))
                 {
+					$input=$keyword;
+					$nameQuery = new Query("Element");
+					$nameQuery->equalTo("ElementName", $input);
+					$AbbrQuery = new Query("Element");
+					$AbbrQuery->equalTo("ElementAbbr", $input);
+					$NumberQuery= new Query("Element");
+					$NumberQuery->equalTo("ElementNumber", (int)$input);
+					$IUPACQuery= new Query("Element");
+					$IUPACQuery->equalTo("ElementIUPACname", $input);
+					$query = Query::orQuery($nameQuery, $AbbrQuery,$NumberQuery,$IUPACQuery);
+					if($query->count()>0){
+						$todo = $query->first();
+						$name=$todo->get("ElementName");
+						$Abbr=$todo->get("ElementAbbr");
+						$IUPACname = $todo->get("ElementIUPACname");
+						$ElementNumber=$todo->get("ElementNumber");
+						$ElementMass=$todo->get("ElementMass");
+						$ElementOrigin=$todo->get("ElementOrigin");
+						$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
+						"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
+						$outputHtml=$output."\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
+						$contentStr=$outputHtml;
+					}else{
+						$contentStr="输入错误！";
+					}
               		$msgType = "text";
-                	$contentStr = "Welcome to wechat world!";
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
                 	echo $resultStr;
                 }else{
