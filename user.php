@@ -9,8 +9,10 @@ if ($currentUser == null) {
 	if($_POST['mode'] != ""&&$_POST['elementnumber'] != ""){
 		$mode=$_POST['mode'];
 		$elementnumber=$_POST['elementnumber'];
+		$pKw=$_POST['pKw'];
 		$currentUser->set("examMode", $mode);
 		$currentUser->set("elementnumber_limit", $elementnumber);
+		$currentUser->set("pKw", $pKw);
 		$currentUser->save();
 		$success=true;
 	}
@@ -41,8 +43,10 @@ $score=$currentUser->get("examCorrectNumber");
 if($score=="")$score="0";
 $mode=(int)($currentUser->get("examMode"));
 $elementnumber=(int)($currentUser->get("elementnumber_limit"));
+$pKwstr=($currentUser->get("pKw"));
 if($mode==0)$mode=2;
 if($elementnumber==0)$elementnumber=118;
+if($pKwstr=="")$pKw=14;else $pKw=(double)$pKwstr;
 echo "<tr><td>用户名</td><td>".$username."</td></tr>";
 echo "<tr><td>昵称</td><td>".$qqname."</td></tr>";
 echo "<tr><td>积分</td><td>".$score."</td></tr>";
@@ -66,7 +70,9 @@ for($i=0;$i<5;$i++){
 	echo '<option value="'.$elementnumbertext[$i].'"'.$selecttext.'>'.$elementnumbertext[$i].'</option>';
 }
 ?>
-<tr><td colspan=2><h3><input type="submit" value="保存"></h3></td></tr>
+<tr><td colspan=2><h3>酸碱计算</h3></td></tr>
+<tr><td>pK<sub>w</sub></td><td><input type="text" name="pKw" id="pKw" value="<?=$pKw?>"></td></tr>
+<tr><td colspan=2><input type="submit" value="保存"></td></tr>
 </table>
 </form>
 

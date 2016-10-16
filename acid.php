@@ -73,7 +73,7 @@ if($_POST['pKa']!=""&&$_POST['c']!=""){
                 $cABoutput=$cABoutput."OH";
             }
             if($i>0){
-                if($i>1) $cABoutput="<sup>".$cABoutput.($i)."</sup>";
+                if($i>1) $cABoutput=$cABoutput."<sup>".($i)."</sup>";
                 $cABoutput=$cABoutput."<sup>+</sup>";
             }
         }
