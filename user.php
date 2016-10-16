@@ -16,7 +16,7 @@ if ($currentUser == null) {
 		$currentUser->save();
 		$success=true;
 	}
-?>
+	?>
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
@@ -50,7 +50,10 @@ if($pKwstr=="")$pKw=14;else $pKw=(double)$pKwstr;
 echo "<tr><td>用户名</td><td>".$username."</td></tr>";
 echo "<tr><td>昵称</td><td>".$qqname."</td></tr>";
 echo "<tr><td>积分</td><td>".$score."</td></tr>";
-?><tr><td colspan=2><h3>元素测试</h3></td></tr>
+?>
+<tr><td>授权登陆QQ</td><td><a href="qq.php">
+ <img src="/ico/qq.png"></a></td></tr>
+<tr><td colspan=2><h3>元素测试</h3></td></tr>
 <tr><td>测试模式</td><td><select name="mode" id="mode">
 <?php
 $modetext=array("根据元素名称回答元素符号","根据元素名称回答原子序数","根据元素名称回答IUPAC名","根据元素符号回答元素名称","根据元素符号回答原子序数",
