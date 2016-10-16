@@ -42,6 +42,8 @@ if ($currentUser != null) {
 <p><?=nl2br($mass)?></p>
 <h2><img src="/ico/gray_apple.png" width=30 height=30><a href="acid.php">酸碱计算</a></h2>
 <p><?=nl2br($acid)?></p>
+<h2><img src="/ico/gas.png" width=30 height=30><a href="gas.php">气体计算</a></h2>
+<p>使用理想气体状态方程 pV=nRT ，计算气体状态，快来试试吧！</p>
 <h2><img src="/ico/orange_apple.png" width=30 height=30><a href="exam.php">元素记忆</a></h2>
 <p><?=nl2br($exam)?></p>
 <?php
