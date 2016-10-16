@@ -21,7 +21,6 @@ if($_POST['type']!=""){
 	switch($type){
 		case "p":
 			$p=sprintf("%.3f",$n*$R*$T/$V);
-			$p_check=" checked";
 			break;
 		case "V":
 			$V=sprintf("%.3f",$n*$R*$T/$p);
@@ -41,7 +40,7 @@ if($_POST['type']!=""){
 		<h2>气体计算</h2>
 		<form method='post' action='gas.php'>
 		<table>
-		<tr><td><input type="radio" name="type" value="p"<?=$p_check?>>p</td><td><input type="text" name="p" value="<?=$p?>" placeholder="压强p/kPa"/></td></tr>
+		<tr><td><input type="radio" name="type" value="p" checked>p</td><td><input type="text" name="p" value="<?=$p?>" placeholder="压强p/kPa"/></td></tr>
 		<tr><td><input type="radio" name="type" value="V"<?=$V_check?>>V</td><td><input type="text" name="V" value="<?=$V?>" placeholder="体积V/L"/></td></tr>
 		<tr><td><input type="radio" name="type" value="n"<?=$n_check?>>n</td><td><input type="text" name="n" value="<?=$n?>" placeholder="物质的量n/mol"/></td></tr>
 		<tr><td><input type="radio" name="type" value="T"<?=$T_check?>>T</td><td><input type="text" name="T" value="<?=$T?>" placeholder="温度T/K"/></td></tr>
