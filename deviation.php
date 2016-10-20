@@ -24,6 +24,7 @@ if($_POST['input']!=""){
 	$t=count($x);
 	if($t>1){
 	for($i=0;$i<$t;$i++){
+		$x[$i]=trim($x[$i]);
 		$sum=$sum+$x[$i];
 		$len=strlen($x[$i]);
 		if(substr($x[$i],0,1)=="-")$len=$len-1;
@@ -34,6 +35,8 @@ if($_POST['input']!=""){
 				$zeronum=floor(log10(abs($x[$i])));
 				$len=$len+$zeronum;
 			}
+		}else{
+			$pointlen=0;
 		}
 		if($i>0){
 			if($len<$numnum)$numnum=$len;
