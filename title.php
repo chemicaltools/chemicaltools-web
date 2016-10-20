@@ -10,4 +10,4 @@ if ($currentUser != null) {
 }else{
 	echo "<a href='login.php'>登陆</a>|<a href='signup.php'>注册</a>";
 }
-	?>|<a href="/">首页</a>|<a href="element.php">元素查询</a>|<a href="mass.php">质量计算</a>|<a href="acid.php">酸碱计算</a>|<a href="gas.php">气体计算</a>|<a href="exam.php">元素记忆</a>|<a href="rank.php">排行榜</a>
+	?>|<a href="/">首页</a>|<a href="element.php">元素查询</a>|<a href="mass.php">质量计算</a>|<a href="acid.php">酸碱计算</a>|<a href="gas.php">气体计算</a>|<a href="exam.php">元素记忆</a>|<a href="deviation.php">偏差计算</a>|<a href="rank.php">排行榜</a>

@@ -23,6 +23,8 @@ if ($currentUser != null) {
 	if($mass=="")$mass="您尚未使用本功能，赶快试试吧！";
 	$acid=$currentUser->get("historyAcidOutput");
 	if($acid=="")$acid="您尚未使用本功能，赶快试试吧！";
+	$deviation=$currentUser->get("historyDeviation");
+	if($deviation=="")$deviation="您尚未使用本功能，赶快试试吧！";
 	$correct=(int)($currentUser->get("examCorrectNumber"));
 	$incorrect=(int)($currentUser->get("examIncorrectnumber"));
 	$sum=$correct+$incorrect;
@@ -34,6 +36,7 @@ if ($currentUser != null) {
 	$mass='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';
 	$acid='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';
 	$exam='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可存储战绩，赶快试试吧！';
+	$deviation='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可存储战绩，赶快试试吧！';
 }
 ?>
 <h2><img src="/ico/blue_apple.png" width=30 height=30><a href="element.php">元素查询</a></h2>
@@ -46,6 +49,8 @@ if ($currentUser != null) {
 <p>使用理想气体状态方程 pV=nRT ，计算气体状态，快来试试吧！</p>
 <h2><img src="/ico/orange_apple.png" width=30 height=30><a href="exam.php">元素记忆</a></h2>
 <p><?=nl2br($exam)?></p>
+<h2><img src="/ico/deviation.png" width=30 height=30><a href="deviation.php">偏差计算</a></h2>
+<p><?=nl2br($deviation)?></p>
 <?php
 include 'foot.php';?>
     </section>
