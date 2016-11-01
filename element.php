@@ -22,11 +22,11 @@ if($_POST['input']!=""||$_GET['input']!=""){
 	$nameQuery = new Query("Element");
 	$nameQuery->equalTo("ElementName", $input);
 	$AbbrQuery = new Query("Element");
-	$AbbrQuery->equalTo("ElementAbbr", $input);
+	$AbbrQuery->equalTo("ElementAbbr", ucfirst($input));
 	$NumberQuery= new Query("Element");
 	$NumberQuery->equalTo("ElementNumber", (int)$input);
 	$IUPACQuery= new Query("Element");
-	$IUPACQuery->equalTo("ElementIUPACname", $input);
+	$IUPACQuery->equalTo("ElementIUPACname", ucfirst($input));
 	$query = Query::orQuery($nameQuery, $AbbrQuery,$NumberQuery,$IUPACQuery);
 	if($query->count()>0){
 		$todo = $query->first();
