@@ -6,6 +6,7 @@ if($_GET['username'] != ""&&$_GET['password'] != "")
 {
 	try {
 		User::logIn($_GET['username'],$_GET['password']);
+		$token = User::getCurrentSessionToken();
 	} catch (CloudException $ex) {	$error=true;}
 }
 $currentUser = User::getCurrentUser();
@@ -25,7 +26,7 @@ if ($currentUser != null) {
 	$pKw=$currentUser->get("pKw");
 	$qqname=$currentUser->get("qqname");
 	$setting_examOptionMode=$currentUser->get("setting_examOptionMode");
-	$arr = ['errorcode' => '0', 'elementnumber_limit' => $elementnumber_limit, 'examCorrectNumber' => $examCorrectNumber, 
+	$arr = ['errorcode' => '0', 'token'=>$token, 'elementnumber_limit' => $elementnumber_limit, 'examCorrectNumber' => $examCorrectNumber, 
 	'examIncorrectnumber' => $examIncorrectnumber, 'examMode' => $examMode, 'historyAcidOutput' => $historyAcidOutput, 
 	'historyDeviation' => $historyDeviation, 'historyElement' => $historyElement, 'historyElementNumber' => $historyElementNumber, 
 	'historyElementOutput' => $historyElementOutput, 'historyElementOutputHtml' => $historyElementOutputHtml,
