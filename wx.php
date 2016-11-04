@@ -80,6 +80,7 @@ class wechatCallbackapiTest
 						$ElementMass=$todo->get("ElementMass");
 						$ElementOrigin=$todo->get("ElementOrigin");
 						*/
+					global $elementNameArray,$elementAbbrArray,$elementIUPACArray,$elementMassArray,$elementOriginArray;
 					$elementnumber=searchelement($input);
 					$name = $elementNameArray[$elementnumber-1];
 					$Abbr= $elementAbbrArray[$elementnumber-1];
