@@ -618,9 +618,9 @@ function searchelement($input){
 			$elementNumber=$i+1;
 		}else if($input==($elementNameArray[$i])){
 			$elementNumber=$i+1;
-		}else if($input==ucfirst($elementAbbrArray[$i])){
+		}else if(ucfirst($input)==($elementAbbrArray[$i])){
 			$elementNumber=$i+1;
-		}else if($input==ucfirst($elementIUPACArray[$i])){
+		}else if(ucfirst($input)==($elementIUPACArray[$i])){
 			$elementNumber=$i+1;
 		}
 	}
