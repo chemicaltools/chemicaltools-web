@@ -5,6 +5,7 @@
 
 //define your token
 require 'leancloud/src/autoload.php';
+require 'element_xml.php';
 use \LeanCloud\Client;
 use \LeanCloud\Object;
 use \LeanCloud\Query;
@@ -60,6 +61,7 @@ class wechatCallbackapiTest
 				if(!empty( $keyword ))
                 {
 					$input=$keyword;
+					/*
 					$nameQuery = new Query("Element");
 					$nameQuery->equalTo("ElementName", $input);
 					$AbbrQuery = new Query("Element");
@@ -77,6 +79,15 @@ class wechatCallbackapiTest
 						$ElementNumber=$todo->get("ElementNumber");
 						$ElementMass=$todo->get("ElementMass");
 						$ElementOrigin=$todo->get("ElementOrigin");
+						*/
+					$elementnumber=searchelement($input);
+					$name = $elementNameArray[$elementnumber-1];
+					$Abbr= $elementAbbrArray[$elementnumber-1];
+					$IUPACname = $elementIUPACArray[$elementnumber-1];
+					$ElementNumber=$elementnumber;
+					$ElementMass=$elementMassArray[$elementnumber-1];
+					$ElementOrigin=$elementOriginArray[$elementnumber-1];
+					if($elementnumber>0){
 						$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
 						"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
 						$outputHtml=$output."\n\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
