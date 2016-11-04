@@ -4,12 +4,12 @@
   */
 
 //define your token
-require 'leancloud/src/autoload.php';
+//require 'leancloud/src/autoload.php';
 require 'element_xml.php';
-use \LeanCloud\Client;
-use \LeanCloud\Object;
-use \LeanCloud\Query;
-Client::initialize("wUzGKF5dp34OqCeaI0VwVG8E-gzGzoHsz", "QiyXtJjBHFJCIVYQRbrKFiB7", "cnW0tSpfljie0GIfqT19iBD5");
+//use \LeanCloud\Client;
+//use \LeanCloud\Object;
+//use \LeanCloud\Query;
+//Client::initialize("wUzGKF5dp34OqCeaI0VwVG8E-gzGzoHsz", "QiyXtJjBHFJCIVYQRbrKFiB7", "cnW0tSpfljie0GIfqT19iBD5");
 
 define("TOKEN", "zengjinzhe");
 $wechatObj = new wechatCallbackapiTest();
@@ -54,7 +54,7 @@ class wechatCallbackapiTest
 							</xml>";             
 				if ($ev == "subscribe"){
 					$msgType = "text";
-					$contentStr = "欢迎使用化学e+，您可以输入元素名称/符号/原子序数/IUPAC名查询元素。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
+					$contentStr = "欢迎使用化学e+，您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
 					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 					echo $resultStr;
 				}
