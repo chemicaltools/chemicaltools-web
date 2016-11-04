@@ -10,6 +10,7 @@
 ?>
     <section class="main-content">
 	<? require 'load.php';
+	require 'element_xml.php';
 	include 'title.php';?>
 		<h2>质量计算</h2>
 		<form method='post' action='mass.php'>
@@ -36,7 +37,6 @@ if($_POST['input']!=""||$_GET['input']!=""){
 	$MulLeft = array();
 	$MulRight = array();
 	$MulNum = array();
-	$elementMassArray=array();
     if ($l > 0) {
         while ($i <$l) {
             $i++;
@@ -101,7 +101,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
                         $y2 = substr($x,$i, 1);
                     if (calAsc($y2) == 2) {
                         $T = $y1.$y2;
-                        $n = calElementChoose($T);
+                        $n = ElementChoose($T);
                         if ($n > 0) {
                             if ($i + 1 >=$l)
                                 $y3 = "1";
@@ -125,7 +125,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
                             }
                         }
                     } else if (calAsc($y2) == 3) {
-                        $n = calElementChoose($y1);
+                        $n = ElementChoose($y1);
                         if ($n > 0) {
                             if ($i + 1 >=$l)
                                 $y3 = "a";
@@ -139,7 +139,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
                             }
                         }
                     } else {
-                        $n = calElementChoose($y1);
+                        $n = ElementChoose($y1);
                         if ($n > 0)
                             $AtomNumber[$n] = $AtomNumber[$n] + $MulNumber[$i];
                     }
@@ -159,17 +159,17 @@ if($_POST['input']!=""||$_GET['input']!=""){
                     }
                 }
             }
-			$NumberQuery= new Query("Element");
+			//$NumberQuery= new Query("Element");
             for ($i = 0; $i < 118; $i++) {
 				if($AtomNumber[$i + 1]>0) {
-					$NumberQuery->equalTo("ElementNumber", $i+1);
-					$NumberQuery->select('ElementMass','ElementAbbr','ElementName');
-					$todo = $NumberQuery->first();
-					$ElementMass=$todo->get("ElementMass");
-					$elementMassArray[$i]=$ElementMass;
-					$elementNameArray[$i]=$todo->get("ElementName");
-					$elementAbbrArray[$i]=$todo->get("ElementAbbr");
-					$m = $m + $AtomNumber[$i + 1] * (double)($ElementMass);
+					//$NumberQuery->equalTo("ElementNumber", $i+1);
+					//$NumberQuery->select('ElementMass','ElementAbbr','ElementName');
+					//$todo = $NumberQuery->first();
+					//$ElementMass=$todo->get("ElementMass");
+					//$elementMassArray[$i]=$ElementMass;
+					//$elementNameArray[$i]=$todo->get("ElementName");
+					//$elementAbbrArray[$i]=$todo->get("ElementAbbr");
+					$m = $m + $AtomNumber[$i + 1] * (double)($elementMassArray[$i+1]);
 				}
             }
         }
@@ -224,14 +224,22 @@ function calAsc($x) {
     else
         return 0;
 }
-function calElementChoose($x) {
+
+function ElementChoose($x) {
     $elementNumber = 0;
+	/*
 	$Query= new Query("Element");
     $Query->equalTo("ElementAbbr", $x);
 	$Query->select('ElementNumber');
 	if($Query->count()>0){
 		$todo = $Query->first();
 		$elementNumber=$todo->get("ElementNumber");
+	}*/
+	global $elementAbbrArray;
+	for($i=0;$i<118;$i++) {
+		if($x==($elementAbbrArray[$i])){
+			$elementNumber=$i+1;
+		}
 	}
     return $elementNumber;
 }

@@ -10,6 +10,7 @@
 ?>
     <section class="main-content">
 	<? require 'load.php';
+	require 'element_xml.php';
 	include 'title.php';?>
 		<h2>元素查询</h2>
 		<form method='post' action='element.php'>
@@ -19,6 +20,7 @@ use \LeanCloud\Query;
 use \LeanCloud\User;
 if($_POST['input']!=""||$_GET['input']!=""){
 	if($_POST['input']!="")$input=$_POST['input'];else $input=$_GET['input'];
+	/*
 	$nameQuery = new Query("Element");
 	$nameQuery->equalTo("ElementName", $input);
 	$AbbrQuery = new Query("Element");
@@ -28,7 +30,11 @@ if($_POST['input']!=""||$_GET['input']!=""){
 	$IUPACQuery= new Query("Element");
 	$IUPACQuery->equalTo("ElementIUPACname", ucfirst($input));
 	$query = Query::orQuery($nameQuery, $AbbrQuery,$NumberQuery,$IUPACQuery);
-	if($query->count()>0){
+	*/
+	$elementnumber=searchelement($input);
+	//if($query->count()>0){
+	if($elementnumber>0){
+		/*
 		$todo = $query->first();
 		$name=$todo->get("ElementName");
 		$Abbr=$todo->get("ElementAbbr");
@@ -36,6 +42,13 @@ if($_POST['input']!=""||$_GET['input']!=""){
 		$ElementNumber=$todo->get("ElementNumber");
 		$ElementMass=$todo->get("ElementMass");
 		$ElementOrigin=$todo->get("ElementOrigin");
+		*/
+		$name = $elementNameArray[$elementnumber-1];
+		$Abbr= $elementAbbrArray[$elementnumber-1];
+		$IUPACname = $elementIUPACArray[$elementnumber-1];
+		$ElementNumber=$elementnumber;
+		$ElementMass=$elementMassArray[$elementnumber-1];
+		$ElementOrigin=$elementOriginArray[$elementnumber-1];
 		$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
 		"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
 		$outputHtml=$output."\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
@@ -57,6 +70,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
 		echo "<tr><table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table></tr>";
 	}
 }
+
 ?></table></form>
 <?php include 'foot.php';?>
     </section>

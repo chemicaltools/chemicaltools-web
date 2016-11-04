@@ -1,5 +1,6 @@
 <?php
 require 'load.php';
+require 'element_xml.php';
 use \LeanCloud\Query;
 use \LeanCloud\User;
 $query = new Query("Element");
@@ -10,38 +11,42 @@ if($_POST['question'] != ""){
 	if($mode=="")$mode="2";
 	switch ($mode){
 		case "0":case"1":case"2":
-			$query->equalTo("ElementName", $question);
+			$elementnumber=searchforkind("ElementName", $question);
 			break;
 		case "3":case"4":case"5":
-			$query->equalTo("ElementAbbr", $question);
+			$elementnumber=searchforkind("ElementAbbr", $question);
 			break;
 		case "6":case"7":case"8":
-			$query->equalTo("ElementNumber", (int)$question);
+			$elementnumber=searchforkind("ElementNumber", (int)$question);
 			break;
 		case "9":case"10":case"11":
-			$query->equalTo("ElementIUPACname", $question);
+			$elementnumber=searchforkind("ElementIUPACname", $question);
 			break;
 	}
 	switch ($mode){
         case "3":case"6":case"9":
-            $query->select('ElementName');
-			$todo = $query->first();
-			$correct_answer = $todo->get("ElementName");
+            //$query->select('ElementName');
+			//$todo = $query->first();
+			//$correct_answer = $todo->get("ElementName");
+			$correct_answer=$elementNameArray[$elementnumber-1];
             break;
         case "0":case"7":case"10":
-            $query->select('ElementAbbr');
-			$todo = $query->first();
-			$correct_answer = $todo->get("ElementAbbr");
+            //$query->select('ElementAbbr');
+			//$todo = $query->first();
+			//$correct_answer = $todo->get("ElementAbbr");
+			$correct_answer=$elementAbbrArray[$elementnumber-1];
             break;
         case "1":case"4":case"11":
-            $query->select('ElementNumber');
-			$todo = $query->first();
-			$correct_answer = (string)($todo->get("ElementNumber"));
+            //$query->select('ElementNumber');
+			//$todo = $query->first();
+			//$correct_answer = (string)($todo->get("ElementNumber"));
+			$correct_answer=(string)$elementnumber;
             break;
         case "2":case"5":case"8":
-            $query->select('ElementIUPACname');
-			$todo = $query->first();
-			$correct_answer = $todo->get("ElementIUPACname");
+            //$query->select('ElementIUPACname');
+			//$todo = $query->first();
+			//$correct_answer = $todo->get("ElementIUPACname");
+			$correct_answer=$elementIUPACArray[$elementnumber-1];
             break;
     }
 	if($correct_answer==$answer){
@@ -97,25 +102,28 @@ if ($currentUser != null) {
 }
 $query = new Query("Element");
 $n=rand(1,$max);
-$query->equalTo("ElementNumber", $n);
+//$query->equalTo("ElementNumber", $n);
 switch ($mode){
     case "0":case"1":case"2":
-        $query->select('ElementName');
-		$todo = $query->first();
-		$Question = $todo->get("ElementName");
+        //$query->select('ElementName');
+		//$todo = $query->first();
+		//$Question = $todo->get("ElementName");
+		$Question=$elementNameArray[$n-1];
 		break;
     case "3":case"4":case"5":
-        $query->select('ElementAbbr');
-		$todo = $query->first();
-		$Question = $todo->get("ElementAbbr");
+        //$query->select('ElementAbbr');
+		//$todo = $query->first();
+		//$Question = $todo->get("ElementAbbr");
+		$Question=$elementAbbrArray[$n-1];
 		break;
     case "6":case"7":case"8":
         $Question = (string)$n;
         break;
     case "9":case"10":case"11":
-        $query->select('ElementIUPACname');
-		$todo = $query->first();
-		$Question = $todo->get("ElementIUPACname");
+        //$query->select('ElementIUPACname');
+		//$todo = $query->first();
+		//$Question = $todo->get("ElementIUPACname");
+		$Question=$elementIUPACArray[$n-1];
 		break;
 }
 echo "<tr><td>题目</td><td>".$Question."</td></tr>";
@@ -139,27 +147,31 @@ for($i=0,$k=count($numbers);$i<$k;$i++) {
     }
 }
 for($i2 = 0;$i2<4;$i2++){
-	$query->equalTo("ElementNumber", $numbers[$i2]);
+	//$query->equalTo("ElementNumber", $numbers[$i2]);
 	switch ($mode){
         case "3":case"6":case"9":
-            $query->select('ElementName');
-			$todo = $query->first();
-			$option = $todo->get("ElementName");
+            //$query->select('ElementName');
+			//$todo = $query->first();
+			//$option = $todo->get("ElementName");
+			$option=$elementNameArray[$numbers[$i2]-1];
             break;
         case "0":case"7":case"10":
-            $query->select('ElementAbbr');
-			$todo = $query->first();
-			$option = $todo->get("ElementAbbr");
+            //$query->select('ElementAbbr');
+			//$todo = $query->first();
+			//$option = $todo->get("ElementAbbr");
+			$option=$elementAbbrArray[$numbers[$i2]-1];
             break;
         case "1":case"4":case"11":
-            $query->select('ElementNumber');
-			$todo = $query->first();
-			$option = $todo->get("ElementNumber");
+            //$query->select('ElementNumber');
+			//$todo = $query->first();
+			//$option = $todo->get("ElementNumber");
+			$option=(string)$numbers[$i2];
             break;
         case "2":case"5":case"8":
-            $query->select('ElementIUPACname');
-			$todo = $query->first();
-			$option = $todo->get("ElementIUPACname");
+            //$query->select('ElementIUPACname');
+			//$todo = $query->first();
+			//$option = $todo->get("ElementIUPACname");
+			$option=$elementIUPACArray[$numbers[$i2]-1];
             break;
     }
 	echo "<tr><td>".($i2+1)."</td><td><form name='form".$i2."' method='post' action='exam.php'><input type='hidden' name='mode' value='".$mode."'/> <input type='hidden' name='question' value='".$Question."'/> <input type='hidden' name='answer' value='".$option."'/><a href='javascript:document.form".$i2.".submit();'>".$option."</a></form></td></tr>";
@@ -180,4 +192,33 @@ if ($currentUser != null) {
   </body>
 </html>
 <?php
+}
+function searchforkind($kind,$input){
+	$elementNumber=0;
+	global $elementNameArray,$elementAbbrArray,$elementIUPACArray;
+	for($i=0;$i<118;$i++) {
+		switch($kind){
+			case "ElementName":
+				if($input==($elementNameArray[$i])){
+					$elementNumber=$i+1;
+				}
+			break;
+			case "ElementAbbr":
+				if($input==ucfirst($elementAbbrArray[$i])){
+					$elementNumber=$i+1;
+			}
+			break;
+			case "ElementNumber":
+				if ($input==(string)($i+1)){
+					$elementNumber=$i+1;
+				}
+			break;
+			case "ElementIUPACname":
+				if($input==ucfirst($elementIUPACArray[$i])){
+					$elementNumber=$i+1;
+				}
+			break;
+		}
+	}
+	return $elementNumber;
 }
