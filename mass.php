@@ -169,7 +169,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
 					//$elementMassArray[$i]=$ElementMass;
 					//$elementNameArray[$i]=$todo->get("ElementName");
 					//$elementAbbrArray[$i]=$todo->get("ElementAbbr");
-					$m = $m + $AtomNumber[$i + 1] * (double)($elementMassArray[$i+1]);
+					$m = $m + $AtomNumber[$i + 1] * (double)($elementMassArray[$i]);
 				}
             }
         }
