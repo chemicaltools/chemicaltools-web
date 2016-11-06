@@ -54,7 +54,7 @@ class wechatCallbackapiTest
 							</xml>";             
 				if ($ev == "subscribe"){
 					$msgType = "text";
-					$contentStr = "欢迎使用化学e+，您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
+					$contentStr = "欢迎使用化学e+，您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量，或者输入一组数据计算其偏差（用空格键间隔）。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
 					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 					echo $resultStr;
 				}
@@ -81,196 +81,239 @@ class wechatCallbackapiTest
 						$ElementOrigin=$todo->get("ElementOrigin");
 						*/
 					global $elementNameArray,$elementAbbrArray,$elementIUPACArray,$elementMassArray,$elementOriginArray;
-					$elementnumber=searchelement($input);
-					$name = $elementNameArray[$elementnumber-1];
-					$Abbr= $elementAbbrArray[$elementnumber-1];
-					$IUPACname = $elementIUPACArray[$elementnumber-1];
-					$ElementNumber=$elementnumber;
-					$ElementMass=$elementMassArray[$elementnumber-1];
-					$ElementOrigin=$elementOriginArray[$elementnumber-1];
-					if($elementnumber>0){
-						$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
-						"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
-						$outputHtml=$output."\n\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
-						$contentStr=$outputHtml;
-					}else{
-						$x = $input;
-						$l = strlen($x);
-						$i = 0;
-						$s = 0;
-						$m = 0;
-						$massPer=array();
-						$y1 = "";
-						$y2 = "";
-						$y3 = "";
-						$y4 = "";
-						$T = "";
-						$AtomNumber = array();
-						$MulNumber = array();
-						$MulIf = array();
-						$MulLeft = array();
-						$MulRight = array();
-						$MulNum = array();
-						if ($l > 0) {
-							while ($i <$l) {
-								$i++;
-								$MulNumber[$i] = 1;
-								$y1 = substr($x,$i - 1,1);
-								if ($this->calAsc($y1) == 4)
-									$MulIf[$i] = 1;
-								else if ($this->calAsc($y1) == 5)
-									$MulIf[$i] = -1;
-								else
-									$MulIf[$i] = 0;
-								$s = $s + $MulIf[$i];
+					$arr=explode(" ",trim($input));
+					$t=count($arr);
+					if($t>1){
+						for($i=0;$i<$t;$i++){
+							$arr[$i]=trim($arr[$i]);
+							$sum=$sum+$arr[$i];
+							$len=strlen($arr[$i]);
+							if(substr($arr[$i],0,1)=="-")$len=$len-1;
+							if(strpos($arr[$i],".")){
+								$len=$len-1;
+								$pointlen=$len-strpos($arr[$i],".");
+								if(abs($arr[$i])<1){
+									$zeronum=floor(log10(abs($arr[$i])));
+									$len=$len+$zeronum;
+								}
+							}else{
+								$pointlen=0;
 							}
-							if ($s == 0) {
-								$i = 1;
-								$n = 0;
-								while ($i < $l) {
-									if ($MulIf[$i] == 1) {
-										$n++;
-										$c = 1;
-										$i2 = $i + 1;
-										$MulLeft[$n] = $i;
-										while ($c > 0) {
-											$c = $c + $MulIf[$i2];
-											$i2++;
-										}
-										$i2 = $i2 - 1;
-										$MulRight[$n] = $i2;
-										if ($i2 + 1 > $l)
-											$y3 = "a";
-										else
-											$y3 = substr($x,$i2, 1);
-										if ($this->calAsc($y3) == 3) {
-											if ($i2 + 2 > $l)
-												$y4 = "a";
-											else
-												$y4 = substr($x,$i2 + 1, 1);
-												if ($this->calAsc($y4) == 3)
-													$MulNum[$n] = (int)($y3.$y4);
-												else
-													$MulNum[$n] = (int)($y3);
-										} else {
-											$MulNum[$n] = 1;
-										}
-									}
-									$i++;
-								}
-								$i = 0;
-								while ($i < $n) {
-									$i++;
-									for ($i2 = $MulLeft[$i]; $i2 <= $MulRight[$i]; $i2++)
-										$MulNumber[$i2] = $MulNumber[$i2] * $MulNum[$i];
-								}
-								$i = 0;
-								while ($i <$l) {
-									$i++;
-									$y1 = substr($x,$i - 1, 1);
-									if ($this->calAsc($y1) == 1) {
-										if ($i >=$l)
-											$y2 = "1";
-										else
-											$y2 = substr($x,$i, 1);
-										if ($this->calAsc($y2) == 2) {
-											$T = $y1.$y2;
-											$n = $this->ElementChoose($T);
-											if ($n > 0) {
-												if ($i + 1 >=$l)
-													$y3 = "1";
-												else
-													$y3 = substr($x,$i + 1, 1);
-												if ($this->calAsc($y3) == 3) {
-													if ($i + 2 >=$l)
-														$y4 = "a";
-													else
-														$y4 = substr($x,$i + 2, 1);
-													if ($this->calAsc($y4) == 3) {
-														$AtomNumber[$n] = $AtomNumber[$n] + (int)($y3.$y4) * $MulNumber[$i];
-														$i = $i + 3;
-													} else {
-														$AtomNumber[$n] = $AtomNumber[$n] + (int)($y3) * $MulNumber[$i];
-														$i = $i + 2;
-													}
-												} else {
-													$AtomNumber[$n] = $AtomNumber[$n] + $MulNumber[$i];
-													$i++;
-												}
-											}
-										} else if ($this->calAsc($y2) == 3) {
-											$n = $this->ElementChoose($y1);
-											if ($n > 0) {
-												if ($i + 1 >=$l)
-													$y3 = "a";
-												else
-													$y3 = substr($x,$i + 1, 1);
-												if ($this->calAsc($y3) == 3) {
-													$AtomNumber[$n] = $AtomNumber[$n] + (int)($y2.$y3) * $MulNumber[$i];
-													$i = $i + 2;
-												} else {
-													$AtomNumber[$n] = $AtomNumber[$n] + (int)($y2) * $MulNumber[$i];
-												}
-											}
-										} else {
-											$n = $this->ElementChoose($y1);
-											if ($n > 0)
-												$AtomNumber[$n] = $AtomNumber[$n] + $MulNumber[$i];
-										}
-									} else if ($this->calAsc($y1) == 4) {
-									} else if ($this->calAsc($y1) == 5) {
-										if ($i >=$l)
-											$y2 = "a";
-										else
-											$y2 = substr($x,$i, 1);
-										if ($this->calAsc($y2) == 3) {
-											if ($i + 1 >=$l)
-												$y2 = "a";
-											else
-												$y3 = substr($x,$i + 1, 1);
-											if ($this->calAsc($y3) == 3) $i++;
-											$i++;
-										}
-									}
-								}
-								//$NumberQuery= new Query("Element");
-								for ($i = 0; $i < 118; $i++) {
-									if($AtomNumber[$i + 1]>0) {
-										//$NumberQuery->equalTo("ElementNumber", $i+1);
-										//$NumberQuery->select('ElementMass','ElementAbbr','ElementName');
-										//$todo = $NumberQuery->first();
-										//$ElementMass=$todo->get("ElementMass");
-										//$elementMassArray[$i]=$ElementMass;
-										//$elementNameArray[$i]=$todo->get("ElementName");
-										//$elementAbbrArray[$i]=$todo->get("ElementAbbr");
-										$m = $m + $AtomNumber[$i + 1] * (double)($elementMassArray[$i]);
-									}
-								}
+							if($i>0){
+								if($len<$numnum)$numnum=$len;
+								if($pointlen<$pointnum)$pointnum=$pointlen;
+							}else{
+								$numnum=$len;
+								$pointnum=$pointlen;
 							}
 						}
-						if ($m > 0) {
-							/*
-							$xHtml="";
-							for($i3=0;$i3<$l;$i3++) {
-								if (ord(substr($x,$i3,1)) >= 48 && ord(substr($x,$i3,1)) <= 57) {
-									$xHtml =$xHtml."<sub>".substr($x,$i3,1)."</sub>";
-								} else {
-									$xHtml =$xHtml.substr($x,$i3,1);
+						$average=$sum/$t;
+						for($i=0;$i<$t;$i++){
+							$arrabs=abs($arr[$i]-$average);
+							$arrsqure=pow($arr[$i]-$average,2);
+							$abssum=$abssum+$arrabs;
+							$squresum=$squrasum+$arrsqure;
+						}
+						$deviation=$abssum/$t;
+						$deviation_relatibe=$deviation/$average*1000;
+						$s=sqrt($squresum/($t-1));
+						$s_relatibe=$s/$deviation*1000;
+						$output="您输入的数据：".str_replace(array("\r\n","\r","\n"),"，",trim($input))."\n平均数：".sprintf("%.".$pointnum."f",$average).
+								"\n平均偏差：".sprintf("%.".$pointnum."f",$deviation)."\n相对平均偏差：".sprintf("%.".($numnum-1)."e",$deviation_relatibe).
+								"‰\n标准偏差：".sprintf("%.".($numnum-1)."e",$s)."\n相对标准偏差：".sprintf("%.".($numnum-1)."e",$s_relatibe)."‰";
+						$contentStr=$output;
+					}else{
+						$elementnumber=searchelement($input);
+						$name = $elementNameArray[$elementnumber-1];
+						$Abbr= $elementAbbrArray[$elementnumber-1];
+						$IUPACname = $elementIUPACArray[$elementnumber-1];
+						$ElementNumber=$elementnumber;
+						$ElementMass=$elementMassArray[$elementnumber-1];
+						$ElementOrigin=$elementOriginArray[$elementnumber-1];
+						if($elementnumber>0){
+							$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
+							"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
+							$outputHtml=$output."\n\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
+							$contentStr=$outputHtml;
+						}else{
+							$x = $input;
+							$l = strlen($x);
+							$i = 0;
+							$s = 0;
+							$m = 0;
+							$massPer=array();
+							$y1 = "";
+							$y2 = "";
+							$y3 = "";
+							$y4 = "";
+							$T = "";
+							$AtomNumber = array();
+							$MulNumber = array();
+							$MulIf = array();
+							$MulLeft = array();
+							$MulRight = array();
+							$MulNum = array();
+							if ($l > 0) {
+								while ($i <$l) {
+									$i++;
+									$MulNumber[$i] = 1;
+									$y1 = substr($x,$i - 1,1);
+									if ($this->calAsc($y1) == 4)
+										$MulIf[$i] = 1;
+									else if ($this->calAsc($y1) == 5)
+										$MulIf[$i] = -1;
+									else
+										$MulIf[$i] = 0;
+									$s = $s + $MulIf[$i];
 								}
-							}*/
-							$output=$x."\n相对分子质量=".sprintf("%.2f",$m);
-							for($i=0;$i<118;$i++){
-								if($AtomNumber[$i+1]>0){
-									$massPer[$i+1]=$AtomNumber[$i + 1] * ($elementMassArray[$i])/$m*100;
-									$output=$output."\n".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."），".$AtomNumber[$i+1].
-									"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
+								if ($s == 0) {
+									$i = 1;
+									$n = 0;
+									while ($i < $l) {
+										if ($MulIf[$i] == 1) {
+											$n++;
+											$c = 1;
+											$i2 = $i + 1;
+											$MulLeft[$n] = $i;
+											while ($c > 0) {
+												$c = $c + $MulIf[$i2];
+												$i2++;
+											}
+											$i2 = $i2 - 1;
+											$MulRight[$n] = $i2;
+											if ($i2 + 1 > $l)
+												$y3 = "a";
+											else
+												$y3 = substr($x,$i2, 1);
+											if ($this->calAsc($y3) == 3) {
+												if ($i2 + 2 > $l)
+													$y4 = "a";
+												else
+													$y4 = substr($x,$i2 + 1, 1);
+													if ($this->calAsc($y4) == 3)
+														$MulNum[$n] = (int)($y3.$y4);
+													else
+														$MulNum[$n] = (int)($y3);
+											} else {
+												$MulNum[$n] = 1;
+											}
+										}
+										$i++;
+									}
+									$i = 0;
+									while ($i < $n) {
+										$i++;
+										for ($i2 = $MulLeft[$i]; $i2 <= $MulRight[$i]; $i2++)
+											$MulNumber[$i2] = $MulNumber[$i2] * $MulNum[$i];
+									}
+									$i = 0;
+									while ($i <$l) {
+										$i++;
+										$y1 = substr($x,$i - 1, 1);
+										if ($this->calAsc($y1) == 1) {
+											if ($i >=$l)
+												$y2 = "1";
+											else
+												$y2 = substr($x,$i, 1);
+											if ($this->calAsc($y2) == 2) {
+												$T = $y1.$y2;
+												$n = $this->ElementChoose($T);
+												if ($n > 0) {
+													if ($i + 1 >=$l)
+														$y3 = "1";
+													else
+														$y3 = substr($x,$i + 1, 1);
+													if ($this->calAsc($y3) == 3) {
+														if ($i + 2 >=$l)
+															$y4 = "a";
+														else
+															$y4 = substr($x,$i + 2, 1);
+														if ($this->calAsc($y4) == 3) {
+															$AtomNumber[$n] = $AtomNumber[$n] + (int)($y3.$y4) * $MulNumber[$i];
+															$i = $i + 3;
+														} else {
+															$AtomNumber[$n] = $AtomNumber[$n] + (int)($y3) * $MulNumber[$i];
+															$i = $i + 2;
+														}
+													} else {
+														$AtomNumber[$n] = $AtomNumber[$n] + $MulNumber[$i];
+														$i++;
+													}
+												}
+											} else if ($this->calAsc($y2) == 3) {
+												$n = $this->ElementChoose($y1);
+												if ($n > 0) {
+													if ($i + 1 >=$l)
+														$y3 = "a";
+													else
+														$y3 = substr($x,$i + 1, 1);
+													if ($this->calAsc($y3) == 3) {
+														$AtomNumber[$n] = $AtomNumber[$n] + (int)($y2.$y3) * $MulNumber[$i];
+														$i = $i + 2;
+													} else {
+														$AtomNumber[$n] = $AtomNumber[$n] + (int)($y2) * $MulNumber[$i];
+													}
+												}
+											} else {
+												$n = $this->ElementChoose($y1);
+												if ($n > 0)
+													$AtomNumber[$n] = $AtomNumber[$n] + $MulNumber[$i];
+											}
+										} else if ($this->calAsc($y1) == 4) {
+										} else if ($this->calAsc($y1) == 5) {
+											if ($i >=$l)
+												$y2 = "a";
+											else
+												$y2 = substr($x,$i, 1);
+											if ($this->calAsc($y2) == 3) {
+												if ($i + 1 >=$l)
+													$y2 = "a";
+												else
+													$y3 = substr($x,$i + 1, 1);
+												if ($this->calAsc($y3) == 3) $i++;
+												$i++;
+											}
+										}
+									}
+									//$NumberQuery= new Query("Element");
+									for ($i = 0; $i < 118; $i++) {
+										if($AtomNumber[$i + 1]>0) {
+											//$NumberQuery->equalTo("ElementNumber", $i+1);
+											//$NumberQuery->select('ElementMass','ElementAbbr','ElementName');
+											//$todo = $NumberQuery->first();
+											//$ElementMass=$todo->get("ElementMass");
+											//$elementMassArray[$i]=$ElementMass;
+											//$elementNameArray[$i]=$todo->get("ElementName");
+											//$elementAbbrArray[$i]=$todo->get("ElementAbbr");
+											$m = $m + $AtomNumber[$i + 1] * (double)($elementMassArray[$i]);
+										}
+									}
 								}
 							}
-							$output=rtrim($output,"；")."。";
-							$contentStr=$output;
-						} else {
-							$contentStr= "输入有误！";
-						};
+							if ($m > 0) {
+								/*
+								$xHtml="";
+								for($i3=0;$i3<$l;$i3++) {
+									if (ord(substr($x,$i3,1)) >= 48 && ord(substr($x,$i3,1)) <= 57) {
+										$xHtml =$xHtml."<sub>".substr($x,$i3,1)."</sub>";
+									} else {
+										$xHtml =$xHtml.substr($x,$i3,1);
+									}
+								}*/
+								$output=$x."\n相对分子质量=".sprintf("%.2f",$m);
+								for($i=0;$i<118;$i++){
+									if($AtomNumber[$i+1]>0){
+										$massPer[$i+1]=$AtomNumber[$i + 1] * ($elementMassArray[$i])/$m*100;
+										$output=$output."\n".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."），".$AtomNumber[$i+1].
+										"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
+									}
+								}
+								$output=rtrim($output,"；")."。";
+								$contentStr=$output;
+							} else {
+								$contentStr= "输入有误！";
+							};
+						}
 					}
               		$msgType = "text";
                 	$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
