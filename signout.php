@@ -5,5 +5,13 @@ if ($currentUser != null) {
 	//User->logOut();
 	setcookie('token','');
 } 
-header('Location: index.php');
+if($_POST['url'] != "")
+{
+	$url=$_POST['url'];
+}elseif($_GET['url'] != ""){
+	$url=$_GET['url'];
+}else{
+	$url='index.php';
+}
+header('Location:'.urldecode($url));
 exit;

@@ -22,7 +22,7 @@ if($_POST['url'] != "")
 }
 $currentUser = User::getCurrentUser();
 if ($currentUser != null) {
-	header('Location: '.$url);
+	header('Location: '.urldecode($url));
 	exit;
 } else {
 	?>
