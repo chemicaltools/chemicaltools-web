@@ -22,6 +22,13 @@ if($_POST['url'] != "")
 }
 $currentUser = User::getCurrentUser();
 if ($currentUser != null) {
+	$qqname=$currentUser->get("qqname");
+	if($qqname==""){
+		$username=$currentUser->getUsername();
+		$qqname = $username;
+		$qqname=substr($qqname,0,strpos($qqname,"@"));
+	}
+	setcookie('qqname',$qqname,time() + 259200);
 	header('Location: '.urldecode($url));
 	exit;
 } else {

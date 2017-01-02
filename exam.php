@@ -52,17 +52,17 @@ if($_POST['question'] != ""){
 	if($correct_answer==$answer){
 		$result= "回答正确！";
 		if ($currentUser != null) {
-			$score=(int)($currentUser->get("examCorrectNumber"));
-			$score++;
-			$currentUser->set("examCorrectNumber", (string) $score);
+			$correct=(int)($currentUser->get("examCorrectNumber"));
+			$correct++;
+			$currentUser->set("examCorrectNumber", (string) $correct);
 			$currentUser->save();
 		}
 	}else{
 		$result= "回答错误，正确答案为：".$correct_answer."，题目为：".$question."，您的答案为：".$answer;
 		if ($currentUser != null) {
-			$score=(int)($currentUser->get("examIncorrectnumber"));
-			$score++;
-			$currentUser->set("examIncorrectnumber", (string) $score);
+			$incorrect=(int)($currentUser->get("examIncorrectnumber"));
+			$incorrect++;
+			$currentUser->set("examIncorrectnumber", (string) $incorrect);
 			$currentUser->save();
 		}
 	}
@@ -180,8 +180,8 @@ for($i2 = 0;$i2<4;$i2++){
 </table>
 <?php
 if ($currentUser != null) {
-	$correct=(int)($currentUser->get("examCorrectNumber"));
-	$incorrect=(int)($currentUser->get("examIncorrectnumber"));
+	if($correct==0)$correct=(int)($currentUser->get("examCorrectNumber"));
+	if($incorrect==0)$incorrect=(int)($currentUser->get("examIncorrectnumber"));
 	$sum=$correct+$incorrect;
 	$rate=(double)$correct/(double)$sum*100;
 	echo '共回答'.$sum.'题，其中'.$correct.'题正确，正确率为'.sprintf("%.2f", $rate).'%';

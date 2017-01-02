@@ -1,10 +1,15 @@
 <?php
 if ($currentUser != null) {
-	$username=$currentUser->getUsername();
-	$qqname=$currentUser->get("qqname");
-	if($qqname==""){
-		$qqname = $username;
-		$qqname=substr($qqname,0,strpos($qqname,"@"));
+	if(isset($_COOKIE['qqname'])){
+		$qqname=$_COOKIE['qqname'];
+	}else{
+		$qqname=$currentUser->get("qqname");
+		if($qqname==""){
+			$username=$currentUser->getUsername();
+			$qqname = $username;
+			$qqname=substr($qqname,0,strpos($qqname,"@"));
+		}
+		setcookie('qqname',$qqname,time() + 259200);
 	}
 	echo "欢迎您，".$qqname."|<a href='signout.php?url=".urlencode($_SERVER['PHP_SELF'])."'>注销</a>|<a href='user.php'>用户中心</a>";
 }else{
