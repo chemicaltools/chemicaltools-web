@@ -17,20 +17,11 @@ require 'doyouknow.php';
 <p><?=$doyouknow?></p>
 <?php
 if ($currentUser != null) {
-	$element=$currentUser->get("historyElementOutputHtml");
-	if($element=="")$element="您尚未使用本功能，赶快试试吧！";
-	$mass=$currentUser->get("historyMassOutput");
-	if($mass=="")$mass="您尚未使用本功能，赶快试试吧！";
-	$acid=$currentUser->get("historyAcidOutput");
-	if($acid=="")$acid="您尚未使用本功能，赶快试试吧！";
-	$deviation=$currentUser->get("historyDeviation");
-	if($deviation=="")$deviation="您尚未使用本功能，赶快试试吧！";
-	$correct=(int)($currentUser->get("examCorrectNumber"));
-	$incorrect=(int)($currentUser->get("examIncorrectnumber"));
-	$sum=$correct+$incorrect;
-	$rate=(double)$correct/(double)$sum*100;
-	if($sum>0)$exam= '共回答'.$sum.'题，其中'.$correct.'题正确，正确率为'.sprintf("%.2f", $rate).'%';
-	else $exam="您尚未使用本功能，赶快试试吧！";
+	$element='<div class="history" id="historyElementmin"></div>';
+	$mass='<div class="history" id="historyMass"></div>';
+	$acid='<div class="history" id="historyAcid"></div>';
+	$exam='<div class="history" id="historyExam"></div>';
+	$deviation='<div class="history" id="historyDeviation"></div>';
 }else{
 	$element='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';
 	$mass='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';

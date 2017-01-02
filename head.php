@@ -6,3 +6,5 @@
 <link rel="apple-touch-icon" href="/ico/appleicon.png" />
 <link rel="icon" href="/ico/ic_launcher.png" />
 <script src="/js/googleanalytics.js"></script>
+<script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="/ajax.js"></script>

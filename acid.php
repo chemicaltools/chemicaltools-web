@@ -88,8 +88,9 @@ if($_POST['pKa']!=""&&$_POST['c']!=""){
 	}
 }else{
 	if ($currentUser != null) {
-		$acidOutput=$currentUser->get("historyAcidOutput");
-		echo '<p>'.nl2br($acidOutput).'<p>';
+		?><p>
+		<div class="history" id="historyAcid"></div>
+		</p><?php
 	}
 }
 function calpH($pKa,$c,$pKw) {

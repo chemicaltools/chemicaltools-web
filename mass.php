@@ -203,8 +203,11 @@ if($_POST['input']!=""||$_GET['input']!=""){
     };
 }else{
 	if ($currentUser != null) {
-		$output=$currentUser->get("historyMassOutput");
-		echo "<p>".nl2br($output)."</p>";
+		?>
+		<p>
+		<div class="history" id="historyMass"></div>
+		</p>
+		<?php
 	}
 }
 

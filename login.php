@@ -7,7 +7,7 @@ if($_POST['username'] != ""&&$_POST['password'] != "")
 	try {
 		User::logIn($_POST['username'],$_POST['password']);
 		$token = User::getCurrentSessionToken();
-		setcookie('token',$token,time() + 259200);
+		setcookie('token',$token,time() + 2592000);
 	} catch (CloudException $ex) {
 		$error=true;
 	}
@@ -22,13 +22,14 @@ if($_POST['url'] != "")
 }
 $currentUser = User::getCurrentUser();
 if ($currentUser != null) {
+	$username=$currentUser->getUsername();
 	$qqname=$currentUser->get("qqname");
 	if($qqname==""){
-		$username=$currentUser->getUsername();
 		$qqname = $username;
 		$qqname=substr($qqname,0,strpos($qqname,"@"));
 	}
-	setcookie('qqname',$qqname,time() + 259200);
+	setcookie('username',$username,time() + 259200);
+	setcookie('qqname',$qqname,time() + 2592000);
 	header('Location: '.urldecode($url));
 	exit;
 } else {

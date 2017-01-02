@@ -180,11 +180,11 @@ for($i2 = 0;$i2<4;$i2++){
 </table>
 <?php
 if ($currentUser != null) {
-	if($correct==0)$correct=(int)($currentUser->get("examCorrectNumber"));
-	if($incorrect==0)$incorrect=(int)($currentUser->get("examIncorrectnumber"));
-	$sum=$correct+$incorrect;
-	$rate=(double)$correct/(double)$sum*100;
-	echo '共回答'.$sum.'题，其中'.$correct.'题正确，正确率为'.sprintf("%.2f", $rate).'%';
+	?>
+	<p>
+	<div class="history" id="historyExam"></div>
+	</p>
+	<?php
 }
 ?>
 <?php include 'foot.php';?>

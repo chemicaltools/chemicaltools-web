@@ -65,9 +65,14 @@ if($_POST['input']!=""||$_GET['input']!=""){
 	}
 }else{
 	if ($currentUser != null) {
-		$ElementNumber=$currentUser->get("historyElementNumber");
-		$outputHtml=$currentUser->get("historyElementOutputHtml");
-		echo "<tr><table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table></tr>";
+		//$ElementNumber=$currentUser->get("historyElementNumber");
+		//$outputHtml=$currentUser->get("historyElementOutputHtml");
+		//echo "<tr><table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table></tr>";
+		?>
+		<tr>
+		<div class="history" id="historyElement"></div>
+		</tr>
+		<?php
 	}
 }
 

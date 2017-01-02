@@ -70,8 +70,11 @@ if($_POST['input']!=""){
 	}
 }else{
 	if ($currentUser != null) {
-		$output=$currentUser->get("historyDeviation");
-		echo "<p>".nl2br($output)."</p>";
+		?>
+		<p>
+		<div class="history" id="historyDeviation"></div>
+		</p>
+		<?php
 	}
 }
 ?>

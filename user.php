@@ -33,12 +33,22 @@ if ($currentUser == null) {
 <form method="post" action="user.php"><table>
 <tr><td colspan=2><h3>个人信息</h3></td></tr>
 <?php
-$username=$currentUser->getUsername();
-$qqname=$currentUser->get("qqname");
-if($qqname==""){
+if(isset($_COOKIE['username'])){
+	$username=$_COOKIE['username'];
+}else{
+	$username=$currentUser->getUsername();
+	setcookie('username',$username,time() + 2592000);
+}
+if(isset($_COOKIE['qqname'])){
+	$qqname=$_COOKIE['qqname'];
+}else{
+	$qqname=$currentUser->get("qqname");
+	if($qqname==""){
 		$qqname = $username;
 		$qqname=substr($qqname,0,strpos($qqname,"@"));
 	}
+	setcookie('qqname',$qqname,time() + 2592000);
+}
 $score=$currentUser->get("examCorrectNumber");
 if($score=="")$score="0";
 $mode=(int)($currentUser->get("examMode"));

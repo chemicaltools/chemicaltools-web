@@ -87,7 +87,10 @@ if ($currentUser == null) {
 	require 'load.php';
 	$currentUser->set("qqid", $qqid);
 	$currentUser->set("qqname", $qqname);
-	try{$currentUser->save();}catch (CloudException $ex) {echo $ex;}
+	try{
+		$currentUser->save();
+		setcookie('qqname',$qqname,time() + 2592000);
+	}catch (CloudException $ex) {echo $ex;}
 	$url="user.php";
 	header('Location: '.$url);
 	exit;
