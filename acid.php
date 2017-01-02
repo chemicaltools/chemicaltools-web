@@ -83,13 +83,18 @@ if($_POST['pKa']!=""&&$_POST['c']!=""){
     $acidOutput=rtrim($acidOutput,",").".";
 	echo '<p>'.nl2br($acidOutput).'<p>';
 	if ($currentUser != null) {
-		$currentUser->set("historyAcidOutput", $acidOutput);
-		$currentUser->save();
+		//$currentUser->set("historyAcidOutput", $acidOutput);
+		//$currentUser->save();
+		?>
+		<script type="text/javascript">
+			change("historyAcidOutput", "<?=str_replace("\n","\\n",$acidOutput)?>");
+		</script>
+		<?php
 	}
 }else{
 	if ($currentUser != null) {
 		?><p>
-		<div class="history" id="historyAcid"></div>
+		<div class="history" id="historyAcid"><img src="\ico\loading.gif">加载中，请稍后……</div>
 		</p><?php
 	}
 }

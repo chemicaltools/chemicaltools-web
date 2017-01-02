@@ -194,9 +194,15 @@ if($_POST['input']!=""||$_GET['input']!=""){
         $output=rtrim($output,"；")."。";
 		echo "<p>".nl2br($output)."</p>";
 		if ($currentUser != null) {
-			$currentUser->set("historyMassOutput", $output);
-			$currentUser->set("historyMass", $input);
-			$currentUser->save();
+			//$currentUser->set("historyMassOutput", $output);
+			//$currentUser->set("historyMass", $input);
+			//$currentUser->save();
+			?>
+			<script type="text/javascript">
+				change("historyMassOutput", "<?=str_replace("\n","\\n",$output)?>");
+				change("historyMass","<?=$input?>");
+			</script>
+			<?php
 		}
     } else {
         echo "<p>输入有误！</p>";
@@ -205,7 +211,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
 	if ($currentUser != null) {
 		?>
 		<p>
-		<div class="history" id="historyMass"></div>
+		<div class="history" id="historyMass"><img src="\ico\loading.gif">加载中，请稍后……</div>
 		</p>
 		<?php
 	}

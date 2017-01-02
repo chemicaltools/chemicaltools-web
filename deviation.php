@@ -62,8 +62,13 @@ if($_POST['input']!=""){
 			"‰\n标准偏差：".sprintf("%.".($numnum-1)."e",$s)."\n相对标准偏差：".sprintf("%.".($numnum-1)."e",$s_relatibe)."‰";
 	echo "<p>".nl2br($output)."</p>";
 	if ($currentUser != null) {
-		$currentUser->set("historyDeviation", $output);
-		$currentUser->save();
+		//$currentUser->set("historyDeviation", $output);
+		//$currentUser->save();
+		?>
+		<script type="text/javascript">
+			change("historyDeviation", "<?=str_replace("\n","\\n",$output)?>");
+		</script>
+		<?php
 	}
 	}else{
 		echo "请输入多个数据！";
@@ -72,7 +77,7 @@ if($_POST['input']!=""){
 	if ($currentUser != null) {
 		?>
 		<p>
-		<div class="history" id="historyDeviation"></div>
+		<div class="history" id="historyDeviation"><img src="\ico\loading.gif">加载中，请稍后……</div>
 		</p>
 		<?php
 	}

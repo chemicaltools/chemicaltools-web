@@ -54,11 +54,18 @@ if($_POST['input']!=""||$_GET['input']!=""){
 		$outputHtml=$output."\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
 		echo "<tr><table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table></tr>";
 		if ($currentUser != null) {
-			$currentUser->set("historyElementOutput", $output);
-			$currentUser->set("historyElementOutputHtml", $outputHtml);
-			$currentUser->set("historyElementNumber", (string)$ElementNumber);
-			$currentUser->set("historyElement", $input);
-			$currentUser->save();
+			//$currentUser->set("historyElementOutput", $output);
+			//$currentUser->set("historyElementOutputHtml", $outputHtml);
+			//$currentUser->set("historyElementNumber", (string)$ElementNumber);
+			//$currentUser->set("historyElement", $input);
+			//$currentUser->save();?>
+			<script type="text/javascript">
+				change("historyElementOutput", "<?=str_replace("\n","\\n",$output)?>");
+				change("historyElementOutputHtml", "<?=str_replace("\n","\\n",$outputHtml)?>");
+				change("historyElementNumber", "<?=(string)$ElementNumber?>");
+				change("historyElement","<?=$input?>");
+			</script>
+			<?php
 		}
 	}else{
 		echo "<p>输入有误！</p>";
@@ -70,7 +77,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
 		//echo "<tr><table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table></tr>";
 		?>
 		<tr>
-		<div class="history" id="historyElement"></div>
+		<div class="history" id="historyElement"><img src="\ico\loading.gif">加载中，请稍后……</div>
 		</tr>
 		<?php
 	}

@@ -17,11 +17,11 @@ require 'doyouknow.php';
 <p><?=$doyouknow?></p>
 <?php
 if ($currentUser != null) {
-	$element='<div class="history" id="historyElementmin"></div>';
-	$mass='<div class="history" id="historyMass"></div>';
-	$acid='<div class="history" id="historyAcid"></div>';
-	$exam='<div class="history" id="historyExam"></div>';
-	$deviation='<div class="history" id="historyDeviation"></div>';
+	$element='<div class="history" id="historyElementmin"><img src="\ico\loading.gif">加载中，请稍后……</div>';
+	$mass='<div class="history" id="historyMass"><img src="\ico\loading.gif">加载中，请稍后……</div>';
+	$acid='<div class="history" id="historyAcid"><img src="\ico\loading.gif">加载中，请稍后……</div>';
+	$exam='<div class="history" id="historyExam"><img src="\ico\loading.gif">加载中，请稍后……</div>';
+	$deviation='<div class="history" id="historyDeviation"><img src="\ico\loading.gif">加载中，请稍后……</div>';
 }else{
 	$element='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';
 	$mass='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';

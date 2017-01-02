@@ -4,6 +4,8 @@ use \LeanCloud\User;
 if ($currentUser != null) {
 	//User->logOut();
 	setcookie('token','');
+	setcookie('username','');
+	setcookie('qqname','');
 } 
 if($_POST['url'] != "")
 {

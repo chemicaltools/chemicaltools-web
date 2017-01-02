@@ -3,7 +3,7 @@ require 'load.php';
 require 'element_xml.php';
 use \LeanCloud\Query;
 use \LeanCloud\User;
-$query = new Query("Element");
+//$query = new Query("Element");
 if($_POST['question'] != ""){
 	$question=$_POST['question'];
 	$answer=$_POST['answer'];
@@ -182,7 +182,7 @@ for($i2 = 0;$i2<4;$i2++){
 if ($currentUser != null) {
 	?>
 	<p>
-	<div class="history" id="historyExam"></div>
+	<div class="history" id="historyExam"><img src="\ico\loading.gif">加载中，请稍后……</div>
 	</p>
 	<?php
 }

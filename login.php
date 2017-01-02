@@ -22,7 +22,7 @@ if($_POST['url'] != "")
 }
 $currentUser = User::getCurrentUser();
 if ($currentUser != null) {
-	$username=$currentUser->getUsername();
+	$username=$_POST['username'];
 	$qqname=$currentUser->get("qqname");
 	if($qqname==""){
 		$qqname = $username;

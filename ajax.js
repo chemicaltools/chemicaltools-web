@@ -12,3 +12,6 @@ history('historyAcid','#historyAcid');
 history('historyElementmin','#historyElementmin');
 history('historyDeviation','#historyDeviation');
 history('historyExam','#historyExam');
+function change(changename,changevalue){ 
+	$.post("/change.php",{name:changename,value:changevalue});
+}
