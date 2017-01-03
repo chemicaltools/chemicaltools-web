@@ -1,4 +1,5 @@
 <?php
+session_start();
 require 'load.php';
 require 'element_xml.php';
 use \LeanCloud\Query;
@@ -52,18 +53,22 @@ if($_POST['question'] != ""){
 	if($correct_answer==$answer){
 		$result= "回答正确！";
 		if ($currentUser != null) {
-			$correct=(int)($currentUser->get("examCorrectNumber"));
-			$correct++;
-			$currentUser->set("examCorrectNumber", (string) $correct);
-			$currentUser->save();
+			if(isset($_SESSION['correct']))$_SESSION['correct']=$_SESSION['correct']+1;
+			else  $_SESSION['correct']=1;
+			//$correct=(int)($currentUser->get("examCorrectNumber"));
+			//$correct++;
+			//$currentUser->set("examCorrectNumber", (string) $correct);
+			//$currentUser->save();
 		}
 	}else{
 		$result= "回答错误，正确答案为：".$correct_answer."，题目为：".$question."，您的答案为：".$answer;
 		if ($currentUser != null) {
-			$incorrect=(int)($currentUser->get("examIncorrectnumber"));
-			$incorrect++;
-			$currentUser->set("examIncorrectnumber", (string) $incorrect);
-			$currentUser->save();
+			if(isset($_SESSION['incorrect']))$_SESSION['incorrect']=$_SESSION['incorrect']+1;
+			else  $_SESSION['incorrect']=1;
+			//$incorrect=(int)($currentUser->get("examIncorrectnumber"));
+			//$incorrect++;
+			//$currentUser->set("examIncorrectnumber", (string) $incorrect);
+			//$currentUser->save();
 		}
 	}
 	header('Location: exam.php?result='.$result);
@@ -75,11 +80,16 @@ if($_POST['question'] != ""){
   <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>元素记忆 -- 化学e+</title>
-<?php include 'head.php';?>
+<?php include 'head.php';
+if ($currentUser != null) {
+?>
 	<script type="text/javascript">
+		<?php if($_GET['result']!="")echo"changescore();"?>
+		
 		update('examMode');
 		update('elementnumber_limit');
 	</script>
+<?php }?>
   </head>
   <body>
 <?php include 'header.php';

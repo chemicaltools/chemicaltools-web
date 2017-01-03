@@ -3,24 +3,28 @@
   <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>酸碱计算 -- 化学e+</title>
-<?php include 'head.php';?>
+<?php include 'head.php';
+require 'load.php';
+//use \LeanCloud\Query;
+use \LeanCloud\User;
+if ($currentUser != null) {
+?>
 	<script type="text/javascript">
 		update('pKw');
 	</script>
+<?php}?>
   </head>
   <body>
 <?php include 'header.php';
 ?>
     <section class="main-content">
-	<? require 'load.php';
+	<? 
 	include 'title.php';?>
 		<h2>酸碱计算</h2>
 		<form method='post' action='acid.php'>
 		<table><tr><td><input type="text" name="pKa" placeholder="pKa或pKb"/></td><td><select name="AorB"><option value ="acid">酸</option><option value ="base">碱</option></select></td></tr>
 		<tr><td><input type="text" name="c" placeholder="分析浓度"/></td><td><input type="submit" value="计算"></td></tr></table></form>
 <?php
-//use \LeanCloud\Query;
-use \LeanCloud\User;
 if($_POST['pKa']!=""&&$_POST['c']!=""){
 	$strpKa=$_POST['pKa'];
 	$c=(double)$_POST['c'];

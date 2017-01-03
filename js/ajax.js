@@ -12,3 +12,6 @@ function change(changename,changevalue){
 function update(updatename){ 
 	$.post("/update.php",{name:updatename});
 }
+function changescore(){ 
+	$.post("/changescore.php");
+}
