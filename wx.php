@@ -198,15 +198,15 @@ class wechatCallbackapiTest
 							"3.酸碱计算\n输入HA（或HB） 分析浓度 pKa（或pKb）计算溶液成分。\n示例：HA 0.1 2.148 7.198 12.319\n".
 							"4.偏差计算\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407\n".
 							"5.元素记忆\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。";	
-						}else if($input=="出题"||$input=="A1"||$input=="A2"||$input=="A3"||$input=="A4"){
+						}else if($input=="出题"||strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4"){
 							$con=mysql_connect("localhost","root","root");
 							mysql_select_db("chemapp", $con);
 							$result = mysql_query("SELECT * FROM wx_exam
 							WHERE openid='".$toUsername."' limit 1");
 							$row = mysql_fetch_array($result);
 							if (mysql_num_rows($result)) $rowexist=true; 
-							if(($input=="A1"||$input=="A2"||$input=="A3"||$input=="A4")&&$rowexist=true){
-							  if($input==$row['correctoption']){
+							if((strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4")&&$rowexist=true){
+							  if(strtoupper($input)==$row['correctoption']){
 								 $output="回答正确！\n";
 							  }else{
 								 $output="回答错误！正确答案为".$row['answer']."，题目为：".$row['question']."\n";
