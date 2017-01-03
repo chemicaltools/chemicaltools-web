@@ -54,7 +54,7 @@ class wechatCallbackapiTest
 							</xml>";             
 				if ($ev == "subscribe"){
 					$msgType = "text";
-					$contentStr = "欢迎使用化学e+，化学e+（微信版）目前支持元素查询、计量计算、酸碱计算和偏差计算等功能。您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量，或者输入一组数据计算其偏差。详细帮助请输入help查询。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
+					$contentStr = "欢迎使用化学e+，化学e+（微信版）目前支持元素查询、计量计算、酸碱计算和偏差计算等功能。您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量，或者输入一组数据计算其偏差，或者输入“出题”进行元素测试。详细帮助请输入help查询。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
 					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 					echo $resultStr;
 				}
@@ -191,12 +191,95 @@ class wechatCallbackapiTest
 							$contentStr=$output;
 						}
 					}else{
-						if(strtolower($input)=="help"){
+						if(strtolower($input)=="help"||$input=="帮助"){
 							$contentStr="化学e+（微信版）目前支持以下功能：\n".
 							"1.元素查询\n输入元素名称/符号/原子序数/IUPAC名查询元素。\n示例：72\n示例：Hafnium\n".
 							"2.质量计算\n输入化学式计算分子量。\n示例：(NH4)6Mo7O24\n".
 							"3.酸碱计算\n输入HA（或HB） 分析浓度 pKa（或pKb）计算溶液成分。\n示例：HA 0.1 2.148 7.198 12.319\n".
-							"4.偏差计算\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407";	
+							"4.偏差计算\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407\n".
+							"5.元素记忆\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。";	
+						}else if($input=="出题"||$input=="A1"||$input=="A2"||$input=="A3"||$input=="A4"){
+							$con=mysql_connect("localhost","root","root");
+							mysql_select_db("chemapp", $con);
+							$result = mysql_query("SELECT * FROM wx_exam
+							WHERE openid='".$toUsername."' limit 1");
+							$row = mysql_fetch_array($result);
+							if (mysql_num_rows($result)) $rowexist=true; 
+							if(($input=="A1"||$input=="A2"||$input=="A3"||$input=="A4")&&$rowexist=true){
+							  if($input==$row['correctoption']){
+								 $output="回答正确！\n";
+							  }else{
+								 $output="回答错误！正确答案为".$row['answer']."，题目为：".$row['question']."\n";
+							  }
+							}else{
+								$output="";
+							}
+							$max=118;
+							$mode="2";
+							$n=rand(1,$max);
+							switch ($mode){
+								case "0":case"1":case"2":
+									$Question=$elementNameArray[$n-1];
+									break;
+								case "3":case"4":case"5":
+									$Question=$elementAbbrArray[$n-1];
+									break;
+								case "6":case"7":case"8":
+									$Question = (string)$n;
+									break;
+								case "9":case"10":case"11":
+									$Question=$elementIUPACArray[$n-1];
+									break;
+							}
+							$output=$output."题目：".$Question;
+							$numbers=array();
+							$numbers[]=$n;
+							for($i2 = 1;$i2<4;$i2++){
+							   $numbers[] = rand(1,$max);
+							   for($i3=0;$i3<$i2;$i3++) {
+								   while ($numbers[$i2]==$numbers[$i3]) $numbers[$i2] = rand(1,$max);
+							   }
+							}
+
+							for($i=0,$k=count($numbers);$i<$k;$i++) {
+								for ($j=$i+1;$j<$k;$j++) {
+									if($numbers[$i]<$numbers[$j]){
+										$temp = $numbers[$j];
+										$numbers[$j] = $numbers[$i];
+										$numbers[$i] = $temp;
+									}
+								}
+							}
+							for($i2 = 0;$i2<4;$i2++){
+								switch ($mode){
+									case "3":case"6":case"9":
+										$option=$elementNameArray[$numbers[$i2]-1];
+										break;
+									case "0":case"7":case"10":
+										$option=$elementAbbrArray[$numbers[$i2]-1];
+										break;
+									case "1":case"4":case"11":
+										$option=(string)$numbers[$i2];
+										break;
+									case "2":case"5":case"8":
+										$option=$elementIUPACArray[$numbers[$i2]-1];
+										break;
+								}
+								if($numbers[$i2]=$n){
+									$correctoption=$i2+1;
+									$correctanswer=$option;
+								}
+								$output=$output."\nA".($i2+1).". ".$option;
+							}
+							$contentStr=$output;
+							if($rowexist){				
+								mysql_query("UPDATE wx_exam SET correctoption = 'A".$correctoption."' , question = '".$Question."' , answer='".$correctanswer."'
+								WHERE openid = '".$toUsername."'");
+							}else{
+								mysql_query("INSERT INTO wx_exam (openid, correctoption, question, answer) 
+								VALUES ('".$toUsername."', 'A".$correctoption."', '".$Question."','".$correctanswer."')");
+							}
+							mysql_close($con);
 						}else{
 							$elementnumber=searchelement($input);
 							$name = $elementNameArray[$elementnumber-1];

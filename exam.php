@@ -124,7 +124,7 @@ if ($currentUser != null) {
 	$max=118;
 	$mode="2";
 }
-$query = new Query("Element");
+//$query = new Query("Element");
 $n=rand(1,$max);
 //$query->equalTo("ElementNumber", $n);
 switch ($mode){
