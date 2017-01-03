@@ -12,7 +12,7 @@ if ($currentUser != null) {
 	<script type="text/javascript">
 		update('pKw');
 	</script>
-<?php}?>
+<?php } ?>
   </head>
   <body>
 <?php include 'header.php';
