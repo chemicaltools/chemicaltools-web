@@ -76,7 +76,9 @@ if($_POST['input']!=""){
 }else{
 	if ($currentUser != null) {
 		?>
-		<p>
+		<p><script type="text/javascript">
+			history('historyDeviation','#historyDeviation');
+		</script>
 		<div class="history" id="historyDeviation"><img src="\ico\loading.gif">加载中，请稍后……</div>
 		</p>
 		<?php

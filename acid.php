@@ -4,6 +4,9 @@
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>酸碱计算 -- 化学e+</title>
 <?php include 'head.php';?>
+	<script type="text/javascript">
+		update('pKw');
+	</script>
   </head>
   <body>
 <?php include 'header.php';
@@ -23,7 +26,12 @@ if($_POST['pKa']!=""&&$_POST['c']!=""){
 	$c=(double)$_POST['c'];
 	$liquidpKa=-1.74;
 	if ($currentUser != null) {
-		$pKw=(double)($currentUser->get("pKw"));
+		if(isset($_COOKIE['pKw'])){
+			$pKw=(double)$_COOKIE['pKw'];
+		}else{
+			$pKw=(double)$currentUser->get("pKw");
+			setcookie('pKw',(string)$pKw,time() + 259200);
+		}
 	}else{
 		$pKw=14;
 	}
@@ -93,7 +101,9 @@ if($_POST['pKa']!=""&&$_POST['c']!=""){
 	}
 }else{
 	if ($currentUser != null) {
-		?><p>
+		?><p><script type="text/javascript">
+			history('historyAcid','#historyAcid');
+		</script>
 		<div class="history" id="historyAcid"><img src="\ico\loading.gif">加载中，请稍后……</div>
 		</p><?php
 	}

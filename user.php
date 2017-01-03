@@ -13,6 +13,9 @@ if ($currentUser == null) {
 		$currentUser->set("examMode", $mode);
 		$currentUser->set("elementnumber_limit", $elementnumber);
 		$currentUser->set("pKw", $pKw);
+		setcookie('examMode',$examMode,time() + 259200);
+		setcookie('elementnumber_limit',(string)$elementnumber_limit,time() + 259200);
+		setcookie('pKw',(string)$pKw,time() + 259200);			
 		$currentUser->save();
 		$success=true;
 	}
@@ -57,6 +60,9 @@ $pKwstr=($currentUser->get("pKw"));
 if($mode==0)$mode=2;
 if($elementnumber==0)$elementnumber=118;
 if($pKwstr=="")$pKw=14;else $pKw=(double)$pKwstr;
+setcookie('examMode',$mode,time() + 259200);
+setcookie('elementnumber_limit',(string)$elementnumber,time() + 259200);
+setcookie('pKw',(string)$pKw,time() + 259200);	
 echo "<tr><td>用户名</td><td>".$username."</td></tr>";
 echo "<tr><td>昵称</td><td>".$qqname."</td></tr>";
 echo "<tr><td>积分</td><td>".$score."</td></tr>";

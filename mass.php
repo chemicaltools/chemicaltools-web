@@ -210,7 +210,9 @@ if($_POST['input']!=""||$_GET['input']!=""){
 }else{
 	if ($currentUser != null) {
 		?>
-		<p>
+		<p><script type="text/javascript">
+		history('historyMass','#historyMass');
+		</script>
 		<div class="history" id="historyMass"><img src="\ico\loading.gif">加载中，请稍后……</div>
 		</p>
 		<?php

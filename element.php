@@ -76,7 +76,9 @@ if($_POST['input']!=""||$_GET['input']!=""){
 		//$outputHtml=$currentUser->get("historyElementOutputHtml");
 		//echo "<tr><table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table></tr>";
 		?>
-		<tr>
+		<tr><script type="text/javascript">
+			history('historyElement','#historyElement');
+		</script>
 		<div class="history" id="historyElement"><img src="\ico\loading.gif">加载中，请稍后……</div>
 		</tr>
 		<?php

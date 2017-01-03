@@ -76,6 +76,10 @@ if($_POST['question'] != ""){
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>元素记忆 -- 化学e+</title>
 <?php include 'head.php';?>
+	<script type="text/javascript">
+		update('examMode');
+		update('elementnumber_limit');
+	</script>
   </head>
   <body>
 <?php include 'header.php';
@@ -92,8 +96,18 @@ if($_GET['result'] != ""){
 <table>
 <?php
 if ($currentUser != null) {
-	$max=(int)($currentUser->get("elementnumber_limit"));
-	$mode=($currentUser->get("examMode"));
+	if(isset($_COOKIE['elementnumber_limit'])){
+		$max=(int)$_COOKIE['elementnumber_limit'];
+	}else{
+		$max=(int)$currentUser->get("elementnumber_limit");
+		setcookie('elementnumber_limit',(string)$max,time() + 259200);
+	}
+	if(isset($_COOKIE['examMode'])){
+		$mode=(double)$_COOKIE['examMode'];
+	}else{
+		$mode=($currentUser->get("examMode"));
+		setcookie('examMode',$mode,time() + 259200);
+	}
 	if($max==0)$max=118;
 	if($mode=="")$mode="2";
 }else{
@@ -181,7 +195,9 @@ for($i2 = 0;$i2<4;$i2++){
 <?php
 if ($currentUser != null) {
 	?>
-	<p>
+	<p><script type="text/javascript">
+		history('historyExam','#historyExam');
+	</script>
 	<div class="history" id="historyExam"><img src="\ico\loading.gif">加载中，请稍后……</div>
 	</p>
 	<?php

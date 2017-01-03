@@ -22,6 +22,13 @@ if ($currentUser != null) {
 	$acid='<div class="history" id="historyAcid"><img src="\ico\loading.gif">加载中，请稍后……</div>';
 	$exam='<div class="history" id="historyExam"><img src="\ico\loading.gif">加载中，请稍后……</div>';
 	$deviation='<div class="history" id="historyDeviation"><img src="\ico\loading.gif">加载中，请稍后……</div>';
+	?><script type="text/javascript">
+		history('historyMass','#historyMass');
+		history('historyAcid','#historyAcid');
+		history('historyElementmin','#historyElementmin');
+		history('historyDeviation','#historyDeviation');
+		history('historyExam','#historyExam');
+	</script><?php
 }else{
 	$element='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';
 	$mass='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';

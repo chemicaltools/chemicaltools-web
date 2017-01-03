@@ -2,10 +2,9 @@
 require 'load.php';
 use \LeanCloud\User;
 if ($currentUser != null) {
-	//User->logOut();
-	setcookie('token','');
-	setcookie('username','');
-	setcookie('qqname','');
+	foreach($_COOKIE as $k => $v){
+		setcookie($k, null);
+	}
 } 
 if($_POST['url'] != "")
 {
