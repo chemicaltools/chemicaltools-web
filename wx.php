@@ -54,7 +54,7 @@ class wechatCallbackapiTest
 							</xml>";             
 				if ($ev == "subscribe"){
 					$msgType = "text";
-					$contentStr = "欢迎使用化学e+，化学e+（微信版）目前支持元素查询、计量计算、酸碱计算和偏差计算等功能。您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量，或者输入一组数据计算其偏差，或者输入“出题”进行元素测试。详细帮助请输入help查询。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
+					$contentStr = "欢迎使用化学e+，化学e+（微信版）目前支持元素查询、计量计算、酸碱计算、气体计算、偏差计算和元素记忆等功能。您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量，或者输入一组数据计算其偏差，或者输入“出题”进行元素测试。详细帮助请输入help查询。\n<a href='http://chem.njzjz.win/'>点击此处下载化学e+</a>";
 					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 					echo $resultStr;
 				}
@@ -87,7 +87,7 @@ class wechatCallbackapiTest
 						for($i=0;$i<$t;$i++){
 							$arr[$i]=trim($arr[$i]);
 						}
-						if($t>2&&($arr[0]=="HA"||$arr[0]=="HB")){
+						if($t>2&&(strtoupper($arr[0])=="HA"||strtoupper($arr[0])=="HB")){
 							$c=(double)$arr[1];
 							$liquidpKa=-1.74;
 							//if ($currentUser != null) {
@@ -95,7 +95,7 @@ class wechatCallbackapiTest
 							//}else{
 								$pKw=14;
 							//}
-							if($arr[0]=="HA")$AorB=true;else $AorB=false;
+							if(strtoupper($arr[0])=="HA")$AorB=true;else $AorB=false;
 							if($AorB){
 								$ABname="A";
 								$ABnameall="HA";
@@ -151,6 +151,38 @@ class wechatCallbackapiTest
 							}
 							$acidOutput=rtrim($acidOutput,",").".";
 							$contentStr=$acidOutput;
+						}else if($t==4&&(strtolower($arr[0])=="p"||strtolower($arr[0])=="v"||strtolower($arr[0])=="n"||strtolower($arr[0])=="t")){
+							$R=8.314;
+							switch(strtolower($arr[0])){
+								case "p":
+									$V=(double)$arr[1];
+									$n=(double)$arr[2];
+									$T=(double)$arr[3];
+									$p=sprintf("%.3f",$n*$R*$T/$V);
+									$contentStr="V=".$V."L, n=".$n."mol, T=".$T."K\n计算得p=".$p."kPa";
+									break;
+								case "v":
+									$p=(double)$arr[1];
+									$n=(double)$arr[2];
+									$T=(double)$arr[3];
+									$V=sprintf("%.3f",$n*$R*$T/$p);
+									$contentStr="p=".$p."kPa, n=".$n."mol, T=".$T."K\n计算得p=".$V."L";
+									break;
+								case "n":
+									$p=(double)$arr[1];
+									$V=(double)$arr[2];
+									$T=(double)$arr[3];
+									$n=sprintf("%.3f",$p*$V/$R/$T);
+									$contentStr="p=".$p."kPa, V=".$V."L, T=".$T."K\n计算得n=".$n."mol";
+									break;
+								case "t":
+									$p=(double)$arr[1];
+									$V=(double)$arr[2];
+									$n=(double)$arr[3];
+									$T=sprintf("%.3f",$p*$V/$n/$R);
+									$contentStr="p=".$p."kPa, V=".$V."L, n=".$n."mol\n计算得T=".$T."K";
+									break;
+							}
 						}else{
 							for($i=0;$i<$t;$i++){
 								$sum=$sum+$arr[$i];
@@ -196,8 +228,9 @@ class wechatCallbackapiTest
 							"1.元素查询\n输入元素名称/符号/原子序数/IUPAC名查询元素。\n示例：72\n示例：Hafnium\n".
 							"2.质量计算\n输入化学式计算分子量。\n示例：(NH4)6Mo7O24\n".
 							"3.酸碱计算\n输入HA（或HB） 分析浓度 pKa（或pKb）计算溶液成分。\n示例：HA 0.1 2.148 7.198 12.319\n".
-							"4.偏差计算\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407\n".
-							"5.元素记忆\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。";	
+							"4.气体计算\n输入未知量（p，V，n，T），并依次输入p，V，n，T中的已知量，即可计算未知量。\n示例：n 101 1 298\n".
+							"5.偏差计算\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407\n".
+							"6.元素记忆\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。";	
 						}else if($input=="出题"||strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4"){
 							$con=mysql_connect("localhost","root","root");
 							mysql_select_db("chemapp", $con);
