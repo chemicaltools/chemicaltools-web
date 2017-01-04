@@ -230,7 +230,23 @@ class wechatCallbackapiTest
 							"3.酸碱计算\n输入HA（或HB） 分析浓度 pKa（或pKb）计算溶液成分。\n示例：HA 0.1 2.148 7.198 12.319\n".
 							"4.气体计算\n输入未知量（p，V，n，T），并依次输入p，V，n，T中的已知量，即可计算未知量。\n示例：n 101 1 298\n".
 							"5.偏差计算\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407\n".
-							"6.元素记忆\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。";	
+							"6.元素记忆\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。\n".
+							"* 输入“绑定账号”即可绑定账号。";	
+						}else if($input=="绑定账号"||$input=="绑定"){
+							$idtime=$this->getTimestamp();
+							$con=mysql_connect("localhost","root","root");
+							mysql_select_db("chemapp", $con);
+							$result = mysql_query("SELECT * FROM wx_id
+							WHERE openid='".$toUsername."' limit 1");
+							if(mysql_num_rows($result)){				
+								mysql_query("UPDATE wx_id SET time = '".$idtime." 
+								WHERE openid = '".$toUsername."'");
+							}else{
+								mysql_query("INSERT INTO wx_id (openid, time) 
+								VALUES ('".$toUsername."', '".$idtime."')");
+							}
+							mysql_close($con);
+							$contentStr="http://chemapp.njzjz.win/wxlogin.php?openid=".$toUsername."&time=".$idtime."\n因微信限制，请将上述地址复制到浏览器打开。";
 						}else if($input=="出题"||strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4"){
 							$con=mysql_connect("localhost","root","root");
 							mysql_select_db("chemapp", $con);
@@ -579,6 +595,15 @@ class wechatCallbackapiTest
 		}
 		return $elementNumber;
 	}
+	private function getTimestamp($digits = false) {
+        $digits = $digits > 10 ? $digits : 10;
+        $digits = $digits - 10;
+        if ((!$digits) || ($digits == 10)){
+            return time();
+        }else{
+            return number_format(microtime(true),$digits,'','');
+        }
+    }
 	private function checkSignature()
 	{
         // you must define TOKEN by yourself
