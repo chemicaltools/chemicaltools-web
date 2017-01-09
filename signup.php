@@ -51,8 +51,8 @@ if ($currentUser != null) {
 <h2>注册</h2>
 <form method="post" action="signup.php">
 <?php
-    echo "<input type='hidden' name='url' value='".$url."'>";
-	if($error==true)echo "用户名非法！";
+    echo "<input type='hidden' name='url' value='".urlencode($url)."'>";
+	if($error==true)echo "Email非法！";
 ?>
 <table>
 <tr>
@@ -64,8 +64,10 @@ if ($currentUser != null) {
      <td><input type="password" name="password"></td>
 </tr>
 <tr>
-	 <td/>
-     <td><input type="submit" value="注册"></td>
+     <td colspan=2 style="text-align:center"><input type="submit" value="注册" style="width:100%" style="border:1px #FFFFFF solid"></td>
+</tr>
+<tr>
+	<td colspan=2><a href="login.php?url=<?=urlencode($url)?>">已有账号？立即登陆</a></td>
 </tr>
 </table>
 </form>		

@@ -47,7 +47,7 @@ if ($currentUser != null) {
 <h2>登陆</h2>
 <form method="post" action="login.php">
 <?php
-    echo "<input type='hidden' name='url' value='".$url."'>";
+    echo "<input type='hidden' name='url' value='".urlencode($url)."'>";
 	if($error==true)echo "用户名或密码错误！";
 ?>
 <table>
@@ -60,8 +60,10 @@ if ($currentUser != null) {
      <td><input type="password" name="password"></td>
 </tr>
 <tr>
-	 <td/>
-     <td><input type="submit" value="登陆"></td>
+    <td colspan=2 style="text-align:center"><input type="submit" value="登陆" style="width:100%" style="border:1px #FFFFFF solid" ></td>
+</tr>
+<tr>
+	<td colspan=2><a href="signup.php?url=<?=urlencode($url)?>">注册新账号</a></td>
 </tr>
 </table>
 </form>		

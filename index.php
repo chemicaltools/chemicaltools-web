@@ -30,11 +30,11 @@ if ($currentUser != null) {
 		history('historyExam','#historyExam');
 	</script><?php
 }else{
-	$element='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';
-	$mass='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';
-	$acid='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可查看历史记录，赶快试试吧！';
-	$exam='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可存储战绩，赶快试试吧！';
-	$deviation='<a href="login.php">登陆</a>或<a href="signup.php">注册</a>后，即可存储战绩，赶快试试吧！';
+	$element='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可查看历史记录，赶快试试吧！';
+	$mass='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可查看历史记录，赶快试试吧！';
+	$acid='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可查看历史记录，赶快试试吧！';
+	$exam='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可存储战绩，赶快试试吧！';
+	$deviation='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可存储战绩，赶快试试吧！';
 }
 ?>
 <h2><img src="/ico/blue_apple.png" width=30 height=30><a href="element.php">元素查询</a></h2>
