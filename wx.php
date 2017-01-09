@@ -6,6 +6,7 @@
 //define your token
 //require 'leancloud/src/autoload.php';
 require 'element_xml.php';
+//require 'fsock.php';
 //use \LeanCloud\Client;
 //use \LeanCloud\Object;
 //use \LeanCloud\Query;
@@ -232,34 +233,47 @@ class wechatCallbackapiTest
 							"5.偏差计算\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407\n".
 							"6.元素记忆\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。\n".
 							"* 输入“绑定账号”即可绑定账号。";	
-						}else if($input=="绑定账号"||$input=="绑定"){
+						}else if($input=="绑定账号"||$input=="绑定"||$input=="账号绑定"){
 							$idtime=$this->getTimestamp();
 							$con=mysql_connect("localhost","root","root");
 							mysql_select_db("chemapp", $con);
 							$result = mysql_query("SELECT * FROM wx_id
-							WHERE openid='".$toUsername."' limit 1");
+							WHERE openid='".$fromUsername."' limit 1");
 							if(mysql_num_rows($result)){				
 								mysql_query("UPDATE wx_id SET time = '".$idtime." 
-								WHERE openid = '".$toUsername."'");
+								WHERE openid = '".$fromUsername."'");
 							}else{
 								mysql_query("INSERT INTO wx_id (openid, time) 
-								VALUES ('".$toUsername."', '".$idtime."')");
+								VALUES ('".$fromUsername."', '".$idtime."')");
 							}
 							mysql_close($con);
-							$contentStr="http://chemapp.njzjz.win/wxlogin.php?openid=".$toUsername."&time=".$idtime."\n因微信限制，请将上述地址复制到浏览器打开。";
+							$contentStr="http://chemapp.njzjz.win/wxlogin.php?openid=".$fromUsername."&time=".$idtime."\n因微信限制，请将上述地址复制到浏览器打开。";
 						}else if($input=="出题"||strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4"){
 							$con=mysql_connect("localhost","root","root");
 							mysql_select_db("chemapp", $con);
 							$result = mysql_query("SELECT * FROM wx_exam
-							WHERE openid='".$toUsername."' limit 1");
+							WHERE openid='".$fromUsername."' limit 1");
 							$row = mysql_fetch_array($result);
-							if (mysql_num_rows($result)) $rowexist=true; 
-							if((strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4")&&$rowexist=true){
-							  if(strtoupper($input)==$row['correctoption']){
-								 $output="回答正确！\n";
-							  }else{
-								 $output="回答错误！正确答案为".$row['answer']."，题目为：".$row['question']."\n";
-							  }
+							if (mysql_num_rows($result)){
+								$rowexist=true; 
+								if((strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4")&&$rowexist=true){
+									if(strtoupper($input)==$row['correctoption']){
+										$output="回答正确！\n";
+										$correct=$row['correct']+1;
+										mysql_query("UPDATE wx_exam SET correct = '".$correct."'
+										WHERE openid = '".$fromUsername."'");
+									}else{
+										$output="回答错误！正确答案为".$row['answer']."，题目为：".$row['question']."\n";
+										$incorrect=$row['incorrect']+1;
+										mysql_query("UPDATE wx_exam SET incorrect = '".$incorrect."'
+										WHERE openid = '".$fromUsername."'");
+									} 
+									//$FsockService=new FsockService();
+									//$FsockService->get("http://chemapp.njzjz.win/wxchange.php",array('openid'=>'o1PJOv_HaR2kRsWS9bvftRJBxrp0'));
+									$content = file_get_contents("http://chemapp.njzjz.win/fsockchange.php?openid=".$fromUsername);
+								}else{
+									$output="";
+								}
 							}else{
 								$output="";
 							}
@@ -314,7 +328,7 @@ class wechatCallbackapiTest
 										$option=$elementIUPACArray[$numbers[$i2]-1];
 										break;
 								}
-								if($numbers[$i2]=$n){
+								if($numbers[$i2]==$n){
 									$correctoption=$i2+1;
 									$correctanswer=$option;
 								}
@@ -323,10 +337,10 @@ class wechatCallbackapiTest
 							$contentStr=$output;
 							if($rowexist){				
 								mysql_query("UPDATE wx_exam SET correctoption = 'A".$correctoption."' , question = '".$Question."' , answer='".$correctanswer."'
-								WHERE openid = '".$toUsername."'");
+								WHERE openid = '".$fromUsername."'");
 							}else{
 								mysql_query("INSERT INTO wx_exam (openid, correctoption, question, answer) 
-								VALUES ('".$toUsername."', 'A".$correctoption."', '".$Question."','".$correctanswer."')");
+								VALUES ('".$fromUsername."', 'A".$correctoption."', '".$Question."','".$correctanswer."')");
 							}
 							mysql_close($con);
 						}else{
