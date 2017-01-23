@@ -247,7 +247,7 @@ class wechatCallbackapiTest
 								VALUES ('".$fromUsername."', '".$idtime."')");
 							}
 							mysql_close($con);
-							$contentStr="http://chemapp.njzjz.win/wxlogin.php?openid=".$fromUsername."&time=".$idtime."\n因微信限制，请将上述地址复制到浏览器打开。";
+							$contentStr="<a href='http://chemapp.njzjz.win/wxlogin.php?openid=".$fromUsername."&time=".$idtime."'>点击此处绑定化学e+账号</a>";
 						}else if($input=="出题"||strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4"){
 							$con=mysql_connect("localhost","root","root");
 							mysql_select_db("chemapp", $con);

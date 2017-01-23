@@ -32,9 +32,10 @@ if($_POST['url'] != "")
 }else{
 	$url='user.php';
 }
+$url=urldecode($url);
 $currentUser = User::getCurrentUser();
 if ($currentUser != null) {
-	header('Location: '.urldecode($url));
+	header('Location: '.$url);
 	exit;
 } else {
 ?>

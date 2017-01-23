@@ -20,6 +20,7 @@ if($_POST['url'] != "")
 }else{
 	$url='user.php';
 }
+$url=urldecode($url);
 $currentUser = User::getCurrentUser();
 if ($currentUser != null) {
 	$username=$_POST['username'];
@@ -30,7 +31,7 @@ if ($currentUser != null) {
 	}
 	setcookie('username',$username,time() + 259200);
 	setcookie('qqname',$qqname,time() + 2592000);
-	header('Location: '.urldecode($url));
+	header('Location: '.$url);
 	exit;
 } else {
 	?>
