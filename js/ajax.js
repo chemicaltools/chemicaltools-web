@@ -6,6 +6,14 @@ function history(hisname,did){
 		}    
 	});
 }
+function elementtable(did){ 
+	$.post("/elementtable.php",null,function(data){   
+		if(data==''){//0 
+		}else{      
+			$(did).html(data);
+		}    
+	});
+}
 function change(changename,changevalue){ 
 	$.post("/change.php",{name:changename,value:changevalue});
 }

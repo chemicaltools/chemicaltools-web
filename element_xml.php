@@ -106,19 +106,19 @@ $xmlstring = <<<XML
         <item>钔</item>
         <item>锘</item>
         <item>铹</item>
-        <item>鑪</item>
-        <item>钅杜</item>
-        <item>钅喜</item>
-        <item>钅波</item>
-        <item>钅黑</item>
-        <item>䥑</item>
-        <item>鐽</item>
-        <item>錀</item>
-        <item>鎶</item>
+        <item>𬬻</item>
+        <item>𬭊</item>
+        <item>𬭳</item>
+        <item>𬭛</item>
+        <item>𬭶</item>
+        <item>鿏</item>
+        <item>𫟼</item>
+        <item>𬬭</item>
+        <item>鿔</item>
         <item>一一三</item>
-        <item>鈇</item>
+        <item>𫓧</item>
         <item>一一五</item>
-        <item>鉝</item>
+        <item>𫟷</item>
         <item>一一七</item>
         <item>一一八</item>
     </elementNameArray>

@@ -86,6 +86,11 @@ if($_POST['input']!=""||$_GET['input']!=""){
 }
 
 ?></table></form>
+<p>
+<script type="text/javascript">
+	elementtable('#elementtable');
+</script>
+		<div class="elementtable" id="elementtable"></div>
 <?php include 'foot.php';?>
     </section>
   </body>
