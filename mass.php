@@ -184,10 +184,11 @@ if($_POST['input']!=""||$_GET['input']!=""){
             }
         }
         $output=$xHtml."\n相对分子质量=".sprintf("%.2f",$m);
+		$outputhtml=$output;
         for($i=0;$i<118;$i++){
             if($AtomNumber[$i+1]>0){
                 $massPer[$i+1]=$AtomNumber[$i + 1] * ($elementMassArray[$i])/$m*100;
-                $output=$output."\n".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."），".$AtomNumber[$i+1].
+                $output=$output."\n<a href='/element.php?input=".($i+1)."'>".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."）</a>，".$AtomNumber[$i+1].
 				"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
             }
         }
@@ -197,6 +198,7 @@ if($_POST['input']!=""||$_GET['input']!=""){
 			//$currentUser->set("historyMassOutput", $output);
 			//$currentUser->set("historyMass", $input);
 			//$currentUser->save();
+			$output=ereg_replace("<a [^>]*>|<\/a>","",$output);
 			?>
 			<script type="text/javascript">
 				change("historyMassOutput", "<?=str_replace("\n","\\n",$output)?>");

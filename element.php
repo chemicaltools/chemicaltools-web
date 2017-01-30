@@ -90,7 +90,15 @@ if($_POST['input']!=""||$_GET['input']!=""){
 <script type="text/javascript">
 	elementtable('#elementtable');
 </script>
-		<div class="elementtable" id="elementtable"></div>
+<table style='text-align:center'>
+    <tr>
+        <td><h3>元素周期表</h3></td>
+    </tr>
+    <tr id="divc">
+        <td><div class="elementtable" id="elementtable"></div></td>
+    </tr>
+</table>
+
 <?php include 'foot.php';?>
     </section>
   </body>
