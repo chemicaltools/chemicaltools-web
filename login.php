@@ -1,13 +1,16 @@
 <?php
 require 'load.php';
+use \LeanCloud\Client;
 use \LeanCloud\User;
 use \LeanCloud\CloudException;
+use \LeanCloud\Storage\CookieStorage;
 if($_POST['username'] != ""&&$_POST['password'] != "")
 {
 	try {
 		User::logIn($_POST['username'],$_POST['password']);
-		$token = User::getCurrentSessionToken();
-		setcookie('token',$token,time() + 2592000);
+		//$token = User::getCurrentSessionToken();
+		//setcookie('token',$token,time() + 2592000);
+		Client::setStorage(new CookieStorage(60 * 60 * 24 * 30, "/"));
 	} catch (CloudException $ex) {
 		$error=true;
 	}
