@@ -616,12 +616,16 @@ function searchelement($input){
 	for($i=0;$i<118;$i++) {
 		if ($input==(string)($i+1)){
 			$elementNumber=$i+1;
+			break;
 		}else if($input==($elementNameArray[$i])){
 			$elementNumber=$i+1;
+			break;
 		}else if(strtolower($input)==strtolower($elementAbbrArray[$i])){
 			$elementNumber=$i+1;
+			break;
 		}else if(strtolower($input)==strtolower($elementIUPACArray[$i])){
 			$elementNumber=$i+1;
+			break;
 		}
 	}
 	return $elementNumber;

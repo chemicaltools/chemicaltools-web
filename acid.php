@@ -5,6 +5,7 @@
 <title>酸碱计算 -- 化学e+</title>
 <?php include 'head.php';
 require 'load.php';
+require 'acid_xml.php';
 //use \LeanCloud\Query;
 use \LeanCloud\User;
 if ($currentUser != null) {
@@ -20,9 +21,48 @@ if ($currentUser != null) {
     <section class="main-content">
 	<? 
 	include 'title.php';?>
+<script type="text/javascript">
+function getSelectVal(){ 
+    $.getJSON("acid_xml.php",{bigname:$("#AorB").val()},function(json){ 
+        var acidName = $("#acidName"); 
+        $("option",acidName).remove(); //清空原有的选项 
+		if($("#AorB").val()=="acid"){
+			var option = "<option value='HA'>HA</option>"; 
+			acidName.append(option); 
+		}else{
+			var option = "<option value='BOH'>BOH</option>"; 
+			acidName.append(option); 
+		}
+        $.each(json,function(index,array){ 
+            var option = "<option value='"+array['name']+"'>"+array['name']+"</option>"; 
+            acidName.append(option); 
+        }); 
+    }); 
+}
+function getpKa(){ 
+    $.getJSON("acid_xml.php",{bigname:$("#AorB").val(),acidName:$("#acidName").val()},function(json){ 
+        $.each(json,function(index,array){ 
+			if(array['pKa'] != ""){
+				$("#pKa").val(array['pKa']);
+			}
+        }); 
+    }); 
+}
+$(function(){ 
+    getSelectVal(); 
+    $("#AorB").change(function(){ 
+        getSelectVal(); 
+    }); 
+	$("#acidName").change(function(){ 
+        getpKa(); 
+    }); 
+}); 
+</script>
 		<h2>酸碱计算</h2>
 		<form method='post' action='acid.php'>
-		<table><tr><td><input type="text" name="pKa" placeholder="pKa或pKb"/></td><td><select name="AorB"><option value ="acid">酸</option><option value ="base">碱</option></select></td></tr>
+		<table><tr><td><input type="text" name="pKa" id="pKa" placeholder="pKa或pKb"/></td>
+		<td><select name="AorB" id="AorB"><option value ="acid">酸</option><option value ="base">碱</option></select></td></tr>
+		<tr><td colspan=2><select name="acidName" id="acidName"><option value="HA">HA</option></select></td></tr>
 		<tr><td><input type="text" name="c" placeholder="分析浓度"/></td><td><input type="submit" value="计算"></td></tr></table></form>
 <?php
 if($_POST['pKa']!=""&&$_POST['c']!=""){
@@ -40,13 +80,48 @@ if($_POST['pKa']!=""&&$_POST['c']!=""){
 		$pKw=14;
 	}
     if($_POST['AorB']=="acid")$AorB=true;else $AorB=false;
+	if($_POST['acidName']!=""||$_GET['acidName']!=""){
+		if($_POST['acidName']!="")$acidName=$_POST['acidName'];else $acidName=$_GET['acidName'];
+	}
     if($AorB){
         $ABname="A";
         $ABnameall="HA";
+		if($acidName!=""&&$acidName!="HA"){
+			for($i=0;$i<count($acidnameArray);$i++) {
+				if ($acidName==(string)$acidnameArray[$i]){
+					$ABname=(string)$acidAbbrArray[$i];
+					$ABnameall= $acidName;
+					break;
+				}
+			}
+		}
     }else{
         $ABname="B";
         $ABnameall="BOH";
+		if($acidName!=""&&acidName!="BOH"){
+			for($i=0;$i<count($basenameArray);$i++) {
+				if ($acidName==(string)$basenameArray[$i]){
+					$ABname=(string)$baseAbbrArray[$i];
+					$ABnameall= $acidName;
+					break;
+				}
+			}
+		}
     }
+	for($i=0;$i<strlen($ABname);$i++) {
+		if (ord(substr($ABname,$i,1)) >= 48 && ord(substr($ABname,$i,1)) <= 57) {
+			$ABnameHtml =$ABnameHtml. "<sub>" . substr($ABname,$i,1) . "</sub>";
+		} else {
+			$ABnameHtml =$ABnameHtml. substr($ABname,$i,1);
+		}
+	}
+	for($i=0;$i<strlen($ABnameall);$i++) {
+		if (ord(substr($ABnameall,$i,1)) >= 48 && ord(substr($ABnameall,$i,1)) <= 57) {
+			$ABnameallHtml =$ABnameallHtml. "<sub>" . substr($ABnameall,$i,1) . "</sub>";
+		} else {
+			$ABnameallHtml =$ABnameallHtml. substr($ABnameall,$i,1);
+		}
+	}
 	$strpKaArray=explode(" ",$strpKa);
     $valpKa=array();
     for($i=0;$i<count($strpKaArray);$i++){
@@ -57,7 +132,7 @@ if($_POST['pKa']!=""&&$_POST['c']!=""){
     $cAB=calpHtoc($valpKa,$c,$pH);
     if(!$AorB) $pH=$pKw-$pH;
 	$H=pow(10,-$pH);
-    $acidOutput=$ABnameall." ,c=".$c."mol/L, ";
+    $acidOutput=$ABnameallHtml." ,c=".$c."mol/L, ";
     for($i=0;$i<count($valpKa);$i++){
         if($AorB)$acidOutput=$acidOutput."pK<sub>a</sub>";else $acidOutput=$acidOutput."pK<sub>b</sub>";
         if(count($valpKa)>1)$acidOutput=$acidOutput."<sub>".($i+1)."</sub>";
@@ -72,14 +147,14 @@ if($_POST['pKa']!=""&&$_POST['c']!=""){
                 $cABoutput=$cABoutput."H";
                 if(count($cAB)-$i>2) $cABoutput=$cABoutput."<sub>".(count($cAB) - $i-1)."</sub>";
             }
-            $cABoutput=$cABoutput.$ABname;
+            $cABoutput=$cABoutput.$ABnameHtml;
             if($i>0){
                 if($i>1) $cABoutput=$cABoutput."<sup>".($i)."</sup>";
-                $ABoutput=$cABoutput."<sup>-</sup>";
+                $cABoutput=$cABoutput."<sup>-</sup>";
             }
         }else{
-			$cABoutput=$cABoutput.$ABname;
-            if(count(cAB)-$i>2){
+			$cABoutput=$cABoutput.$ABnameHtml;
+            if(count($cAB)-$i>2){
                 $cABoutput=$cABoutput."(OH)<sub>".(count($cAB)- $i-1)."</sub>";
             }else if(count($cAB)-$i==2){
                 $cABoutput=$cABoutput."OH";
