@@ -1,54 +1,40 @@
+<?php
+require 'load.php';
+if ($currentUser != null) {
+	$login=1;
+}else{
+	$login=0;
+}
+?>
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>首页 -- 化学e+</title>
 <?php include 'head.php';?>
+<script type="text/javascript" src="/js/index.js"></script>
   </head>
   <body>
 <?php include 'header.php';?>
     <section class="main-content">		
-<?php
-require 'load.php';
-include 'title.php';
-require 'doyouknow.php';
-?>
+<?php include 'title.php';?>
+<input type="hidden" id="login" name="login" value="<?=$login;?>"/> 
+<input type="hidden" id="url" name="url" value="<?=urlencode($_SERVER['REQUEST_URI']);?>"/> 
 <h2><img src="/ico/red_apple.png" width=30 height=30>你知道吗？</h2>
-<p><?=$doyouknow?></p>
-<?php
-if ($currentUser != null) {
-	$element='<div class="history" id="historyElementmin"><img src="\ico\loading.gif">加载中，请稍后……</div>';
-	$mass='<div class="history" id="historyMass"><img src="\ico\loading.gif">加载中，请稍后……</div>';
-	$acid='<div class="history" id="historyAcid"><img src="\ico\loading.gif">加载中，请稍后……</div>';
-	$exam='<div class="history" id="historyExam"><img src="\ico\loading.gif">加载中，请稍后……</div>';
-	$deviation='<div class="history" id="historyDeviation"><img src="\ico\loading.gif">加载中，请稍后……</div>';
-	?><script type="text/javascript">
-		history('historyMass','#historyMass');
-		history('historyAcid','#historyAcid');
-		history('historyElementmin','#historyElementmin');
-		history('historyDeviation','#historyDeviation');
-		history('historyExam','#historyExam');
-	</script><?php
-}else{
-	$element='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可查看历史记录，赶快试试吧！';
-	$mass='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可查看历史记录，赶快试试吧！';
-	$acid='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可查看历史记录，赶快试试吧！';
-	$exam='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可存储战绩，赶快试试吧！';
-	$deviation='<a href="login.php?url='.urlencode($_SERVER['REQUEST_URI']).'">登陆</a>或<a href="signup.php?url='.urlencode($_SERVER['REQUEST_URI']).'">注册</a>后，即可存储战绩，赶快试试吧！';
-}
-?>
+<p><div id="doyouknow"><img src="\ico\loading.gif">加载中，请稍后……</div></p>
+<p><a href='javascript:doyouknow("#doyouknow");'>换一个</a></p>
 <h2><img src="/ico/blue_apple.png" width=30 height=30><a href="element.php">元素查询</a></h2>
-<p><?=nl2br($element)?></p>
+<p><div class="history" id="historyElementmin"><img src="\ico\loading.gif">加载中，请稍后……</div></p>
 <h2><img src="/ico/lime_apple.png" width=30 height=30><a href="mass.php">质量计算</a></h2>
-<p><?=nl2br($mass)?></p>
+<p><div class="history" id="historyMass"><img src="\ico\loading.gif">加载中，请稍后……</div></p>
 <h2><img src="/ico/gray_apple.png" width=30 height=30><a href="acid.php">酸碱计算</a></h2>
-<p><?=nl2br($acid)?></p>
+<p><div class="history" id="historyAcid"><img src="\ico\loading.gif">加载中，请稍后……</div></p>
 <h2><img src="/ico/gas.png" width=30 height=30><a href="gas.php">气体计算</a></h2>
 <p>使用理想气体状态方程 pV=nRT ，计算气体状态，快来试试吧！</p>
 <h2><img src="/ico/orange_apple.png" width=30 height=30><a href="exam.php">元素记忆</a></h2>
-<p><?=nl2br($exam)?></p>
+<p><div class="history" id="historyExam"><img src="\ico\loading.gif">加载中，请稍后……</div></p>
 <h2><img src="/ico/deviation.png" width=30 height=30><a href="deviation.php">偏差计算</a></h2>
-<p><?=nl2br($deviation)?></p>
+<p><div class="history" id="historyDeviation"><img src="\ico\loading.gif">加载中，请稍后……</div></p>
 <?php
 include 'foot.php';?>
     </section>

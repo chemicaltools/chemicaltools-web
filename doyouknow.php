@@ -16,3 +16,4 @@ $xml=simplexml_load_string($xmlstring);
 $doyouknowarray=$xml->item; 
 $i=rand(0,count($doyouknowarray)-1);
 $doyouknow=$doyouknowarray[$i];
+if($_POST['ajax'] =="1"||$_GET['ajax']=="1") echo $doyouknow;
