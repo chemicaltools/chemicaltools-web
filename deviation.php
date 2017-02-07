@@ -79,7 +79,9 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		<table>
 		<tr><td><input type="hidden" id="login" name="login" value="<?=$login;?>"  />  
 		<textarea name="input" id="input" placeholder="请输入数据，每行一个" rows="5"></textarea></td></tr>
-		<tr><td colspan=2><input type="submit" value="计算"></td></tr></table></form>
+		<tr><td><input type="submit" value="计算"></td></tr>
+		<tr><td><div id="loading"></div></td></tr>
+		</table></form>
 		<p><div class="history" id="output"><img src="\ico\loading.gif">加载中，请稍后……</div></p>
 <?php include 'foot.php';?>
     </section>

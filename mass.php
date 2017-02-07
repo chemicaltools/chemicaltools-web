@@ -238,9 +238,10 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 	include 'title.php';?>
 		<h2>质量计算</h2>
 		<form method='post' id="form" action='mass.php'>
-		<input type="hidden" id="login" name="login" value="<?=$login;?>"  />  
+		<input type="hidden" id="login" name="login" value="<?=$login;?>"  />
 		<input type="hidden" id="getinput" name="getinput" value="<?=$input;?>"  />  
 		<table><tr><table><tr><td><input type="text" name="input" id="input" placeholder="请输入物质的化学式"/></td><td><input type="submit" value="计算"></td></tr></table></tr>
+		<tr><div id="loading"></div></tr>
 		<tr><p><div class="history" id="output"><img src="\ico\loading.gif">加载中，请稍后……</div></p></tr>
 	</table></form>
 <?php include 'foot.php';?>

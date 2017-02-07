@@ -49,7 +49,9 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		<tr><td><input type="radio" name="type" value="V">V</td><td><input type="text" name="V" id="V" placeholder="体积V/L"/></td></tr>
 		<tr><td><input type="radio" name="type" value="n">n</td><td><input type="text" name="n" id="n" placeholder="物质的量n/mol"/></td></tr>
 		<tr><td><input type="radio" name="type" value="T">T</td><td><input type="text" name="T" id="T" placeholder="温度T/K"/></td></tr>
-		<tr><td colspan=2><input type="submit" value="计算勾选的量"></td></tr></table></form>
+		<tr><td colspan=2><input type="submit" value="计算勾选的量"></td></tr>
+		<tr><td colspan=2><div id="loading"></div></td></tr>
+		</table></form>
 	<?php include 'foot.php';?>
     </section>
   </body>

@@ -7,9 +7,11 @@ function elementtable(did){
 	});
 }
 function element(elementinput,did){ 
+	$("#loading").html('<img src="\\ico\\loading.gif">加载中，请稍后……');
 	$.post("/element.php",{input:elementinput,ajax:1},function(data){   
 		if(data==''){//0 
 		}else{      
+			$("#loading").html('');
 			$(did).html(data);
 		}    
 	});

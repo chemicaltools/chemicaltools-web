@@ -187,8 +187,9 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 	<? include 'title.php';?>
 	<h2>元素记忆</h2>
 	<table><tr><input type="hidden" id="login" name="login" value="<?=$login;?>"/> 
-	<div id="questionarea"><img src="\ico\loading.gif">加载中，请稍后……</div></tr><tr>
-	<p><div class="history" id="historyExam"><img src="\ico\loading.gif">加载中，请稍后……</div>
+	<div id="questionarea"><img src="\ico\loading.gif">加载中，请稍后……</div></tr>
+	<tr><div id="loading"></div></tr>
+	<tr><p><div class="history" id="historyExam"><img src="\ico\loading.gif">加载中，请稍后……</div>
 	</p>
 	</tr></table>
 <?php include 'foot.php';?>

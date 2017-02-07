@@ -62,6 +62,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		<input type="hidden" id="getinput" name="getinput" value="<?=$input;?>"  />  
 		<input type="text" name="input" id="input" placeholder="请输入元素名称、符号、原子序数或IUPAC名"/></td>
 		<td><input type="submit" id="elementbutton" value="查询"></td></tr></table></tr>
+		<tr><div id="loading"></div></tr>
 		<tr><div class="output" id="output"><img src="\ico\loading.gif">加载中，请稍后……</div></tr>
 </table></form>
 <p>
