@@ -95,7 +95,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		$cAB=calpHtoc($valpKa,$c,$pH);
 		if(!$AorB) $pH=$pKw-$pH;
 		$H=pow(10,-$pH);
-		$acidOutput=$ABnameallHtml." ,c=".$c."mol/L, ";
+		$acidOutput=" ,c=".$c."mol/L, ";
 		for($i=0;$i<count($valpKa);$i++){
 			if($AorB)$acidOutput=$acidOutput."pK<sub>a</sub>";else $acidOutput=$acidOutput."pK<sub>b</sub>";
 			if(count($valpKa)>1)$acidOutput=$acidOutput."<sub>".($i+1)."</sub>";
@@ -131,7 +131,13 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 			$acidOutput=$acidOutput."\n".$cABoutput.sprintf("%1$.2e",$cAB[$i])."mol/L,";
 		}
 		$acidOutput=rtrim($acidOutput,",").".";
-		echo '<p>'.nl2br($acidOutput).'<p>';
+		if($ABnameall=="HA"||$ABnameall=="BOH"){
+			$acidOutputhtml=$ABnameallHtml.$acidOutput;
+		}else{
+			$acidOutputhtml="<a href='/mass.php?input=".$ABnameall."'>".$ABnameallHtml."</a>".$acidOutput;
+		}
+		$acidOutput=$ABnameallHtml.$acidOutput;
+		echo '<p>'.nl2br($acidOutputhtml).'<p>';
 		if ($currentUser != null) {
 			?>
 			<script type="text/javascript">
