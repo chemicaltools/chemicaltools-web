@@ -115,12 +115,12 @@ $xmlstring = <<<XML
         <item>𫟼</item>
         <item>𬬭</item>
         <item>鿔</item>
-        <item>一一三</item>
+        <item>鉨</item>
         <item>𫓧</item>
-        <item>一一五</item>
+        <item>镆</item>
         <item>𫟷</item>
-        <item>一一七</item>
-        <item>一一八</item>
+        <item>石田</item>
+        <item>奥气</item>
     </elementNameArray>
     <elementAbbrArray>
         <item>H</item>
