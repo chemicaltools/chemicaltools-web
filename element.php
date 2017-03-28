@@ -17,7 +17,11 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 			$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
 			"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
 			$outputHtml=$output."\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
-			echo "<table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table>";
+			if ($_POST['html'] =="no"||$_GET['html']=="no"){
+				echo $output;
+			}else{
+				echo "<table><tr><td><img src='img/element_".$ElementNumber.".png'></td></tr><tr><td>".nl2br($outputHtml)."</td></tr></table>";
+			}
 			if ($currentUser != null) {
 				?>
 				<script type="text/javascript">
@@ -29,7 +33,11 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 				<?php
 			}
 		}else{
-			echo "<p>输入有误！</p>";
+			if ($_POST['html'] =="no"||$_GET['html']=="no"){
+				echo "输入有误！";
+			}else{
+				echo "<p>输入有误！</p>";
+			}
 		}
 	}
 }else{

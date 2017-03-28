@@ -1,8 +1,8 @@
 <?php
 require 'load.php';
 if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
-	if($_POST['input']!=""){
-		$input=$_POST['input'];
+	if($_POST['input']!=""||$_GET['input']!=""){
+		if($_POST['input']!="")$input=$_POST['input'];else $input=$_GET['input'];
 		$x=explode("\n",trim($input));
 		$t=count($x);
 		if($t>1){
@@ -43,7 +43,11 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		$output="您输入的数据：".str_replace(array("\r\n","\r","\n"),"，",trim($input))."\n平均数：".sprintf("%.".$pointnum."f",$average).
 				"\n平均偏差：".sprintf("%.".$pointnum."f",$deviation)."\n相对平均偏差：".sprintf("%.".($numnum-1)."e",$deviation_relatibe).
 				"‰\n标准偏差：".sprintf("%.".($numnum-1)."e",$s)."\n相对标准偏差：".sprintf("%.".($numnum-1)."e",$s_relatibe)."‰";
-		echo "<p>".nl2br($output)."</p>";
+		if($_POST['html'] =="no"||$_GET['html']=="no"){
+			echo $output;
+		}else{
+			echo "<p>".nl2br($output)."</p>";
+		}
 		if ($currentUser != null) {
 			?>
 			<script type="text/javascript">

@@ -180,25 +180,39 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 			}
 		}
 		if ($m > 0) {
-			$xHtml="";
-			for($i3=0;$i3<$l;$i3++) {
-				if (ord(substr($x,$i3,1)) >= 48 && ord(substr($x,$i3,1)) <= 57) {
-					$xHtml =$xHtml."<sub>".substr($x,$i3,1)."</sub>";
-				} else {
-					$xHtml =$xHtml.substr($x,$i3,1);
+			if($_POST['html'] =="no"||$_GET['html']=="no"){
+				$xHtml=$x;
+			}else{
+				$xHtml="";
+				for($i3=0;$i3<$l;$i3++) {
+					if (ord(substr($x,$i3,1)) >= 48 && ord(substr($x,$i3,1)) <= 57) {
+						$xHtml =$xHtml."<sub>".substr($x,$i3,1)."</sub>";
+					} else {
+						$xHtml =$xHtml.substr($x,$i3,1);
+					}
 				}
 			}
 			$output=$xHtml."\n相对分子质量=".sprintf("%.2f",$m);
 			$outputhtml=$output;
 			for($i=0;$i<118;$i++){
 				if($AtomNumber[$i+1]>0){
-					$massPer[$i+1]=(double)$AtomNumber[$i + 1] * ((double)$elementMassArray[$i])/(double)$m*100;
-					$output=$output."\n<a href='/element.php?input=".($i+1)."'>".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."）</a>，".$AtomNumber[$i+1].
-					"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
+					if($_POST['html'] =="no"||$_GET['html']=="no"){
+						$massPer[$i+1]=(double)$AtomNumber[$i + 1] * ((double)$elementMassArray[$i])/(double)$m*100;
+						$output=$output."\n".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."），".$AtomNumber[$i+1].
+						"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
+					}else{
+						$massPer[$i+1]=(double)$AtomNumber[$i + 1] * ((double)$elementMassArray[$i])/(double)$m*100;
+						$output=$output."\n<a href='/element.php?input=".($i+1)."'>".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."）</a>，".$AtomNumber[$i+1].
+						"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
+					}
 				}
 			}
 			$output=rtrim($output,"；")."。";
-			echo "<p>".nl2br($output)."</p>";
+			if($_POST['html'] =="no"||$_GET['html']=="no"){
+				echo $output;
+			}else{
+				echo "<p>".nl2br($output)."</p>";
+			}
 			if ($currentUser != null) {
 				$output=ereg_replace("<a [^>]*>|<\/a>","",$output);
 				?>
@@ -209,7 +223,11 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 				<?php
 			}
 		} else {
-			echo "<p>输入有误！</p>";
+			if($_POST['html'] =="no"||$_GET['html']=="no"){
+				echo "输入有误！";
+			}else{
+				echo "<p>输入有误！</p>";
+			}
 		};
 	}
 }else{
