@@ -5,6 +5,14 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		if($_POST['input']!="")$input=$_POST['input'];else $input=$_GET['input'];
 		$x=explode("\n",trim($input));
 		$t=count($x);
+		if($t==1){
+			$x=explode(urldecode("_"),trim($input));
+			$t=count($x);
+			if($t==1){
+				$x=explode(" ",trim($input));
+				$t=count($x);
+			}
+		}
 		if($t>1){
 		for($i=0;$i<$t;$i++){
 			$x[$i]=trim($x[$i]);
@@ -40,7 +48,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		$deviation_relatibe=$deviation/$average*1000;
 		$s=sqrt($squresum/($t-1));
 		$s_relatibe=$s/$deviation*1000;
-		$output="您输入的数据：".str_replace(array("\r\n","\r","\n"),"，",trim($input))."\n平均数：".sprintf("%.".$pointnum."f",$average).
+		$output="您输入的数据：".str_replace(array("\r\n","\r","\n"," ","_"),"，",trim($input))."\n平均数：".sprintf("%.".$pointnum."f",$average).
 				"\n平均偏差：".sprintf("%.".$pointnum."f",$deviation)."\n相对平均偏差：".sprintf("%.".($numnum-1)."e",$deviation_relatibe).
 				"‰\n标准偏差：".sprintf("%.".($numnum-1)."e",$s)."\n相对标准偏差：".sprintf("%.".($numnum-1)."e",$s_relatibe)."‰";
 		if($_POST['html'] =="no"||$_GET['html']=="no"){
