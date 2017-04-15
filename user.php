@@ -2,7 +2,7 @@
 require 'load.php';
 use \LeanCloud\User;
 if ($currentUser == null) {
-	$url="login.php?url=user.php";   
+	$url="login.php?url=".urlencode($_SERVER['REQUEST_URI']);   
 	header('Location: '.$url);
 	exit;
 } else {
