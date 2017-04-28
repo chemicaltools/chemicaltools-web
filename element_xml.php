@@ -610,6 +610,8 @@ $elementAbbrArray=$xml->elementAbbrArray->item;
 $elementMassArray=$xml->elementMassArray->item;
 $elementIUPACArray=$xml->elementIUPACArray->item; 
 $elementOriginArray=$xml->elementOriginArray->item; 
+require 'pinyin.php';
+
 function searchelement($input){
 	$elementNumber=0;
 	global $elementNameArray,$elementAbbrArray,$elementIUPACArray;
@@ -626,6 +628,14 @@ function searchelement($input){
 		}else if(strtolower($input)==strtolower($elementIUPACArray[$i])){
 			$elementNumber=$i+1;
 			break;
+		}
+	}
+	if($elementNumber==0){
+		for($i=0;$i<118;$i++){
+			if(pinyin($input)==pinyin($elementNameArray[$i])||strtolower($input)==pinyin($elementNameArray[$i])){
+				$elementNumber=$i+1;
+				break;
+			}
 		}
 	}
 	return $elementNumber;
