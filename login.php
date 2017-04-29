@@ -14,6 +14,8 @@ if($_POST['username'] != ""&&$_POST['password'] != "")
 	} catch (CloudException $ex) {
 		$error=true;
 	}
+}else{
+	$error=true;
 }
 if($_POST['url'] != "")
 {

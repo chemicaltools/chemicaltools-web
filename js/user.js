@@ -1,6 +1,6 @@
 function savesetting(modeinput,elementnumberinput,pKwinput,did){ 
 	$(did).html('<img src="\\ico\\loading.gif">正在保存中……');
-	$.post("/user.php",{mode:modeinput,elementnumber:elementnumberinput,pKw:pKwinput,ajax:1},function(data){   
+	$.post("user.php",{mode:modeinput,elementnumber:elementnumberinput,pKw:pKwinput,ajax:1},function(data){   
 		if(data==''){//0 
 		}else{      
 			$(did).html(data);

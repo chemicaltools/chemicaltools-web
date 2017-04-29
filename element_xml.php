@@ -602,6 +602,126 @@ $xmlstring = <<<XML
         <item>In recognition of the contribution of the Tennessee region</item>
         <item>Honoring a scientist and recognizes Professor Yuri Oganessian</item>
     </elementOriginArray>
+	<pinyin>
+		<item>qing</item>
+		<item>hai</item>
+		<item>li</item>
+		<item>pi</item>
+		<item>peng</item>
+		<item>tan</item>
+		<item>dan</item>
+		<item>yang</item>
+		<item>fu</item>
+		<item>nai</item>
+		<item>na</item>
+		<item>mei</item>
+		<item>lv</item>
+		<item>gui</item>
+		<item>lin</item>
+		<item>liu</item>
+		<item>lv</item>
+		<item>ya</item>
+		<item>jia</item>
+		<item>gai</item>
+		<item>kang</item>
+		<item>tai</item>
+		<item>fan</item>
+		<item>ge</item>
+		<item>meng</item>
+		<item>tie</item>
+		<item>gu</item>
+		<item>nie</item>
+		<item>tong</item>
+		<item>xin</item>
+		<item>jia</item>
+		<item>zhe</item>
+		<item>shen</item>
+		<item>xi</item>
+		<item>xiu</item>
+		<item>ke</item>
+		<item>ru</item>
+		<item>si</item>
+		<item>yi</item>
+		<item>gao</item>
+		<item>ni</item>
+		<item>mu</item>
+		<item>de</item>
+		<item>liao</item>
+		<item>lao</item>
+		<item>ba</item>
+		<item>yin</item>
+		<item>ge</item>
+		<item>yin</item>
+		<item>xi</item>
+		<item>ti</item>
+		<item>di</item>
+		<item>dian</item>
+		<item>xian</item>
+		<item>se</item>
+		<item>bei</item>
+		<item>lan</item>
+		<item>shi</item>
+		<item>pu</item>
+		<item>nv</item>
+		<item>po</item>
+		<item>shan</item>
+		<item>you</item>
+		<item>ga</item>
+		<item>te</item>
+		<item>di</item>
+		<item>huo</item>
+		<item>er</item>
+		<item>diu</item>
+		<item>yi</item>
+		<item>lu</item>
+		<item>ha</item>
+		<item>tan</item>
+		<item>wu</item>
+		<item>lai</item>
+		<item>e</item>
+		<item>yi</item>
+		<item>bo</item>
+		<item>jin</item>
+		<item>gong</item>
+		<item>ta</item>
+		<item>qian</item>
+		<item>bi</item>
+		<item>po</item>
+		<item>ai</item>
+		<item>dong</item>
+		<item>fang</item>
+		<item>lei</item>
+		<item>a</item>
+		<item>tu</item>
+		<item>pu</item>
+		<item>you</item>
+		<item>na</item>
+		<item>bu</item>
+		<item>mei</item>
+		<item>ju</item>
+		<item>pei</item>
+		<item>kai</item>
+		<item>ai</item>
+		<item>fei</item>
+		<item>men</item>
+		<item>nuo</item>
+		<item>lao</item>
+		<item>lu</item>
+		<item>du</item>
+		<item>xi</item>
+		<item>bo</item>
+		<item>hei</item>
+		<item>mai</item>
+		<item>da</item>
+		<item>lun</item>
+		<item>ge</item>
+		<item>xi</item>
+		<item>fu</item>
+		<item>mo</item>
+		<item>li</item>
+		<item>tian</item>
+		<item>ao</item>
+	</pinyin>
 </string-array>
 XML;
 $xml=simplexml_load_string($xmlstring);
@@ -610,11 +730,12 @@ $elementAbbrArray=$xml->elementAbbrArray->item;
 $elementMassArray=$xml->elementMassArray->item;
 $elementIUPACArray=$xml->elementIUPACArray->item; 
 $elementOriginArray=$xml->elementOriginArray->item; 
+$elementpinyin=$xml->pinyin->item; 
 require 'pinyin.php';
 
 function searchelement($input){
 	$elementNumber=0;
-	global $elementNameArray,$elementAbbrArray,$elementIUPACArray;
+	global $elementNameArray,$elementAbbrArray,$elementIUPACArray,$elementpinyin;
 	for($i=0;$i<118;$i++) {
 		if ($input==(string)($i+1)){
 			$elementNumber=$i+1;
@@ -632,7 +753,7 @@ function searchelement($input){
 	}
 	if($elementNumber==0){
 		for($i=0;$i<118;$i++){
-			if(pinyin($input)==pinyin($elementNameArray[$i])||strtolower($input)==pinyin($elementNameArray[$i])){
+			if(pinyin($input)==$elementpinyin[$i]||strtolower($input)==$elementpinyin[$i]){
 				$elementNumber=$i+1;
 				break;
 			}

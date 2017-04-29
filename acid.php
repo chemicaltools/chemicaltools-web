@@ -158,7 +158,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
   <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <?php include 'head.php';?>
-<script type="text/javascript" src="/js/acid.js"></script>
+<script type="text/javascript" src="js/acid.js"></script>
 <title>酸碱计算 -- 化学e+</title>
   </head>
   <body>
@@ -175,7 +175,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		<tr><td colspan=2><select name="acidName" id="acidName"><option value="HA">HA</option></select></td></tr>
 		<tr><td><input type="text" name="c" id="c" placeholder="分析浓度"/></td><td><input type="submit" value="计算"></td></tr></table></form>
 		<tr><div id="loading"></div></tr>
-		<tr><div class="output" id="output"><img src="\ico\loading.gif">加载中，请稍后……</div></tr>
+		<tr><div class="output" id="output"><img src="ico/loading.gif">加载中，请稍后……</div></tr>
 <?php include 'foot.php';?>
     </section>
   </body>

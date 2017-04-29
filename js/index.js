@@ -1,5 +1,5 @@
 function doyouknow(did){ 
-	$.post("/doyouknow.php",{ajax:1},function(data){   
+	$.post("doyouknow.php",{ajax:1},function(data){   
 		if(data==''){//0 
 		}else{      
 			$(did).html(data);

@@ -1,6 +1,6 @@
 function gas(typeinput,pinput,Vinput,ninput,Tinput){ 
 	$("#loading").html('<img src="\\ico\\loading.gif">加载中，请稍后……');
-	$.post("/gas.php",{type:typeinput,p:pinput,V:Vinput,n:ninput,T:Tinput,ajax:1},function(data){   
+	$.post("gas.php",{type:typeinput,p:pinput,V:Vinput,n:ninput,T:Tinput,ajax:1},function(data){   
 		if(data==''){//0 
 		}else{      
 			$("#loading").html('');

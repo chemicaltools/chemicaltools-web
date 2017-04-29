@@ -1,6 +1,6 @@
 function mass(massinput,did){ 
 	$("#loading").html('<img src="\\ico\\loading.gif">加载中，请稍后……');
-	$.post("/mass.php",{input:massinput,ajax:1},function(data){   
+	$.post("mass.php",{input:massinput,ajax:1},function(data){   
 		if(data==''){//0 
 		}else{     
 			$("#loading").html('');		

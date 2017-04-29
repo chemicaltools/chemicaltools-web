@@ -247,7 +247,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>质量计算 -- 化学e+</title>
 <?php include 'head.php';?>
-<script type="text/javascript" src="/js/mass.js"></script>
+<script type="text/javascript" src="js/mass.js"></script>
   </head>
   <body>
 <?php include 'header.php';?>
@@ -260,7 +260,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		<input type="hidden" id="getinput" name="getinput" value="<?=$input;?>"  />  
 		<table><tr><table><tr><td><input type="text" name="input" id="input" placeholder="请输入物质的化学式"/></td><td><input type="submit" value="计算"></td></tr></table></tr>
 		<tr><div id="loading"></div></tr>
-		<tr><p><div class="history" id="output"><img src="\ico\loading.gif">加载中，请稍后……</div></p></tr>
+		<tr><p><div class="history" id="output"><img src="ico/loading.gif">加载中，请稍后……</div></p></tr>
 	</table></form>
 <?php include 'foot.php';?>
     </section>

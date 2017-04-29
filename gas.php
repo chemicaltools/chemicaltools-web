@@ -35,7 +35,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>气体计算 -- 化学e+</title>
 <?php include 'head.php';?>
-<script type="text/javascript" src="/js/gas.js"></script>
+<script type="text/javascript" src="js/gas.js"></script>
   </head>
   <body>
 <?php include 'header.php';

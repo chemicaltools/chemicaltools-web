@@ -57,7 +57,7 @@ if ($currentUser == null) {
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>用户中心 -- 化学e+</title>
 <?php include 'head.php';?>
-<script type="text/javascript" src="/js/user.js"></script>
+<script type="text/javascript" src="js/user.js"></script>
   </head>
   <body>
 <?php include 'header.php';?>
