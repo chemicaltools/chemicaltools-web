@@ -196,20 +196,14 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 			$outputhtml=$output;
 			for($i=0;$i<118;$i++){
 				if($AtomNumber[$i+1]>0){
-					if($_POST['html'] =="no"||$_GET['html']=="no"){
-						$massPer[$i+1]=(double)$AtomNumber[$i + 1] * ((double)$elementMassArray[$i])/(double)$m*100;
-						$output=$output."\n".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."），".$AtomNumber[$i+1].
-						"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
-					}else{
-						$massPer[$i+1]=(double)$AtomNumber[$i + 1] * ((double)$elementMassArray[$i])/(double)$m*100;
-						$output=$output."\n<a href='/element.php?input=".($i+1)."'>".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."）</a>，".$AtomNumber[$i+1].
-						"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
-					}
+					$massPer[$i+1]=(double)$AtomNumber[$i + 1] * ((double)$elementMassArray[$i])/(double)$m*100;
+					$output=$output."\n<a href='/element.php?input=".($i+1)."'>".$elementNameArray[$i]."（符号：".$elementAbbrArray[$i]."）</a>，".$AtomNumber[$i+1].
+					"个原子，原子量为".$elementMassArray[$i]."，质量分数为".sprintf("%.2f",$massPer[$i+1])."%；";
 				}
 			}
 			$output=rtrim($output,"；")."。";
 			if($_POST['html'] =="no"||$_GET['html']=="no"){
-				echo $output;
+				echo ereg_replace("<[^>]*>|<\/[^>]*>","",$output);;
 			}else{
 				echo "<p>".nl2br($output)."</p>";
 			}

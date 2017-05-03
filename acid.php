@@ -28,9 +28,9 @@ function calpHtoc($pKa,$c,$pH){
 	return $pHtoc;
 }
 if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
-	if($_POST['pKa']!=""&&$_POST['c']!=""){
-		$strpKa=$_POST['pKa'];
-		$c=(double)$_POST['c'];
+	if(($_POST['pKa']!=""||$_GET['pKa']!="")&&($_POST['c']!=""||$_GET['c']!="")){
+		if($_POST['pKa']!="")$strpKa=$_POST['pKa'];else $strpKa=$_GET['pKa'];
+		if($_POST['c']!="")$c=(double)$_POST['c'];else $c=(double)$_GET['c'];
 		$liquidpKa=-1.74;
 		if ($currentUser != null) {
 			if(isset($_COOKIE['pKw'])){
@@ -42,7 +42,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		}else{
 			$pKw=14;
 		}
-		if($_POST['AorB']=="acid")$AorB=true;else $AorB=false;
+		if($_POST['AorB']=="acid"||$_GET['AorB']=="acid")$AorB=true;else $AorB=false;
 		if($_POST['acidName']!=""||$_GET['acidName']!=""){
 			if($_POST['acidName']!="")$acidName=$_POST['acidName'];else $acidName=$_GET['acidName'];
 		}
@@ -134,10 +134,14 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		if($ABnameall=="HA"||$ABnameall=="BOH"){
 			$acidOutputhtml=$ABnameallHtml.$acidOutput;
 		}else{
-			$acidOutputhtml="<a href='/mass.php?input=".$ABnameall."'>".$ABnameallHtml."</a>".$acidOutput;
+			$acidOutputhtml="<a href='mass.php?input=".$ABnameall."'>".$ABnameallHtml."</a>".$acidOutput;
 		}
 		$acidOutput=$ABnameallHtml.$acidOutput;
-		echo '<p>'.nl2br($acidOutputhtml).'<p>';
+		if($_POST['html'] =="no"||$_GET['html']=="no"){
+			echo ereg_replace("<[^>]*>|<\/[^>]*>","",$acidOutputhtml);
+		}else{
+			echo "<p>".nl2br($acidOutputhtml)."</p>";
+		}
 		if ($currentUser != null) {
 			?>
 			<script type="text/javascript">
@@ -145,6 +149,8 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 			</script>
 			<?php
 		}
+	}else{
+		echo "输入错误！";
 	}
 }else{
 	if ($currentUser != null) {

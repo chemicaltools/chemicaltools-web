@@ -1,6 +1,7 @@
 <?php
 require 'load.php';
 use \LeanCloud\User;
+User::logOut();
 if ($currentUser != null) {
 	foreach($_COOKIE as $k => $v){
 		setcookie($k, null);

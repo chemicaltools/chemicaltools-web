@@ -48,11 +48,11 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 		$deviation_relatibe=$deviation/$average*1000;
 		$s=sqrt($squresum/($t-1));
 		$s_relatibe=$s/$deviation*1000;
-		$output="您输入的数据：".str_replace(array("\r\n","\r","\n"," ","_"),"，",trim($input))."\n平均数：".sprintf("%.".$pointnum."f",$average).
-				"\n平均偏差：".sprintf("%.".$pointnum."f",$deviation)."\n相对平均偏差：".sprintf("%.".($numnum-1)."e",$deviation_relatibe).
-				"‰\n标准偏差：".sprintf("%.".($numnum-1)."e",$s)."\n相对标准偏差：".sprintf("%.".($numnum-1)."e",$s_relatibe)."‰";
+		$output="您输入的数据：".str_replace(array("\r\n","\r","\n"," ","_"),"，",trim($input))."\n平均数：&#12288;&#12288;&#12288;".sprintf("%.".$pointnum."f",$average).
+				"\n平均偏差：&#12288;&#12288;".sprintf("%.".$pointnum."f",$deviation)."\n相对平均偏差：".sprintf("%.".($numnum-1)."e",$deviation_relatibe).
+				"‰\n标准偏差：&#12288;&#12288;".sprintf("%.".($numnum-1)."e",$s)."\n相对标准偏差：".sprintf("%.".($numnum-1)."e",$s_relatibe)."‰";
 		if($_POST['html'] =="no"||$_GET['html']=="no"){
-			echo $output;
+			echo str_replace("&#12288;"," ",$output);
 		}else{
 			echo "<p>".nl2br($output)."</p>";
 		}

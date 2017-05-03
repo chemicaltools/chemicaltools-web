@@ -1,13 +1,13 @@
 <?php
 require 'load.php';
 if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
-	if($_POST['type']!=""){
-		$type=$_POST['type'];
+	if($_POST['type']!=""||$_GET['type']!=""){
+		if($_POST['type']!="")$type=$_POST['type'];else $type=$_GET['type'];
 		$R=8.314;
-		$p=$_POST['p'];
-		$V=$_POST['V'];
-		$n=$_POST['n'];
-		$T=$_POST['T'];
+		if($_POST['p']!="")$p=$_POST['p'];else $p=$_GET['p'];
+		if($_POST['V']!="")$V=$_POST['V'];else $V=$_GET['V'];
+		if($_POST['n']!="")$n=$_POST['n'];else $n=$_GET['n'];
+		if($_POST['T']!="")$T=$_POST['T'];else $T=$_GET['T'];
 		switch($type){
 			case "p":
 				$p=sprintf("%.3f",$n*$R*$T/$V);

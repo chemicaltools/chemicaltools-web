@@ -34,10 +34,10 @@ function searchforkind($kind,$input){
 	return $elementNumber;
 }
 if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
-	if($_POST['question'] != ""){
-		$question=$_POST['question'];
-		$answer=$_POST['answer'];
-		$mode=(string)$_POST['mode'];
+	if($_POST['question'] != ""||$_GET['question'] != ""){
+		if($_POST['question'] != "")$question=$_POST['question'];else $question=$_GET['question'];
+		if($_POST['answer'] != "")$answer=$_POST['answer'];else $answer=$_GET['answer'];
+		if($_POST['mode'] != "")$mode=(string)$_POST['mode'];else $mode=(string)$_GET['mode'];		
 		if($mode=="")$mode="2";
 		switch ($mode){
 			case "0":case"1":case"2":
@@ -80,11 +80,11 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 				else  $_SESSION['incorrect']=1;
 			}
 		}
-		header('Location: exam.php?ajax=1&result='.$result);
+		header('Location: exam.php?ajax=1&result='.$result.'&html='.$_GET["html"]);
 		exit;
 	}else{
 		if($_GET['result'] != ""){
-			echo "<p>".$_GET['result']."</p>";
+			$output="<p>".$_GET['result']."</p>";
 			if ($currentUser != null) {
 ?>
 				<script type="text/javascript">
@@ -94,7 +94,6 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 <?php
 			}
 		}
-		echo "<table>";
 		if ($currentUser != null) {
 			if(isset($_COOKIE['elementnumber_limit'])){
 				$max=(int)$_COOKIE['elementnumber_limit'];
@@ -108,10 +107,10 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 				$mode=($currentUser->get("examMode"));
 				setcookie('examMode',$mode,time() + 259200);
 			}
-			if($max==0)$max=118;
+			if($max==0)$max=86;
 			if($mode=="")$mode="2";
 		}else{
-			$max=118;
+			$max=86;
 			$mode="2";
 		}
 		$n=rand(1,$max);
@@ -129,7 +128,7 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 				$Question=$elementIUPACArray[$n-1];
 				break;
 		}
-		echo "<tr><td>题目</td><td>".$Question."</td></tr>";
+		$output= $output." <table><tr><td>题目</td> <td>".$Question."</td></tr>";
 		$numbers=array();
 		$numbers[]=$n;
 		for($i2 = 1;$i2<4;$i2++){
@@ -162,9 +161,14 @@ if($_POST['ajax'] =="1"||$_GET['ajax']=="1"){
 					$option=$elementIUPACArray[$numbers[$i2]-1];
 					break;
 			}
-			echo "<tr><td>".($i2+1)."</td><td><form name='form".$i2."' id='form".$i2."' method='post' action='exam.php'><input type='hidden' name='mode' id='mode' value='".$mode."'/> <input type='hidden' name='question' id='question' value='".$Question."'/><input type='hidden' name='answer' id='answer' value='".$option."'/><a href='javascript:$(\"#form".$i2."\").submit();'>".$option."</a></form></td></tr>";
+			$output=$output. "<tr><td>".($i2+1)."</td><td><form name='form".$i2."' id='form".$i2."' method='post' action='exam.php'><input type='hidden' name='mode' id='mode' value='".$mode."'/> <input type='hidden' name='question' id='question' value='".$Question."'/><input type='hidden' name='answer' id='answer' value='".$option."'/><a href='javascript:$(\"#form".$i2."\").submit();'>".$option."</a></form></td></tr>";
 		}   
-		echo "</table>";
+		$output=$output. "</table>";
+		if($_POST['html'] =="no"||$_GET['html']=="no"){
+			echo ereg_replace("<[^>]*>|<\/[^>]*>","",str_replace(array("<tr>","<p>")," ",$output));
+		}else{
+			echo "<p>".nl2br($output)."</p>";
+		}
 	}
 }else{
 	if ($currentUser != null) {
