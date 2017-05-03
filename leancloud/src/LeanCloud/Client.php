@@ -23,7 +23,7 @@ class Client {
     /**
      * Client version
      */
-    const VERSION = '0.4.1';
+    const VERSION = '0.5.6';
 
     /**
      * API Endpoints for Regions
@@ -90,11 +90,18 @@ class Client {
     private static $useMasterKey = false;
 
     /**
-     * Use production or not
+     * Is in production or not
      *
      * @var bool
      */
-    private static $useProduction = false;
+    public static $isProduction = false;
+
+    /**
+     * Is in debug mode or not
+     *
+     * @var bool
+     */
+    private static $debugMode = false;
 
     /**
      * Default request headers
@@ -109,7 +116,6 @@ class Client {
      * @var IStorage
      */
     private static $storage;
-
 
     /**
      * Initialize application key and settings
@@ -126,6 +132,7 @@ class Client {
         self::$defaultHeaders = array(
             'X-LC-Id' => self::$appId,
             'Content-Type' => 'application/json;charset=utf-8',
+            'Accept-Encoding' => 'gzip, deflate',
             'User-Agent'   => self::getVersionString()
         );
 
@@ -165,11 +172,12 @@ class Client {
     /**
      * Set API region
      *
-     * Available regions are "CN" and "US".
+     * Available regions are "CN", "US", "E1".
      *
      * @param string $region
      */
     public static function useRegion($region) {
+        $region = strtoupper($region);
         if (!isset(self::$api[$region])) {
             throw new \RuntimeException("Invalid API region: {$region}.");
         }
@@ -179,10 +187,21 @@ class Client {
     /**
      * Use production or not
      *
-     * @param bool $flag
+     * @param bool $flag Default false
      */
     public static function useProduction($flag) {
-        self::$useProduction = $flag ? true : false;
+        self::$isProduction = $flag ? true : false;
+    }
+
+    /**
+     * Set debug mode
+     *
+     * Enable debug mode to log request params and response.
+     * 
+     * @param bool $flag Default false
+     */
+    public static function setDebug($flag) {
+        self::$debugMode = $flag ? true : false;
     }
 
     /**
@@ -219,7 +238,7 @@ class Client {
         }
         $h = self::$defaultHeaders;
 
-        $h['X-LC-Prod'] = self::$useProduction ? 1 : 0;
+        $h['X-LC-Prod'] = self::$isProduction ? 1 : 0;
 
         $timestamp = time();
         $key       = $useMasterKey ? self::$appMasterKey : self::$appKey;
@@ -360,12 +379,14 @@ class Client {
         curl_setopt($req, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($req, CURLOPT_TIMEOUT, self::$apiTimeout);
         // curl_setopt($req, CURLINFO_HEADER_OUT, true);
+        // curl_setopt($req, CURLOPT_HEADER, true);
+        curl_setopt($req, CURLOPT_ENCODING, '');
         switch($method) {
             case "GET":
                 if ($data) {
                     // append GET data as query string
-                    curl_setopt($req, CURLOPT_URL,
-                                $url ."?". http_build_query($data));
+                    $url .= "?" . http_build_query($data);
+                    curl_setopt($req, CURLOPT_URL, $url);
                 }
                 break;
             case "POST":
@@ -381,12 +402,22 @@ class Client {
             default:
                 break;
         }
+        $reqId = rand(100,999);
+        if (self::$debugMode) {
+            error_log("[DEBUG] HEADERS {$reqId}:" . json_encode($headersList));
+            error_log("[DEBUG] REQUEST {$reqId}: {$method} {$url} {$json}");
+        }
+        // list($headers, $resp) = explode("\r\n\r\n", curl_exec($req), 2);
         $resp     = curl_exec($req);
         $respCode = curl_getinfo($req, CURLINFO_HTTP_CODE);
         $respType = curl_getinfo($req, CURLINFO_CONTENT_TYPE);
         $error    = curl_error($req);
         $errno    = curl_errno($req);
         curl_close($req);
+
+        if (self::$debugMode) {
+            error_log("[DEBUG] RESPONSE {$reqId}: {$resp}");
+        }
 
         /** type of error:
           *  - curl connection error
@@ -547,7 +578,7 @@ class Client {
             return array("__type" => "Date",
                          "iso"    => self::formatDate($value));
         } else if ($value instanceof Object) {
-            if ($encoder && !in_array($value, $seen)) {
+            if ($encoder && $value->hasData() && !in_array($value, $seen)) {
                 $seen[] = $value;
                 return call_user_func(array($value, $encoder), $seen);
             } else {
@@ -555,8 +586,9 @@ class Client {
             }
         } else if ($value instanceof IOperation ||
                    $value instanceof GeoPoint   ||
-                   $value instanceof Bytes  ||
-                   $value instanceof ACL    ||
+                   $value instanceof Bytes      ||
+                   $value instanceof ACL        ||
+                   $value instanceof Relation   ||
                    $value instanceof File) {
             return $value->encode();
         } else if (is_array($value)) {
@@ -578,12 +610,10 @@ class Client {
      * @return string
      */
     public static function formatDate($date) {
-        $utc = new \DateTime($date->format("c"));
+        $utc = clone $date;
         $utc->setTimezone(new \DateTimezone("UTC"));
         $iso = $utc->format("Y-m-d\TH:i:s.u");
-        // PHP does not support sub seconds well, it will always gives 6 zero
-        // digits as microseconds. We chop 3 zeros off:
-        //  `2015-09-18T08:06:20.000000Z` -> `2015-09-18T08:06:20.000Z`
+        // chops 3 zeros of microseconds to comply with cloud date format
         $iso = substr($iso, 0, 23) . "Z";
         return $iso;
     }
@@ -629,7 +659,8 @@ class Client {
             return $file;
         }
         if ($type === "Pointer" || $type === "Object") {
-            $obj = Object::create($value["className"], $value["objectId"]);
+            $id  = isset($value["objectId"]) ? $value["objectId"] : null;
+            $obj = Object::create($value["className"], $id);
             unset($value["__type"]);
             unset($value["className"]);
             if (!empty($value)) {

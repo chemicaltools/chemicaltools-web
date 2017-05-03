@@ -2,6 +2,7 @@
 
 use LeanCloud\Client;
 use LeanCloud\CloudException;
+use LeanCloud\User;
 
 /**
  * Test LeanEngine app server
@@ -16,6 +17,8 @@ class LeanEngineTest extends PHPUnit_Framework_TestCase {
             getenv("LC_APP_ID"),
             getenv("LC_APP_KEY"),
             getenv("LC_APP_MASTER_KEY"));
+        Client::useRegion(getenv("LC_API_REGION"));
+        User::clearCurrentUser();
     }
 
     private function request($url, $method, $data=null) {
@@ -151,18 +154,21 @@ class LeanEngineTest extends PHPUnit_Framework_TestCase {
 
     public function testBeforeSave() {
         $obj = array(
-            "__type"    => "Object",
-            "className" => "TestObject",
-            "objectId"  => "id002",
             "name"      => "alice",
+            "likes"     => array(
+                "__type"    => "Pointer",
+                "className" => "TestObject",
+                "objectId"  => "id002"
+            ),
             "__before"  => $this->signHook("__before_for_TestObject")
         );
         $resp = $this->request("/1/functions/TestObject/beforeSave", "POST",
                                array("object" => $obj));
         $obj2 = $resp;
-        $this->assertEquals($obj["objectId"], $obj2["objectId"]);
         $this->assertEquals($obj["name"],     $obj2["name"]);
         $this->assertEquals(42,               $obj2["__testKey"]);
+        $this->assertEquals("Pointer",        $obj2["likes"]["__type"]);
+        $this->assertEquals("id002",          $obj2["likes"]["objectId"]);
     }
 
     public function testAfterSave() {

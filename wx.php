@@ -4,14 +4,7 @@
   */
 
 //define your token
-//require 'leancloud/src/autoload.php';
 require 'element_xml.php';
-//require 'fsock.php';
-//use \LeanCloud\Client;
-//use \LeanCloud\Object;
-//use \LeanCloud\Query;
-//Client::initialize("wUzGKF5dp34OqCeaI0VwVG8E-gzGzoHsz", "QiyXtJjBHFJCIVYQRbrKFiB7", "cnW0tSpfljie0GIfqT19iBD5");
-
 define("TOKEN", "zengjinzhe");
 $mysqlname="localhost";
 $wechatObj = new wechatCallbackapiTest();
@@ -262,9 +255,6 @@ class wechatCallbackapiTest
 										mysql_query("UPDATE wx_exam SET incorrect = '".$incorrect."'
 										WHERE openid = '".$fromUsername."'");
 									} 
-									//$FsockService=new FsockService();
-									//$FsockService->get("http://njzjz.oicp.net/wxchange.php",array('openid'=>'o1PJOv_HaR2kRsWS9bvftRJBxrp0'));
-									//$content = file_get_contents("http://njzjz.umi.pw/fsockchange.php?openid=".$fromUsername);
 								}else{
 									$output="";
 								}

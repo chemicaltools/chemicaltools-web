@@ -13,6 +13,14 @@ use LeanCloud\Operation\IncrementOperation;
  *
  */
 class Object {
+
+    /**
+     * Preserved keys
+     *
+     * @var array
+     */
+    public static $PRESERVED_KEYS = array("objectId", "updatedAt", "createdAt");
+
     /**
      * Map of registered className to class.
      *
@@ -40,6 +48,14 @@ class Object {
      * @var array
      */
     private $_operationSet;
+
+    /**
+     * Save option of object
+     *
+     * @var SaveOption
+     * @see SaveOption
+     */
+    private $_saveOption;
 
     /**
      * Make a new *plain* Object.
@@ -133,15 +149,15 @@ class Object {
     }
 
     public function disableBeforeHook() {
-        $this->set("__before",
-                   Client::signHook("__before_for_{$this->getClassName()}",
-                                        round(microtime(true) * 1000)));
+        $this->_set("__before",
+                    Client::signHook("__before_for_{$this->getClassName()}",
+                                     round(microtime(true) * 1000)));
     }
 
     public function disableAfterHook() {
-        $this->set("__after",
-                   Client::signHook("__after_for_{$this->getClassName()}",
-                                        round(microtime(true) * 1000)));
+        $this->_set("__after",
+                    Client::signHook("__after_for_{$this->getClassName()}",
+                                     round(microtime(true) * 1000)));
     }
 
     /**
@@ -192,7 +208,7 @@ class Object {
         forEach($this->_data as $key => $val) {
             $out[$key] = Client::encode($val, "toFullJSON", $seen);
         }
-        $out["__type"]    = "Object";
+        $out["__type"] = "Object";
         $out["className"] = $this->getClassName();
         return $out;
     }
@@ -222,17 +238,10 @@ class Object {
         return $this->get("updatedAt");
     }
 
-    /**
-     * Set field value by key
-     *
-     * @param string $key field key
-     * @param mixed  $val field value
-     * @return self
-     * @throws RuntimeException
-     */
-    public function set($key, $val) {
-        if (in_array($key, array("objectId", "createdAt", "updatedAt"))) {
-            throw new \RuntimeException("Preserved field could not be set.");
+    private function _set($key, $val) {
+        if ($key === "ACL" &&
+            !($val instanceof ACL)) {
+            throw new RuntimeException("Invalid ACL.");
         }
         if (!($val instanceof IOperation)) {
             $val = new SetOperation($key, $val);
@@ -242,13 +251,28 @@ class Object {
     }
 
     /**
+     * Set field value by key
+     *
+     * @param string $key field key
+     * @param mixed  $val field value
+     * @return self
+     * @throws RuntimeException
+     */
+    public function set($key, $val) {
+        if (in_array($key, self::$PRESERVED_KEYS)) {
+            throw new \RuntimeException("Preserved field could not be set.");
+        }
+        return $this->_set($key, $val);
+    }
+
+    /**
      * Set ACL for object
      *
      * @param ACL $acl
      * @return self
      */
     public function setACL(ACL $acl) {
-        return $this->set("ACL", $acl);
+        return $this->_set("ACL", $acl);
     }
 
     /**
@@ -377,6 +401,16 @@ class Object {
     }
 
     /**
+     * If object has data attributes.
+     *
+     * @return bool
+     */
+    public function hasData() {
+        $keys = array_keys($this->_data);
+        return $keys !== array("objectId");
+    }
+
+    /**
      * If there are unsaved operations.
      *
      * @return bool
@@ -398,10 +432,14 @@ class Object {
     /**
      * Save object and its children objects and files
      *
+     * @param SaveOption $option
      * @throws CloudException
      */
-    public function save() {
+    public function save($option=null) {
         if (!$this->isDirty()) {return;}
+        if ($option) {
+            $this->_saveOption = $option;
+        }
         try {
             $result = self::saveAll(array($this));
         } catch (BatchRequestError $batchRequestError) {
@@ -699,6 +737,9 @@ class Object {
             } else {
                 $req["method"] = "POST";
                 $req["path"]   = "{$path}/{$obj->getClassName()}";
+            }
+            if ($obj->_saveOption) {
+                $req["params"] = $obj->_saveOption->encode();
             }
             $requests[] = $req;
             $objects[]  = $obj;

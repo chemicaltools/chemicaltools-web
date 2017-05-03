@@ -46,13 +46,13 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $this->assertTrue($result);
     }
 
-    public function testVerifyKeyMaster() {
-        $result = Client::verifyKey(
-            getenv("LC_APP_ID"),
-            getenv("LC_APP_MASTER_KEY") . ",master"
-        );
-        $this->assertTrue($result);
-    }
+    # public function testVerifyKeyMaster() {
+    #     $result = Client::verifyKey(
+    #         getenv("LC_APP_ID"),
+    #         getenv("LC_APP_MASTER_KEY") . ",master"
+    #     );
+    #     $this->assertTrue($result);
+    # }
 
     public function testVerifySign() {
         $time = time();
@@ -346,6 +346,14 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(116.4, $val->getLongitude());
     }
 
+    public function testEncodeRelation() {
+        $a = new Object("TestObject", "id001");
+        $rel = $a->getRelation("likes");
+        $out = Client::encode($rel);
+        $this->assertEquals("Relation",
+                            $out["__type"]);
+    }
+
     public function testEncodeObjectToJSON() {
         $a = new Object("TestObject", "id001");
         $b = new Object("TestObject", "id002");
@@ -403,6 +411,29 @@ class ClientTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals("Object",  $jsonC["__type"]);
         $this->assertEquals("Pointer", $jsonC["likes"][0]["__type"]);
     }
+
+    public function testEncodePointerObject() {
+        $json = array(
+            "__type" => "Object",
+            "objectId" => "id001",
+            "className" => "TestObject",
+            "name" => "A",
+            "likes" => array(
+                "__type" => "Pointer",
+                "objectId" => "id002",
+                "className" => "TestObject"
+            )
+        );
+        $a = Client::decode($json, null);
+        $this->assertTrue($a instanceof Object);
+        $this->assertTrue($a->get("likes") instanceof Object);
+
+        $out = $a->toFullJSON();
+        $this->assertEquals("A", $out["name"]);
+        $this->assertEquals("Pointer", $out["likes"]["__type"]);
+        $this->assertEquals("TestObject", $out["likes"]["className"]);
+    }
+
 }
 
 
