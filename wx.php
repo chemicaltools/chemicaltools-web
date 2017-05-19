@@ -49,7 +49,7 @@ class wechatCallbackapiTest
 							</xml>";             
 				if ($ev == "subscribe"){
 					$msgType = "text";
-					$contentStr = "欢迎使用化学e+，化学e+（微信版）目前支持元素查询、计量计算、酸碱计算、气体计算、偏差计算和元素记忆等功能。您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量，或者输入一组数据计算其偏差，或者输入“出题”进行元素测试。详细帮助请输入help查询。\n<a href='http://chem.njzjz.win/'>下载化学e+</a>\n<a href='http://njzjz.umi.pw/'>访问网页版</a>";
+					$contentStr = "欢迎使用化学e+，化学e+（微信版）目前支持元素查询、计量计算、酸碱计算、气体计算、偏差计算和元素记忆等功能。您可以输入元素名称/符号/原子序数/IUPAC名查询元素，也可以输入化学式计算分子量，或者输入一组数据计算其偏差，或者输入“出题”进行元素测试。详细帮助请输入help查询。\n<a href='http://chem.njzjz.win/'>下载化学e+</a>\n<a href='https://web.zgchemicals.mobi/'>访问网页版</a>";
 					$resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
 					echo $resultStr;
 				}
@@ -203,12 +203,12 @@ class wechatCallbackapiTest
 					}else{
 						if(strpos(strtolower($input),"help")!== false||strpos($input,"帮助")!== false){
 							$contentStr="化学e+（微信版）目前支持以下功能：\n".
-							"1.<a href='http://njzjz.umi.pw/element.php'>元素查询</a>\n输入元素名称/符号/原子序数/IUPAC名查询元素，输入“元素”查看所有元素。\n示例：72\n示例：Hafnium\n".
-							"2.<a href='http://njzjz.umi.pw/mass.php'>质量计算</a>\n输入化学式计算分子量。\n示例：(NH4)6Mo7O24\n".
-							"3.<a href='http://njzjz.umi.pw/acid.php'>酸碱计算</a>\n输入HA（或HB） 分析浓度 pKa（或pKb）计算溶液成分。\n示例：HA 0.1 2.148 7.198 12.319\n".
-							"4.<a href='http://njzjz.umi.pw/gas.php'>气体计算</a>\n输入未知量（p，V，n，T），并依次输入p，V，n，T中的已知量，即可计算未知量。\n示例：n 101 1 298\n".
-							"5.<a href='http://njzjz.umi.pw/deviation.php'>偏差计算</a>\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407\n".
-							"6.<a href='http://njzjz.umi.pw/exam.php'>元素记忆</a>\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。\n".
+							"1.<a href='https://web.zgchemicals.mobi/element.php'>元素查询</a>\n输入元素名称/符号/原子序数/IUPAC名查询元素，输入“元素”查看所有元素。\n示例：72\n示例：Hafnium\n".
+							"2.<a href='https://web.zgchemicals.mobi/mass.php'>质量计算</a>\n输入化学式计算分子量。\n示例：(NH4)6Mo7O24\n".
+							"3.<a href='https://web.zgchemicals.mobi/acid.php'>酸碱计算</a>\n输入HA（或HB） 分析浓度 pKa（或pKb）计算溶液成分。\n示例：HA 0.1 2.148 7.198 12.319\n".
+							"4.<a href='https://web.zgchemicals.mobi/gas.php'>气体计算</a>\n输入未知量（p，V，n，T），并依次输入p，V，n，T中的已知量，即可计算未知量。\n示例：n 101 1 298\n".
+							"5.<a href='https://web.zgchemicals.mobi/deviation.php'>偏差计算</a>\n输入一组数据计算其偏差（用空格间隔）。\n示例：0.3414 0.3423 0.3407\n".
+							"6.<a href='https://web.zgchemicals.mobi/exam.php'>元素记忆</a>\n输入“出题”获得题目，输入选项“A1”“A2”“A3”“A4”回答。\n".
 							"* 输入“绑定账号”即可绑定账号。";	
 						}else if(strpos($input,"元素")!== false){
 							for($elementnumber=1;$elementnumber<=118;$elementnumber++){
@@ -234,7 +234,7 @@ class wechatCallbackapiTest
 								VALUES ('".$fromUsername."', '".$idtime."')");
 							}
 							mysql_close($con);
-							$contentStr="<a href='http://njzjz.umi.pw/wxlogin.php?openid=".$fromUsername."&time=".$idtime."'>点击此处绑定化学e+账号</a>";
+							$contentStr="<a href='https://web.zgchemicals.mobi/wxlogin.php?openid=".$fromUsername."&time=".$idtime."'>点击此处绑定化学e+账号</a>";
 						}else if(strpos($input,"出题")!== false||strtoupper($input)=="A1"||strtoupper($input)=="A2"||strtoupper($input)=="A3"||strtoupper($input)=="A4"){
 							$con=mysql_connect($mysqlname,"root","root");
 							mysql_select_db("chemapp", $con);
@@ -339,7 +339,7 @@ class wechatCallbackapiTest
 								$output="元素名称：".$name."\n元素符号：".$Abbr."\nIUPAC名：".$IUPACname."\n原子序数：".$ElementNumber.
 								"\n相对原子质量：".$ElementMass."\n元素名称含义：".$ElementOrigin;
 								$outputHtml=$output."\n\n<a href='https://en.wikipedia.org/wiki/".$IUPACname."'>访问维基百科</a>";
-								$contentStr=$outputHtml."\n\n<a href='http://njzjz.umi.pw/element.php?input=".$IUPACname."'>查看详情</a>";
+								$contentStr=$outputHtml."\n\n<a href='https://web.zgchemicals.mobi/element.php?input=".$IUPACname."'>查看详情</a>";
 								$this->wxupdate($fromUsername,"historyElementOutput",$output);
 								$this->wxupdate($fromUsername,"historyElementOutputHtml",$outputHtml);
 								$this->wxupdate($fromUsername,"historyElementNumber",$ElementNumber);
@@ -518,7 +518,7 @@ class wechatCallbackapiTest
 										}
 									}
 									$output=rtrim($output,"；")."。";
-									$contentStr=$output."\n<a href='http://njzjz.umi.pw/mass.php?input=".$x."'>查看详情</a>";
+									$contentStr=$output."\n<a href='https://web.zgchemicals.mobi/mass.php?input=".$x."'>查看详情</a>";
 									$this->wxupdate($fromUsername,"historyMassOutput",$output);
 									$this->wxupdate($fromUsername,"historyMass",$x);
 								} else {
@@ -606,7 +606,7 @@ class wechatCallbackapiTest
 		mysql_query("INSERT INTO wx_change (openid, name,value) 
 			VALUES (\"".$openid."\", \"".$name."\", \"".$value."\")");
 		mysql_close($con);
-		//$content = file_get_contents("http://njzjz.umi.pw/fsockchange.php?update=1&openid=".$openid);
+		//$content = file_get_contents("https://web.zgchemicals.mobi/fsockchange.php?update=1&openid=".$openid);
 		return true;
 	}
 	private function getTimestamp($digits = false) {
