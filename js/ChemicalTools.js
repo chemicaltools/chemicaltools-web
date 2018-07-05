@@ -622,8 +622,6 @@ function showpage(hash){
 		$("#aboutpage").show()
 		$("title").html("关于"+title)
 	}else if(hash=="#/user/"){
-		var currentUser = AV.User.current();
-		if (!currentUser){$("#loginpage").show()}
 		$("#userpage").show()
 		$("title").html("个人中心"+title)
 	}
