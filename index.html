@@ -6,20 +6,22 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="stylesheets/navbar.css" media="screen">
 		<link href='https://fonts.lug.ustc.edu.cn/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link rel="apple-touch-icon" href="ico/appleicon.png" />
 		<link rel="icon" href="ico/ic_launcher.png" />
 		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
 		<script type="text/javascript" src="js/pinyin.js"></script>
 		<script type="text/javascript" src="js/elementinfo.js"></script>
 		<script type="text/javascript" src="js/ChemicalTools.js"></script>
 		<title>化学e+</title>
 	</head>
 	<body>
+		<div class="navbar"><ul><li><a href="javascript:showpage('#')">首页</a></li><li><a href="javascript:showpage('#/element/')">元素查询</a></li><li><a href="javascript:showpage('#/mass/')">质量计算</a></li><li><a href="javascript:showpage('#/acid/')">酸碱计算</a></li><li><a href="javascript:showpage('#/gas/')">气体计算</a></li><li><a href="javascript:showpage('#/exam/')">元素记忆</a></li><li><a href="javascript:showpage('#/deviation/')">偏差计算</a></li><li id="userbar"></li><li><a href="javascript:showpage('#/user/')">设置</a></li></ul></div>
 		<section class="page-header">
-		  <h1 class="project-name"><img src="ico/ic_launcher.png"><a class="nocolor" href="javascript:showpage('#')" >化学e+</a></h1>
+		  <h1 class="project-name"><img src="ico/ic_launcher.png"><a href="javascript:showpage('#')" class="nocolor">化学e+</a></h1>
 		  <h2 class="project-tagline">化学专业学生必备的工具</h2>
-		  <a href="javascript:showpage('#')" class="nocolor">首页</a>|<a href="javascript:showpage('#/element/')" class="nocolor">元素查询</a>|<a href="javascript:showpage('#/mass/')" class="nocolor">质量计算</a>|<a href="javascript:showpage('#/acid/')" class="nocolor">酸碱计算</a>|<a href="javascript:showpage('#/gas/')" class="nocolor">气体计算</a>|<a href="javascript:showpage('#/exam/')" class="nocolor">元素记忆</a>|<a href="javascript:showpage('#/deviation/')" class="nocolor">偏差计算</a>
 		</section>
 		
 		<section class="main-content">
@@ -87,6 +89,64 @@
 			<div id="aboutpage" style="display:none;">
 				<h2>关于</h2>
 				<p>作者：曾晋哲</p><p>联系方式：njzjz@qq.com 10154601140@stu.ecnu.edu.cn</p><p><a href="https://github.com/njzjz">GitHub</a>
+			</div>
+			<div id="loginpage" style="display:none;position:relative;height:100%;background-color: rgba(0, 0, 0,.5);"><div style="position:fixed;background-color:#fcfcfc;top:50%;left:50%;width:300px;height:300px;margin-top:-150px;margin-left:-150px;display: flex;justify-content: center;flex-direction: column;"><div style="margin: 0 auto;">
+				<a style="width: 47px;    height: 20px;    float: right;    background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;" href="javascript:$('#loginpage').hide()"></a>
+				<h2 style="text-align:center;">登陆</h2>
+				<form method="post" id="loginform">
+				<table>
+				<tr><td>用户名</td><td><input type="text" id="loginusername"></td></tr>
+				<tr><td>密码</td><td><input type="password" id="loginpassword"></td></tr>
+				<tr><td colspan=2 style="text-align:center"><input type="submit" value="登陆" style="width:100%" style="border:1px #FFFFFF solid" ></td></tr>
+				<tr><td colspan=2><div class="output" id="loginoutput"></div></td></tr>
+				<tr><td colspan=2 style="text-align:center;"><a href="javascript:$('#loginpage').hide();$('#signpage').show();">注册新账号</a></td></tr>
+				</table>
+				</form>	
+			</div></div></div>
+			<div id="signpage" style="display:none;position:relative;height:100%;background-color: rgba(0, 0, 0,.5);"><div style="position:fixed;background-color:#fcfcfc;top:50%;left:50%;width:300px;height:300px;margin-top:-150px;margin-left:-150px;display: flex;justify-content: center;flex-direction: column;"><div style="margin: 0 auto;">
+				<a style="width: 47px;    height: 20px;    float: right;    background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;" href="javascript:$('#loginpage').hide()"></a>
+				<h2 style="text-align:center;">注册</h2>
+				<form method="post" id="signform">
+				<table>
+				<tr><td>用户名</td><td><input type="text" id="signusername"></td></tr>
+				<tr><td>密码</td><td><input type="password" id="signpassword"></td></tr>
+				<tr><td colspan=2 style="text-align:center"><input type="submit" value="注册" style="width:100%" style="border:1px #FFFFFF solid" ></td></tr>
+				<tr><td colspan=2><div class="output" id="signoutput"></div></td></tr>
+				</table>
+				</form>	
+			</div></div></div>
+			<div id="userpage" style="display:none;">
+				<h2>个人中心</h2>
+				<form method="post" id="userform"><table>
+				<tr><td colspan=2><h3>个人信息</h3></td></tr>
+				<tr><td>用户名</td><td><div id="userusername">游客</td></tr>
+				<tr><td>昵称</td><td><div id="usernickname">游客</td></tr>
+				<tr><td colspan=2><h3>元素记忆</h3></td></tr>
+				<tr><td>测试模式</td><td><select id="usermode">
+				<option value="0">根据元素名称回答元素符号</option>
+				<option value="1">根据元素名称回答原子序数</option>
+				<option value="2">根据元素名称回答IUPAC名</option>
+				<option value="3">根据元素符号回答元素名称</option>
+				<option value="4">根据元素符号回答原子序数</option>
+				<option value="5">根据元素符号回答IUPAC名</option>
+				<option value="6">根据原子序数回答元素名称</option>
+				<option value="7">根据原子序数回答元素符号</option>
+				<option value="8">根据原子序数回答IUPAC名</option>
+				<option value="9">根据IUPAC名回答元素名称</option>
+				<option value="10">根据IUPAC名回答元素符号</option>
+				<option value="11">根据IUPAC名回答原子序数</option>
+				</select></td></tr>
+				<tr><td>原子序数上限</td><td>
+				<select id="usermax">
+				<option value="18">18</option>
+				<option value="36">36</option>
+				<option value="54">54</option>
+				<option value="86">86</option>
+				<option value="118">118</option></select></td></tr>
+				<tr><td colspan=2><h3>酸碱计算</h3></td></tr>
+				<tr><td>pK<sub>w</sub></td><td><input type="text" id="userpkw"></td></tr>
+				<tr><td colspan=2><input type="submit" value="保存"></td></tr>
+				</table></form>
 			</div>
 			<footer class="site-footer">		
 				<span class="site-footer-credits"><a href="https://njzjz.win/">曾晋哲的博客</a>|<a href="javascript:showpage('#/about/')">关于</a>|<a href="https://chem.njzjz.win/">下载软件</a>|<a href="https://github.com/njzjz">Github</a>

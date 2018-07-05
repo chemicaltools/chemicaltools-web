@@ -568,24 +568,29 @@ var ChemicalTools=new Object({
     return Math.floor(Math.random() * (end - start) + start);
   },
   showquestion:function(){
-	var questiondata=this.makequestion()
+	mode=parseInt(window.localStorage.getItem("mode"))
+	if(!mode){mode=2}
+	max=parseInt(window.localStorage.getItem("max"))
+	if(!max){max=86}
+	var questiondata=this.makequestion(mode=mode,max=max)
 	for(i in questiondata){
 		if(i==0){
-			var output="<h3>题目："+questiondata[i]+"</h3>"
+			var output="<h3>题目："+questiondata[i]+"</h3><ul class='question'>"
 		}else{
-			output+="<li><a href=\"javascript:ChemicalTools.answer('"+questiondata[0]+"','"+questiondata[i]+"')\">"+questiondata[i]+"</a></li>"
+			output+="<li><a href=\"javascript:ChemicalTools.answer('"+questiondata[0]+"','"+questiondata[i]+"',mode="+mode+")\">"+questiondata[i]+"</a></li>"
 		}
 	}
+	output+="</ul>"
 	$("#examquestion").html(output)
   },
-  answer:function(question,answer){
-	 $("#examoutput").html(this.correctanswer(question,answer))
+  answer:function(question,answer,mode=2){
+	 $("#examoutput").html(this.correctanswer(question,answer,mode))
 	 this.showquestion()
   }
 });
 
 function showpage(hash){
-	pages=["#indexpage","#elementpage","#masspage","#acidpage","#gaspage","#exampage","#deviationpage","#aboutpage"]
+	pages=["#indexpage","#elementpage","#masspage","#acidpage","#gaspage","#exampage","#deviationpage","#aboutpage","#userpage","#loginpage","signpage"]
 	for(var i in pages){
 		$(pages[i]).hide()
 	}
@@ -594,7 +599,7 @@ function showpage(hash){
 	
 	if(hash==""||hash=="#"||hash=="#/index/"){
 		$("#indexpage").show()
-		$("title").html("主页"+title)
+		$("title").html("首页"+title)
 	}else if(hash=="#/element/"){
 		$("#elementpage").show()
 		$("title").html("元素查询"+title)
@@ -616,12 +621,35 @@ function showpage(hash){
 	}else if(hash=="#/about/"){
 		$("#aboutpage").show()
 		$("title").html("关于"+title)
+	}else if(hash=="#/user/"){
+		var currentUser = AV.User.current();
+		if (!currentUser){$("#loginpage").show()}
+		$("#userpage").show()
+		$("title").html("个人中心"+title)
 	}
 	
 	window.location.hash=hash
 }
-
+function frushuserbar(){
+	var currentUser = AV.User.current();
+	if (currentUser) {
+		$("#userbar").html("<li><a href=\"javascript:showpage('#/user/')\">欢迎您，"+currentUser.getUsername()+"</a></li><li><a href=\"javascript:AV.User.logOut();frushuserbar();\">注销</a></li>")
+		$("#userusername").html(currentUser.getUsername())
+		$("#usernickname").html(currentUser.get("nickName"))
+	  }else {
+		$("#userbar").html("<li><a href=\"javascript:$('#loginpage').show()\">登陆</a></li>")
+		$("#userusername").html("游客")
+		$("#usernickname").html("游客")
+	  }
+}
 $(function(){
+	var APP_ID = 'oAhUyuu4qF7DlbNtPlzvFkB7-gzGzoHsz';
+	var APP_KEY = 'VBjBASiTnt7xA9bNMC0bSmSX';
+
+	AV.init({
+	  appId: APP_ID,
+	  appKey: APP_KEY
+	});
 	$("#elementform").submit(function(e) {
 		$("#elementoutput").html(ChemicalTools.outputelement($("#elementinput").val()))
 		return false
@@ -635,7 +663,9 @@ $(function(){
 		return false
 	});
 	$("#acidform").submit(function(e) {
-		$("#acidoutput").html(ChemicalTools.calacid($("#acidc").val(),$("#acidpKa").val(),$("#acidAorB").val()))
+		pkw=parseInt(window.localStorage.getItem("pkw"))
+		if(!pkw){pkw=14}
+		$("#acidoutput").html(ChemicalTools.calacid($("#acidc").val(),$("#acidpKa").val(),$("#acidAorB").val(),pKw=pkw))
 		return false
 	});
 	$("#gasform").submit(function(e) {
@@ -657,7 +687,49 @@ $(function(){
 		return false;
 	});
 	
+	$("#loginform").submit(function(e){
+		AV.User.logIn($("#loginusername").val(),$("#loginpassword").val()).then(function (loggedInUser) {
+			$("#loginpage").hide()
+			frushuserbar()
+		  }, function (error) {
+			 $("#loginoutput").html(error)
+		  });
+		return false
+	});
+	$("#signform").submit(function(e){
+		 var user = new AV.User();
+		  user.setUsername($("#signusername").val());
+		  user.setPassword($("#signpassword").val());
+		  user.signUp().then(function (loggedInUser) {
+			  $("#signpage").hide()
+				frushuserbar()
+		  }, function (error) {
+			  $("#signoutput").html(error)
+		  });
+  
+  
+		AV.User.logIn($("#loginusername").val(),$("#loginpassword").val()).then(function (loggedInUser) {
+			$("#loginpage").hide()
+			frushuserbar()
+		  }, function (error) {
+			 $("#loginoutput").html(error)
+		  });
+		return false
+	});	
+	$("#userform").submit(function(e){
+		window.localStorage.setItem("mode",$("#usermode").val())
+		window.localStorage.setItem("max",$("#usermax").val())
+		window.localStorage.setItem("pkw",$("#userpkw").val())
+		return false
+	});
 	$("#elementtable").html(ChemicalTools.makeelementtable())
 	ChemicalTools.showquestion()
 	showpage(window.location.hash)
+	frushuserbar()
+	mode=window.localStorage.getItem("mode")
+	max=window.localStorage.getItem("max")
+	pkw=window.localStorage.getItem("pkw")
+	$("#usermode").val(mode?mode:"2")
+	$("#usermax").val(max?max:"86")
+	$("#userpkw").val(pkw?pkw:"14")
 });
