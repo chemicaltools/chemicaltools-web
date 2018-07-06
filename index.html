@@ -15,144 +15,149 @@
 		<script type="text/javascript" src="js/pinyin.js"></script>
 		<script type="text/javascript" src="js/elementinfo.js"></script>
 		<script type="text/javascript" src="js/ChemicalTools.js"></script>
-		<title>化学e+</title>
+		<title>Chemical Tools</title>
 	</head>
 	<body>
-		<div class="navbar"><ul><li><a href="javascript:showpage('#')">首页</a></li><li><a href="javascript:showpage('#/element/')">元素查询</a></li><li><a href="javascript:showpage('#/mass/')">质量计算</a></li><li><a href="javascript:showpage('#/acid/')">酸碱计算</a></li><li><a href="javascript:showpage('#/gas/')">气体计算</a></li><li><a href="javascript:showpage('#/exam/')">元素记忆</a></li><li><a href="javascript:showpage('#/deviation/')">偏差计算</a></li><li id="userbar"></li><li><a href="javascript:showpage('#/user/')">设置</a></li></ul></div>
 		<section class="page-header">
-		  <h1 class="project-name"><img src="ico/ic_launcher.png"><a href="javascript:showpage('#')" class="nocolor">化学e+</a></h1>
-		  <h2 class="project-tagline">化学专业学生必备的工具</h2>
+		  <h1 class="project-name"><img src="ico/ic_launcher.png"><a href="javascript:showpage('#')" class="nocolor">Chemical Tools<!--{cn}化学e+--></a></h1>
+		  <h2 class="project-tagline">Essential tools for chemistry students<!--{cn}化学专业学生必备的工具--></h2>
 		</section>
+		<div class="navbar"><ul><li><a href="javascript:showpage('#')">Home Page<!--{cn}首页--></a></li><li><a href="javascript:showpage('#/element/')">Element Search<!--{cn}元素查询--></a></li><li><a href="javascript:showpage('#/mass/')">Mass Calculator<!--{cn}质量计算--></a></li><li><a href="javascript:showpage('#/acid/')">Acid-base Calculator<!--{cn}酸碱计算--></a></li><li><a href="javascript:showpage('#/gas/')">Gas Calculator<!--{cn}气体计算--></a></li><li><a href="javascript:showpage('#/exam/')">Element Memory<!--{cn}元素记忆--></a></li><li><a href="javascript:showpage('#/deviation/')">Deviation Calculator<!--{cn}偏差计算--></a></li><li id="userbar"></li><li><a href="javascript:showpage('#/user/')">Setting<!--{cn}设置--></a></li><li>
+  <div><a href="javascript:if(tran.getLang()==='default'){tran.setLang('cn');}else {tran.setLang('default');}frushpage();">中文<!--{cn}English--></a></div></li></ul></div>
 		
 		<section class="main-content">
 			<div id="indexpage" style="display:none;text-align:center;column-width:15rem;">
-				<h2><img src="ico/blue_apple.png" width=30 height=30><a href="javascript:showpage('#/element/')">元素查询</a></h2>
-				<h2><img src="ico/lime_apple.png" width=30 height=30><a href="javascript:showpage('#/mass/')">质量计算</a></h2>
-				<h2><img src="ico/gray_apple.png" width=30 height=30><a href="javascript:showpage('#/acid/')">酸碱计算</a></h2>
-				<h2><img src="ico/gas.png" width=30 height=30><a href="javascript:showpage('#/gas/')">气体计算</a></h2>
-				<h2><img src="ico/orange_apple.png" width=30 height=30><a href="javascript:showpage('#/exam/')">元素记忆</a></h2>
-				<h2><img src="ico/deviation.png" width=30 height=30><a href="javascript:showpage('#/deviation/')">偏差计算</a></h2>
+				<h2><img src="ico/blue_apple.png" width=30 height=30><a href="javascript:showpage('#/element/')">Element Search<!--{cn}元素查询--></a></h2>
+				<h2><img src="ico/lime_apple.png" width=30 height=30><a href="javascript:showpage('#/mass/')">Mass Calculator<!--{cn}质量计算--></a></h2>
+				<h2><img src="ico/gray_apple.png" width=30 height=30><a href="javascript:showpage('#/acid/')">Acid-base Calculator<!--{cn}酸碱计算--></a></h2>
+				<h2><img src="ico/gas.png" width=30 height=30><a href="javascript:showpage('#/gas/')">Gas Calculator<!--{cn}气体计算--></a></h2>
+				<h2><img src="ico/orange_apple.png" width=30 height=30><a href="javascript:showpage('#/exam/')">Element Memory<!--{cn}元素记忆--></a></h2>
+				<h2><img src="ico/deviation.png" width=30 height=30><a href="javascript:showpage('#/deviation/')">Deviation Calculator<!--{cn}偏差计算--></a></h2>
 			</div>
 			<div id="elementpage" style="display:none;">
-				<h2>元素查询</h2>
+				<h2>Element Calculator<!--{cn}元素查询--></h2>
 				<form method="post" id="elementform">
 				<table><tr><table><tr><td>
-				<input type="text" id="elementinput" placeholder="请输入元素名称、符号、原子序数或IUPAC名"/></td>
-				<td><input type="submit" id="elementbutton" value="查询"></td></tr></table></tr>
+				<input type="text" id="elementinput" placeholder="Please input name, symbol or atomic number of the element" placeholder-cn="请输入元素名称、符号、原子序数或IUPAC名"/></td>
+				<td><input type="submit" id="elementbutton" value="Search" value-cn="查询"></td></tr></table></tr>
 				<tr><td><div id="elementoutput"></div><td></tr>
-				<tr><td><h3 style='text-align:center'>元素周期表</h3></td></tr>
+				<tr><td><h3 style='text-align:center'>Periodic table of elements<!--{cn}元素周期表--></h3></td></tr>
 				<tr><td><div class="elementtable" id="elementtable"></div></td></tr>
 				</table>
 				</form>
 			</div>
 			<div id="masspage" style="display:none;">
-				<h2>质量计算</h2>
+				<h2>Mass Calculator<!--{cn}质量计算--></h2>
 				<form method='post' id="massform"><table>
-					<tr><td><table><tr><td><input type="text" id="massinput" placeholder="请输入物质的化学式"/></td><td><input type="submit" value="计算"></td></tr></table></td></tr>
+					<tr><td><table><tr><td><input type="text" id="massinput" placeholder="Please input a chemical formula."placeholder-cn="请输入物质的化学式"/></td><td><input type="submit" value="Calculate" value-cn="计算"></td></tr></table></td></tr>
 					<tr><td><div id="massoutput"></div></td></tr>
 				</table></form>
 			</div>
 			<div id="deviationpage" style="display:none;">
-				<h2>偏差计算</h2>
+				<h2>Deviation Calculator<!--{cn}偏差计算--></h2>
 				<form method='post' id="deviationform"><table><tr><td>  
-				<textarea id="deviationinput" placeholder="请输入数据，每行一个" rows="5"></textarea></td></tr>
-				<tr><td><input type="submit" value="计算"></td></tr>
+				<textarea id="deviationinput" placeholder="Please input the data" placeholder-cn="请输入数据，每行一个" rows="5"></textarea></td></tr>
+				<tr><td><input type="submit" value="Calculate" value-cn="计算"></td></tr>
 				<tr><td><div id="deviationoutput"></div></td></tr>
 				</table></form>
 			</div>
 			<div id="acidpage" style="display:none;">
-				<h2>酸碱计算</h2>
+				<h2>Acid-base Calculator<!--{cn}酸碱计算--></h2>
 				<form method='post' id="acidform">
 				<table><tr><td>  
-				<input type="text" id="acidpKa" placeholder="pKa或pKb"/></td>
-				<td><select id="acidAorB"><option value ="acid">酸</option><option value ="base">碱</option></select></td></tr>
-				<tr><td><input type="text" id="acidc" placeholder="分析浓度"/></td><td><input type="submit" value="计算"></td></tr></table></form>
+				<input type="text" id="acidpKa" placeholder="pKa or pKb" placeholder-cn="pKa或pKb"/></td>
+				<td><select id="acidAorB"><option value ="acid">Acid<!--{cn}酸--></option><option value ="base">Base<!--{cn}碱--></option></select></td></tr>
+				<tr><td><input type="text" id="acidc" placeholder="Analytical concentration" placeholder-cn="分析浓度"/></td><td><input type="submit" value="计算" value-cn="计算"></td></tr></table></form>
 				<div class="output" id="acidoutput"></div>
 			</div>
 			<div id="gaspage" style="display:none;">
-				<h2>气体计算</h2>
+				<h2>Gas Calculator<!--{cn}气体计算--></h2>
 				<form method='post' id="gasform">
 				<table>
-				<tr><td><input type="radio" name="gastype" value="p" checked>p</td><td><input type="text" name="p" id="p" placeholder="压强p/kPa"/></td></tr>
-				<tr><td><input type="radio" name="gastype" value="V">V</td><td><input type="text" name="V" id="V" placeholder="体积V/L"/></td></tr>
-				<tr><td><input type="radio" name="gastype" value="n">n</td><td><input type="text" name="n" id="n" placeholder="物质的量n/mol"/></td></tr>
-				<tr><td><input type="radio" name="gastype" value="T">T</td><td><input type="text" name="T" id="T" placeholder="温度T/K"/></td></tr>
-				<tr><td colspan=2><input type="submit" value="计算勾选的量"></td></tr>
+				<tr><td><input type="radio" name="gastype" value="p" checked>p</td><td><input type="text" name="p" id="p" placeholder="Pressure/kPa" placeholder-cn="压强p/kPa"/></td></tr>
+				<tr><td><input type="radio" name="gastype" value="V">V</td><td><input type="text" name="V" id="V" placeholder="Volume/L" placeholder-cn="体积V/L"/></td></tr>
+				<tr><td><input type="radio" name="gastype" value="n">n</td><td><input type="text" name="n" id="n" placeholder="Amount of substance/mol" placeholder-cn="物质的量n/mol"/></td></tr>
+				<tr><td><input type="radio" name="gastype" value="T">T</td><td><input type="text" name="T" id="T" placeholder="Temperature/K" placeholder-cn="温度T/K"/></td></tr>
+				<tr><td colspan=2><input type="submit" value="Calculate the checked value" value-cn="计算勾选的量"></td></tr>
 				<tr><td colspan=2><div id="loading"></div></td></tr>
 				</table></form>
 			</div>
 			<div id="exampage" style="display:none;">
-				<h2>元素记忆</h2>
+				<h2>Element Memory<!--{cn}元素记忆--></h2>
 				<table><tr><td><div id="examquestion"><td></tr>
-				<tr><td><div id="examoutput"></div></td></tr></table>
+				<tr><td><div id="examoutput"></div></td></tr>
+				<tr><td><div id="examscore"></div></td></tr></table>
 			</div>
 			<div id="aboutpage" style="display:none;">
-				<h2>关于</h2>
-				<p>作者：曾晋哲</p><p>联系方式：njzjz@qq.com 10154601140@stu.ecnu.edu.cn</p><p><a href="https://github.com/njzjz">GitHub</a>
+				<h2>About<!--{cn}关于--></h2>
+				<p><b>Author:<!--{cn}作者：--></b> Jinzhe Zeng<!--{cn}曾晋哲--></p><p><b>Email:</b> <a href="mailto:nzjjz@qq.com">njzjz@qq.com</a> <a href="mailto:10154601140@stu.ecnu.edu.cn">10154601140@stu.ecnu.edu.cn</a></p><p><a href="https://github.com/njzjz"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" width=100 height=25></a></p><p><a href="https://github.com/njzjz/Chemical-Tools-web/issues">Feedback<!--{cn}反馈--></a></p>
 			</div>
 			<div id="loginpage" style="display:none;position:relative;height:100%;background-color: rgba(0, 0, 0,.5);"><div style="position:fixed;background-color:#fcfcfc;top:50%;left:50%;width:300px;height:300px;margin-top:-150px;margin-left:-150px;display: flex;justify-content: center;flex-direction: column;"><div style="margin: 0 auto;">
 				<a style="width: 47px;    height: 20px;    float: right;    background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;" href="javascript:$('#loginpage').hide()"></a>
-				<h2 style="text-align:center;">登陆</h2>
+				<h2 style="text-align:center;">Sign in<!--{cn}登陆--></h2>
 				<form method="post" id="loginform">
 				<table>
-				<tr><td>用户名</td><td><input type="text" id="loginusername"></td></tr>
-				<tr><td>密码</td><td><input type="password" id="loginpassword"></td></tr>
-				<tr><td colspan=2 style="text-align:center"><input type="submit" value="登陆" style="width:100%" style="border:1px #FFFFFF solid" ></td></tr>
+				<tr><td>Username<!--{cn}用户名--></td><td><input type="text" id="loginusername"></td></tr>
+				<tr><td>Password<!--{cn}密码--></td><td><input type="password" id="loginpassword"></td></tr>
+				<tr><td colspan=2 style="text-align:center"><input type="submit" value="Sign in" value-cn="登陆" style="width:100%" style="border:1px #FFFFFF solid" ></td></tr>
 				<tr><td colspan=2><div class="output" id="loginoutput"></div></td></tr>
-				<tr><td colspan=2 style="text-align:center;"><a href="javascript:$('#loginpage').hide();$('#signpage').show();">注册新账号</a></td></tr>
+				<tr><td colspan=2 style="text-align:center;"><a href="javascript:$('#loginpage').hide();$('#signpage').show();">Sign up<!--{cn}注册新账号--></a></td></tr>
 				</table>
 				</form>	
 			</div></div></div>
 			<div id="signpage" style="display:none;position:relative;height:100%;background-color: rgba(0, 0, 0,.5);"><div style="position:fixed;background-color:#fcfcfc;top:50%;left:50%;width:300px;height:300px;margin-top:-150px;margin-left:-150px;display: flex;justify-content: center;flex-direction: column;"><div style="margin: 0 auto;">
-				<a style="width: 47px;    height: 20px;    float: right;    background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;" href="javascript:$('#loginpage').hide()"></a>
-				<h2 style="text-align:center;">注册</h2>
+				<a style="width: 47px;    height: 20px;    float: right;    background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;" href="javascript:$('#signpage').hide()"></a>
+				<h2 style="text-align:center;">Sign up<!--{cn}注册--></h2>
 				<form method="post" id="signform">
 				<table>
-				<tr><td>用户名</td><td><input type="text" id="signusername"></td></tr>
-				<tr><td>密码</td><td><input type="password" id="signpassword"></td></tr>
-				<tr><td colspan=2 style="text-align:center"><input type="submit" value="注册" style="width:100%" style="border:1px #FFFFFF solid" ></td></tr>
+				<tr><td>Username<!--{cn}用户名--></td><td><input type="text" id="signusername"></td></tr>
+				<tr><td>Password<!--{cn}密码--></td><td><input type="password" id="signpassword"></td></tr>
+				<tr><td colspan=2 style="text-align:center"><input type="submit" value="Sign up" value-cn="注册" style="width:100%" style="border:1px #FFFFFF solid" ></td></tr>
 				<tr><td colspan=2><div class="output" id="signoutput"></div></td></tr>
 				</table>
 				</form>	
 			</div></div></div>
 			<div id="userpage" style="display:none;">
-				<h2>个人中心</h2>
+				<h2>User Center<!--{cn}个人中心--></h2>
 				<form method="post" id="userform"><table>
-				<tr><td colspan=2><h3>个人信息</h3></td></tr>
-				<tr><td>用户名</td><td><div id="userusername">游客</td></tr>
-				<tr><td>昵称</td><td><div id="usernickname">游客</td></tr>
-				<tr><td colspan=2><h3>元素记忆</h3></td></tr>
-				<tr><td>测试模式</td><td><select id="usermode">
-				<option value="0">根据元素名称回答元素符号</option>
-				<option value="1">根据元素名称回答原子序数</option>
-				<option value="2">根据元素名称回答IUPAC名</option>
-				<option value="3">根据元素符号回答元素名称</option>
-				<option value="4">根据元素符号回答原子序数</option>
-				<option value="5">根据元素符号回答IUPAC名</option>
-				<option value="6">根据原子序数回答元素名称</option>
-				<option value="7">根据原子序数回答元素符号</option>
-				<option value="8">根据原子序数回答IUPAC名</option>
-				<option value="9">根据IUPAC名回答元素名称</option>
-				<option value="10">根据IUPAC名回答元素符号</option>
-				<option value="11">根据IUPAC名回答原子序数</option>
+				<tr><td colspan=2><h3>User Information<!--{cn}个人信息--></h3></td></tr>
+				<tr><td>Username<!--{cn}用户名--></td><td><div id="userusername">Visitor<!--{cn}游客--></td></tr>
+				<tr><td>Nickname<!--{cn}昵称--></td><td><div id="usernickname">Visitor<!--{cn}游客--></td></tr>
+				<tr><td colspan=2><h3>Element Memory<!--{cn}元素记忆--></h3></td></tr>
+				<tr><td>Test mode<!--{cn}测试模式--></td><td><select id="usermode">
+				<option value="0">Answer symbols for elements according to Chinese names<!--{cn}根据元素名称回答元素符号--></option>
+				<option value="1">Answer atomic numbers according to Chinese names<!--{cn}根据元素名称回答原子序数--></option>
+				<option value="2">Answer IUPAC names according to Chinese names<!--{cn}根据元素名称回答IUPAC名--></option>
+				<option value="3">Answer Chinese names according to symbols for elements<!--{cn}根据元素符号回答元素名称--></option>
+				<option value="4">Answer atomic numbers according to symbols for elements<!--{cn}根据元素符号回答原子序数--></option>
+				<option value="5">Answer IUPAC names according to symbols for elements<!--{cn}根据元素符号回答IUPAC名--></option>
+				<option value="6">Answer Chinese names according to atomic numbers<!--{cn}根据原子序数回答元素名称--></option>
+				<option value="7">Answer symbols for elements according to atomic numbers<!--{cn}根据原子序数回答元素符号--></option>
+				<option value="8">Answer IUPAC names according to atomic numbers<!--{cn}根据原子序数回答IUPAC名--></option>
+				<option value="9">Answer Chinese names according to IUPAC names<!--{cn}根据IUPAC名回答元素名称--></option>
+				<option value="10">Answer symbols for elements according to IUPAC names<!--{cn}根据IUPAC名回答元素符号--></option>
+				<option value="11">Answer atomic numbers according to IUPAC names<!--{cn}根据IUPAC名回答原子序数--></option>
 				</select></td></tr>
-				<tr><td>原子序数上限</td><td>
+				<tr><td>Limit of atomic number<!--{cn}原子序数上限--></td><td>
 				<select id="usermax">
 				<option value="18">18</option>
 				<option value="36">36</option>
 				<option value="54">54</option>
 				<option value="86">86</option>
 				<option value="118">118</option></select></td></tr>
-				<tr><td colspan=2><h3>酸碱计算</h3></td></tr>
+				<tr><td colspan=2><h3>Acid-base Calculator<!--{cn}酸碱计算--></h3></td></tr>
 				<tr><td>pK<sub>w</sub></td><td><input type="text" id="userpkw"></td></tr>
-				<tr><td colspan=2><input type="submit" value="保存"></td></tr>
+				<tr><td colspan=2><input type="submit" value="Sava" value-cn="保存"></td></tr>
 				</table></form>
 			</div>
 			<footer class="site-footer">		
-				<span class="site-footer-credits"><a href="https://njzjz.win/">曾晋哲的博客</a>|<a href="javascript:showpage('#/about/')">关于</a>|<a href="https://chem.njzjz.win/">下载软件</a>|<a href="https://github.com/njzjz">Github</a>
-				<br><a href="http://www.miitbeian.gov.cn/" target="_blank">京ICP备10027045号-1</a>
+				<span class="site-footer-credits"><a href="https://njzjz.win/">Jinzhe Zeng's Blog<!--{cn}曾晋哲的博客--></a>|<a href="javascript:showpage('#/about/')">About<!--{cn}关于--></a>|<a href="https://chem.njzjz.win/">Download<!--{cn}下载软件--></a>|<a href="https://github.com/njzjz">Github</a>
 				</span>
 			</footer>
 		</section>
+		<script type="text/javascript" src="js/translater.min.js"></script>
+		<script type="text/javascript">
+		  var tran = new Translater();
+		</script>
   </body>
 </html>

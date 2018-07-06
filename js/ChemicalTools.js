@@ -192,28 +192,27 @@ var ChemicalTools=new Object({
           xHtml = xHtml + x.substr(i3, 1)
         }
       }
-      output = "<b>"+xHtml + "</b><br><b>相对分子质量</b>=" + m.toFixed(2)
-      var outputhtml = output
+      output = "<b>"+xHtml + "</b><br><b>"+(tran.getLang()==='cn'?"相对分子质量":"Mass")+"</b>=" + m.toFixed(2)
       for (i = 0; i < 118; i++) {
         if (AtomNumber[i] > 0) {
           massPer[i] = parseFloat(AtomNumber[i]) * (parseFloat(elementinfo[i].mass)) / parseFloat(m) * 100
-          output = output + "<br><b>" + elementinfo[i].name + "</b>（符号：" + elementinfo[i].symbol + "），" + AtomNumber[i] + "个原子，原子量为" + parseFloat(elementinfo[i].mass).toFixed(2) + "，质量分数为" + massPer[i].toFixed(2) + "%；"
+          output = output + "<br><b>" + (tran.getLang()==='cn'?elementinfo[i].name:elementinfo[i].iupac) + "</b>"+(tran.getLang()==='cn'?"（符号：" :" (Symbol: ")+ elementinfo[i].symbol + (tran.getLang()==='cn'?"），":"): ")+ AtomNumber[i] + (tran.getLang()==='cn'?"个原子，原子量为":" atoms whose mass is ") + parseFloat(elementinfo[i].mass).toFixed(2) + (tran.getLang()==='cn'?"，质量分数为":", mass fraction: ") + massPer[i].toFixed(2) + "%"+(tran.getLang()==='cn'?"；":";")
         }
       }
-      output = output.substring(0, output.length - 1) + "。"
+      output = output.substring(0, output.length - 1) + (tran.getLang()==='cn'?"。":".")
     } else {
-      output = "输入出错！"
+      output = tran.getLang()==='cn'?"输入出错！":"Wrong input."
     }
     return output
   },
 	outputelement:function(input){ 
 		var info=this.searchelement(input)
-		var outputinfo={"元素名称":info.name,"元素符号":info.symbol,"IUPAC名":info.iupac,"原子序数":info.number,"相对原子质量":info.mass,"元素名称含义":info.origin}
-		var output="<table><tr style='text-align:center;'><td colspan=2><b>元素信息</b></td><td rowspan=6><img src='"+info.url+"'></td></tr>"
+		var outputinfo=tran.getLang()==='cn'?{"元素名称":info.name,"元素符号":info.symbol,"IUPAC名":info.iupac,"原子序数":info.number,"相对原子质量":info.mass,"元素名称含义":info.origin}:{"Symbol":info.symbol,"IUPAC name":info.iupac,"Atomic number":info.number,"Mass":info.mass,"Origin of the name":info.origin}
+		var output="<table><tr style='text-align:center;'><td colspan=2><b>"+(tran.getLang()==='cn'?"元素信息":"Element Information")+"</b></td><td rowspan=6><img src='"+info.url+"'></td></tr>"
 		for(var x in outputinfo){
 			output+="<tr><td><b>"+x+"</b></td><td>"+outputinfo[x]+"</td></tr>"
 		}
-		output+="<tr style='text-align:center;'><td colspan=3><a href='https://zh.wikipedia.org/wiki/"+info.name+"'>中文维基百科</a> · <a href='https://en.wikipedia.org/wiki/"+info.iupac+"'>英文维基百科</a></tr></td>"
+		output+="<tr style='text-align:center;'><td colspan=3>"+(tran.getLang()==='cn'?"<a href='https://zh.wikipedia.org/wiki/"+info.name+"'>中文维基百科</a> · <a href='https://en.wikipedia.org/wiki/"+info.iupac+"'>英文维基百科</a>":"<a href='https://en.wikipedia.org/wiki/"+info.iupac+"'>Visit Wikipedia</a>")+"</tr></td>"
 		output+="</table>"
 		return output
 	},
@@ -237,9 +236,9 @@ var ChemicalTools=new Object({
 						if(i<8){
 							output+=i;
 						}else if(i==8){
-							output+="镧系"
+							output+=tran.getLang()==='cn'?"镧系":"Lanthanide"
 						}else if(i==9){
-							output+="锕系"
+							output+=tran.getLang()==='cn'?"锕系":"Actinide"
 						}
 					}else if(i>0){
 						if(i==6&&j==4){
@@ -251,7 +250,7 @@ var ChemicalTools=new Object({
 						}else if(i==9&&j==1){
 							n=88
 						}
-						output+="<a href=\"javascript:$('#elementoutput').html(ChemicalTools.outputelement('"+elementinfo[n].number+"'))\"><sub>"+elementinfo[n].number+"</sub>"+elementinfo[n].symbol+"<br>"+elementinfo[n].name+"<br><small>"+elementinfo[n].mass+"</small></a>";
+						output+="<a href=\"javascript:$('#elementoutput').html(ChemicalTools.outputelement('"+elementinfo[n].number+"'))\"><sub>"+elementinfo[n].number+"</sub>"+elementinfo[n].symbol+"<br>"+(tran.getLang()==='cn'?elementinfo[n].name:elementinfo[n].iupac)+"<br><small>"+elementinfo[n].mass+"</small></a>";
 						n+=1
 
 					}
@@ -274,7 +273,7 @@ var ChemicalTools=new Object({
 	},
 	calculateDeviation: function (input) {
 		var that=this
-		if (x = "") return "请输入数据！"
+		if (x = "") return (tran.getLang()==='cn'?"请输入数据！":"Plese input data!")
 		var x = input.split("\n")
 		var t = x.length
 		if (t == 1) {
@@ -320,12 +319,12 @@ var ChemicalTools=new Object({
 		  var s = Math.sqrt(squresum / (t - 1))
 		  var s_relatibe = s / deviation * 1000
 		  var outputinfo=[
-			  { name: "您输入的数据", value: x.join("，") },
-			  { name: "平均数", value: average.toFixed(pointnum) },
-			  { name: "平均偏差", value: deviation.toFixed(pointnum) },
-			  { name: "相对平均偏差", value: this.sciconut(deviation_relatibe, numnum -1 ) },
-			  { name: "标准偏差", value: this.sciconut(s, numnum -1 ) },
-			  { name: "相对标准偏差", value: this.sciconut(s_relatibe, numnum -1 ) + "‰" },
+			  { name: (tran.getLang()==='cn'?"您输入的数据":"Input data:"), value: x.join("，") },
+			  { name: (tran.getLang()==='cn'?"平均数":"Average"), value: average.toFixed(pointnum) },
+			  { name: (tran.getLang()==='cn'?"平均偏差":"Average deviation"), value: deviation.toFixed(pointnum) },
+			  { name: (tran.getLang()==='cn'?"相对平均偏差":"Relative average deviation"), value: this.sciconut(deviation_relatibe, numnum -1 ) },
+			  { name: (tran.getLang()==='cn'?"标准偏差":"Standard deviation"), value: this.sciconut(s, numnum -1 ) },
+			  { name: (tran.getLang()==='cn'?"相对标准偏差":"Relative standard deviation"), value: this.sciconut(s_relatibe, numnum -1 ) + "‰" },
 			]
 			var output="<table>"
 			for(var x in outputinfo){
@@ -334,7 +333,7 @@ var ChemicalTools=new Object({
 			output+="</table>"
 			return output
 		} else {
-		  return "请输入多个数据。"
+		  return (tran.getLang()==='cn'?"请输入多个数据。":"Please input multiple data.")
 		}
 	},
  calpH: function (pKa, c, pKw) {
@@ -368,7 +367,7 @@ var ChemicalTools=new Object({
   },
   calacid: function (c, strpKa, AorB, pKw = 14, acidName = "HA") {
     const liquidpKa = -1.74
-    if (!strpKa||!c) return "请输入数据！"
+    if (!strpKa||!c) return (tran.getLang()==='cn'?"请输入数据！":"Please input data!")
     if (AorB) {
       var ABname = "A"
       var ABnameall = "HA"
@@ -393,7 +392,7 @@ var ChemicalTools=new Object({
       if (valpKa.length > 1) acidOutput = acidOutput + "<sub>" + (i + 1) + "</sub>"
       acidOutput = acidOutput + "=" + strpKaArray[i] + ", "
     }
-    acidOutput = acidOutput + "<br>溶液的pH为" + pH.toFixed(2) + "."
+    acidOutput = acidOutput + "<br>"+(tran.getLang()==='cn'?"溶液的pH为":"pH is ") + pH.toFixed(2) + "."
     acidOutput = acidOutput + "<br>" + "c(H<sup>+</sup>)=" + this.sciconut(H, 2) + "mol/L,"
     for (var i = 0; i < cAB.length; i++) {
       var cABoutput = "c("
@@ -504,9 +503,17 @@ var ChemicalTools=new Object({
         break;
     }
     if (correct_answer == answer) {
-      return "回答正确！"
+		correct=parseInt(window.localStorage.getItem("correct"))
+		correct=correct?correct+1:1
+		window.localStorage.setItem("correct",correct)
+		updatescore()
+      return (tran.getLang()==='cn'?"回答正确！":"Answer correctly!")
     } else {
-      return "回答错误，正确答案为：" + correct_answer + "，题目为：" + question + "，您的答案为：" + answer
+		incorrect=parseInt(window.localStorage.getItem("incorrect"))
+		incorrect=incorrect?incorrect+1:1
+		window.localStorage.setItem("incorrect",incorrect)
+		updatescore()
+      return (tran.getLang()==='cn'?"回答错误，正确答案为：" + correct_answer + "，题目为：" + question + "，您的答案为：" + answer:"The answer is wrong. The correct answer is "+ correct_answer +" and the question is "+question+", but your answer is "+answer+".")
     }
   },
   makequestion: function (mode = 2, max = 86) {
@@ -575,7 +582,7 @@ var ChemicalTools=new Object({
 	var questiondata=this.makequestion(mode=mode,max=max)
 	for(i in questiondata){
 		if(i==0){
-			var output="<h3>题目："+questiondata[i]+"</h3><ul class='question'>"
+			var output=(tran.getLang()==='cn'?"<h3>题目："+questiondata[i]+"</h3><ul class='question'>":"<h3>Question: "+questiondata[i]+"</h3><ul class='question'>")
 		}else{
 			output+="<li><a href=\"javascript:ChemicalTools.answer('"+questiondata[0]+"','"+questiondata[i]+"',mode="+mode+")\">"+questiondata[i]+"</a></li>"
 		}
@@ -595,35 +602,35 @@ function showpage(hash){
 		$(pages[i]).hide()
 	}
 	
-	var title=" -- 化学e+"
+	if(tran.getLang()==='cn') var title=" -- 化学e+"; else var title=" -- Chemical Tools";
 	
 	if(hash==""||hash=="#"||hash=="#/index/"){
 		$("#indexpage").show()
-		$("title").html("首页"+title)
+		$("title").html((tran.getLang()==='cn'?"首页":"Home Page")+title)
 	}else if(hash=="#/element/"){
 		$("#elementpage").show()
-		$("title").html("元素查询"+title)
+		$("title").html((tran.getLang()==='cn'?"元素查询":"Element Search")+title)
 	}else if(hash=="#/mass/"){
 		$("#masspage").show()
-		$("title").html("质量计算"+title)
+		$("title").html((tran.getLang()==='cn'?"质量计算":"Mass Calculator")+title)
 	}else if(hash=="#/acid/"){
 		$("#acidpage").show()
-		$("title").html("酸碱计算"+title)
+		$("title").html((tran.getLang()==='cn'?"酸碱计算":"Acid-base Calculator")+title)
 	}else if(hash=="#/gas/"){
 		$("#gaspage").show()
-		$("title").html("气体计算"+title)
+		$("title").html((tran.getLang()==='cn'?"气体计算":"Gas Calculator")+title)
 	}else if(hash=="#/exam/"){
 		$("#exampage").show()
-		$("title").html("元素记忆"+title)
+		$("title").html((tran.getLang()==='cn'?"元素记忆":"Element Memory")+title)
 	}else if(hash=="#/deviation/"){
 		$("#deviationpage").show()
-		$("title").html("偏差计算"+title)
+		$("title").html((tran.getLang()==='cn'?"偏差计算":"Deviation Calculator")+title)
 	}else if(hash=="#/about/"){
 		$("#aboutpage").show()
-		$("title").html("关于"+title)
+		$("title").html((tran.getLang()==='cn'?"关于":"About")+title)
 	}else if(hash=="#/user/"){
 		$("#userpage").show()
-		$("title").html("个人中心"+title)
+		$("title").html((tran.getLang()==='cn'?"个人中心":"User Center")+title)
 	}
 	
 	window.location.hash=hash
@@ -631,14 +638,29 @@ function showpage(hash){
 function frushuserbar(){
 	var currentUser = AV.User.current();
 	if (currentUser) {
-		$("#userbar").html("<li><a href=\"javascript:showpage('#/user/')\">欢迎您，"+currentUser.getUsername()+"</a></li><li><a href=\"javascript:AV.User.logOut();frushuserbar();\">注销</a></li>")
+		$("#userbar").html("<li><a href=\"javascript:showpage('#/user/')\">"+(tran.getLang()==='cn'?"欢迎您，":"Welcome, ")+currentUser.getUsername()+"</a></li><li><a href=\"javascript:AV.User.logOut();frushuserbar();\">"+(tran.getLang()==='cn'?"注销":"Sign out")+"</a></li>")
 		$("#userusername").html(currentUser.getUsername())
 		$("#usernickname").html(currentUser.get("nickName"))
 	  }else {
-		$("#userbar").html("<li><a href=\"javascript:$('#loginpage').show()\">登陆</a></li>")
-		$("#userusername").html("游客")
-		$("#usernickname").html("游客")
+		$("#userbar").html("<li><a href=\"javascript:$('#loginpage').show()\">"+(tran.getLang()==='cn'?"登陆":"Sign in")+"</a></li>");
+		$("#userusername").html((tran.getLang()==='cn'?"游客":"Vistor"))
+		$("#usernickname").html((tran.getLang()==='cn'?"游客":"Vistor"))
 	  }
+}
+function frushpage(){
+	ChemicalTools.showquestion()
+	showpage(window.location.hash)
+	frushuserbar()
+	updatescore()
+}
+function updatescore(){
+	correct=parseInt(window.localStorage.getItem("correct"))
+	incorrect=parseInt(window.localStorage.getItem("incorrect"))
+	if(!correct)window.localStorage.setItem("correct",0)
+	if(!incorrect)window.localStorage.setItem("incorrect",0)
+	correct=correct?correct:0
+	incorrect=incorrect?incorrect:0
+	$("#examscore").html((tran.getLang()==='cn'?"答对"+correct+"题，答错"+incorrect+"题。":"Answer "+correct+" questions correctly and "+incorrect+" questions incorrectly."))
 }
 $(function(){
 	var APP_ID = 'oAhUyuu4qF7DlbNtPlzvFkB7-gzGzoHsz';
@@ -721,9 +743,7 @@ $(function(){
 		return false
 	});
 	$("#elementtable").html(ChemicalTools.makeelementtable())
-	ChemicalTools.showquestion()
-	showpage(window.location.hash)
-	frushuserbar()
+	frushpage()
 	mode=window.localStorage.getItem("mode")
 	max=window.localStorage.getItem("max")
 	pkw=window.localStorage.getItem("pkw")
