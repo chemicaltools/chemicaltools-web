@@ -7,7 +7,11 @@ Essential tools for chemistry students developed with JavaScript.
 
 **Email**: njzjz@qq.com 10154601140@stu.ecnu.edu.cn
 
-[English version](https://chemicaltools.njzjz.win/)  [Chinese version](https://chemicaltools.njzjz.win/?lang=cn)  [Official Website](https://chem.njzjz.win/)
+[English version](https://chemicaltools.njzjz.win/)
+
+[Chinese version](https://chemicaltools.njzjz.win/?lang=cn)
+
+[Official Website](https://chem.njzjz.win/)
 
 ## Packages used
 * [Translater.js](https://github.com/jaywcjlove/translater.js)
