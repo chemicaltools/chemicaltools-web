@@ -5,7 +5,7 @@ Essential tools for chemistry students developed with JavaScript.
 
 **Author**: Jinzhe Zeng
 
-**Email**: njzjz@qq.com 10154601140@stu.ecnu.edu.cn
+**Email**: jzzeng@stu.ecnu.edu.cn
 
 [English version](https://chemicaltools.njzjz.win/)
 
