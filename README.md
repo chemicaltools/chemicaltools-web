@@ -10,10 +10,8 @@ Essential tools for chemistry students developed with JavaScript.
 [![Official Website](https://img.shields.io/website-up-down-green-red/https/chem.njzjz.win.svg?label=Official%20Website)](https://chem.njzjz.win/)
 
 ## Packages used
-* [chemicaltools-js](https://github.com/njzjz/chemicaltools-js)
-* [Translater.js](https://github.com/jaywcjlove/translater.js)
-* [LeanCloud JavaScript SDK](https://releases.leanapp.cn/#/leancloud/javascript-sdk/releases)
-* [Cayman](https://github.com/jasonlong/cayman-theme)
+* JavaScript: [chemicaltools-js](https://github.com/njzjz/chemicaltools-js), [string-format](https://github.com/davidchambers/string-format), [Translater.js](https://github.com/jaywcjlove/translater.js), [LeanCloud JavaScript SDK](https://releases.leanapp.cn/#/leancloud/javascript-sdk/releases)
+* CSS: [Cayman](https://github.com/jasonlong/cayman-theme)
 
 ## Awards
 * The First Award in 2017 East China Normal University Computer Application Competition (2017年华东师范大学计算机应用能力大赛一等奖)
