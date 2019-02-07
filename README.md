@@ -7,15 +7,11 @@ Essential tools for chemistry students developed with JavaScript.
 
 **Email**: jzzeng@stu.ecnu.edu.cn
 
-[English version](https://chemicaltools.njzjz.win/)
-
-[Chinese version](https://chemicaltools.njzjz.win/?lang=cn)
-
-[Official Website](https://chem.njzjz.win/)
+[![Official Website](https://img.shields.io/website-up-down-green-red/https/chem.njzjz.win.svg?label=Official%20Website)](https://chem.njzjz.win/)
 
 ## Packages used
+* [chemicaltools-js](https://github.com/njzjz/chemicaltools-js)
 * [Translater.js](https://github.com/jaywcjlove/translater.js)
-* [Pinyin.js](https://github.com/huntbao/pinyin/)
 * [LeanCloud JavaScript SDK](https://releases.leanapp.cn/#/leancloud/javascript-sdk/releases)
 * [Cayman](https://github.com/jasonlong/cayman-theme)
 

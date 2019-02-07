@@ -10,11 +10,6 @@
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link rel="apple-touch-icon" href="ico/appleicon.png" />
 		<link rel="icon" href="ico/ic_launcher.png" />
-		<script type="text/javascript" src="https://lib.baomitu.com/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
-		<script type="text/javascript" src="js/pinyin.js"></script>
-		<script type="text/javascript" src="js/elementinfo.js"></script>
-		<script type="text/javascript" src="js/ChemicalTools.js"></script>
 		<title>Chemical Tools</title>
 	</head>
 	<body>
@@ -90,7 +85,7 @@
 			</div>
 			<div id="aboutpage" style="display:none;">
 				<h2>About<!--{cn}关于--></h2>
-				<p><b>Author:<!--{cn}作者：--></b> Jinzhe Zeng<!--{cn}曾晋哲--></p><p><b>Email:</b> <a href="mailto:nzjjz@qq.com">njzjz@qq.com</a> <a href="mailto:10154601140@stu.ecnu.edu.cn">10154601140@stu.ecnu.edu.cn</a></p><p><a href="https://github.com/njzjz"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" width=100 height=25></a></p><p><a href="https://github.com/njzjz/Chemical-Tools-web/issues">Feedback<!--{cn}反馈--></a></p>
+				<p><b>Author:<!--{cn}作者：--></b> Jinzhe Zeng<!--{cn}曾晋哲--></p><p><b>Email:</b> <a href="mailto:jzzeng@stu.ecnu.edu.cn">jzzeng@stu.ecnu.edu.cn</a></p><p><a href="https://github.com/njzjz"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" width=100 height=25></a></p><p><a href="https://github.com/njzjz/Chemical-Tools-web/issues">Feedback<!--{cn}反馈--></a></p>
 			</div>
 			<div id="loginpage" style="display:none;position:relative;height:100%;background-color: rgba(0, 0, 0,.5);"><div style="position:fixed;background-color:#fcfcfc;top:50%;left:50%;width:300px;height:300px;margin-top:-150px;margin-left:-150px;display: flex;justify-content: center;flex-direction: column;"><div style="margin: 0 auto;">
 				<a style="width: 47px;    height: 20px;    float: right;    background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;" href="javascript:$('#loginpage').hide()"></a>
@@ -155,8 +150,12 @@
 				</span>
 			</footer>
 		</section>
-		<script type="text/javascript" src="https://lib.baomitu.com/translater.js/1.0.12/translater.min.js"></script>
-		<script type="text/javascript">
+		<script src="https://lib.baomitu.com/translater.js/1.0.12/translater.min.js"></script>
+		<script src="https://lib.baomitu.com/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chemicaltools@1.0.6/bundle.js"></script>
+		<script src="js/ChemicalTools.js"></script>
+		<script>
 		  var tran = new Translater();
 		</script>
   </body>
