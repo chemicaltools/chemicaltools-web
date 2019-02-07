@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/chemicaltools.css" media="screen">
+		<link crossorigin="anonymous" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" href="https://lib.baomitu.com/font-awesome/5.7.0/advanced-options/use-with-node-js/fontawesome-free/css/all.min.css" rel="stylesheet">
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link rel="apple-touch-icon" href="ico/appleicon.png" />
 		<link rel="icon" href="ico/ic_launcher.png" />
@@ -22,15 +23,15 @@
 		
 		<section class="main-content">
 			<div id="indexpage" class="d-none txcenter" style="column-width:15rem;">
-				<h2><img src="ico/blue_apple.png" width=30 height=30><a href="javascript:showpage('#/element/')">Element Search<!--{cn}元素查询--></a></h2>
-				<h2><img src="ico/lime_apple.png" width=30 height=30><a href="javascript:showpage('#/mass/')">Mass Calculator<!--{cn}质量计算--></a></h2>
-				<h2><img src="ico/gray_apple.png" width=30 height=30><a href="javascript:showpage('#/acid/')">Acid-base Calculator<!--{cn}酸碱计算--></a></h2>
-				<h2><img src="ico/gas.png" width=30 height=30><a href="javascript:showpage('#/gas/')">Gas Calculator<!--{cn}气体计算--></a></h2>
-				<h2><img src="ico/orange_apple.png" width=30 height=30><a href="javascript:showpage('#/exam/')">Element Memory<!--{cn}元素记忆--></a></h2>
-				<h2><img src="ico/deviation.png" width=30 height=30><a href="javascript:showpage('#/deviation/')">Deviation Calculator<!--{cn}偏差计算--></a></h2>
+				<h2><i class="fas fa-atom"></i> <a href="javascript:showpage('#/element/')">Element Search<!--{cn}元素查询--></a></h2>
+				<h2><i class="fas fa-balance-scale"></i> <a href="javascript:showpage('#/mass/')">Mass Calculator<!--{cn}质量计算--></a></h2>
+				<h2><i class="fas fa-flask"></i> <a href="javascript:showpage('#/acid/')">Acid-base Calculator<!--{cn}酸碱计算--></a></h2>
+				<h2><i class="fas fa-burn"></i> <a href="javascript:showpage('#/gas/')">Gas Calculator<!--{cn}气体计算--></a></h2>
+				<h2><i class="fas fa-question"></i> <a href="javascript:showpage('#/exam/')">Element Memory<!--{cn}元素记忆--></a></h2>
+				<h2><i class="far fa-chart-bar"></i> <a href="javascript:showpage('#/deviation/')">Deviation Calculator<!--{cn}偏差计算--></a></h2>
 			</div>
 			<div id="elementpage" class="d-none">
-				<h2>Element Calculator<!--{cn}元素查询--></h2>
+				<h2><i class="fas fa-atom"></i>Element Calculator<!--{cn}元素查询--></h2>
 				<form method="post" id="elementform">
 				<table><tr><table><tr><td>
 				<input type="text" id="elementinput" placeholder="Please input name, symbol or atomic number of the element" placeholder-cn="请输入元素名称、符号、原子序数或IUPAC名"/></td>
@@ -42,14 +43,14 @@
 				</form>
 			</div>
 			<div id="masspage" class="d-none">
-				<h2>Mass Calculator<!--{cn}质量计算--></h2>
+				<h2><i class="fas fa-balance-scale"></i>Mass Calculator<!--{cn}质量计算--></h2>
 				<form method='post' id="massform"><table>
 					<tr><td><table><tr><td><input type="text" id="massinput" placeholder="Please input a chemical formula."placeholder-cn="请输入物质的化学式"/></td><td><input type="submit" value="Calculate" value-cn="计算"></td></tr></table></td></tr>
 					<tr><td><div id="massoutput"></div></td></tr>
 				</table></form>
 			</div>
 			<div id="deviationpage" class="d-none">
-				<h2>Deviation Calculator<!--{cn}偏差计算--></h2>
+				<h2><i class="far fa-chart-bar"></i>Deviation Calculator<!--{cn}偏差计算--></h2>
 				<form method='post' id="deviationform"><table><tr><td>  
 				<textarea id="deviationinput" placeholder="Please input the data" placeholder-cn="请输入数据，每行一个" rows="5"></textarea></td></tr>
 				<tr><td><input type="submit" value="Calculate" value-cn="计算"></td></tr>
@@ -57,7 +58,7 @@
 				</table></form>
 			</div>
 			<div id="acidpage" class="d-none">
-				<h2>Acid-base Calculator<!--{cn}酸碱计算--></h2>
+				<h2><i class="fas fa-flask"></i>Acid-base Calculator<!--{cn}酸碱计算--></h2>
 				<form method='post' id="acidform">
 				<table><tr><td>  
 				<input type="text" id="acidpKa" placeholder="pKa or pKb" placeholder-cn="pKa或pKb"/></td>
@@ -66,7 +67,7 @@
 				<div class="output" id="acidoutput"></div>
 			</div>
 			<div id="gaspage" class="d-none">
-				<h2>Gas Calculator<!--{cn}气体计算--></h2>
+				<h2><i class="fas fa-burn"></i>Gas Calculator<!--{cn}气体计算--></h2>
 				<form method='post' id="gasform">
 				<table>
 				<tr><td><input type="radio" name="gastype" value="p" checked>p</td><td><input type="text" name="p" id="p" placeholder="Pressure/kPa" placeholder-cn="压强p/kPa"/></td></tr>
@@ -78,7 +79,7 @@
 				</table></form>
 			</div>
 			<div id="exampage" class="d-none">
-				<h2>Element Memory<!--{cn}元素记忆--></h2>
+				<h2><i class="fas fa-question"></i>Element Memory<!--{cn}元素记忆--></h2>
 				<table><tr><td><div id="examquestion"><td></tr>
 				<tr><td><div id="examoutput"></div></td></tr>
 				<tr><td><div id="examscore"></div></td></tr></table>
@@ -89,7 +90,7 @@
 			</div>
 			<div id="loginpage" class="d-none tip"><div class="intip"><div class="inintip">
 				<a class="tipclose" href="javascript:$('#loginpage').hide()"></a>
-				<h2 class="txcenter">Sign in<!--{cn}登陆--></h2>
+				<h2 class="txcenter"><i class="fas fa-sign-in-alt"></i>Sign in<!--{cn}登陆--></h2>
 				<form method="post" id="loginform">
 				<table>
 				<tr><td>Username<!--{cn}用户名--></td><td><input type="text" id="loginusername"></td></tr>
@@ -102,7 +103,7 @@
 			</div></div></div>
 			<div id="signpage" class="d-none tip"><div class="intip"><div class="inintip">
 				<a class="tipclose" href="javascript:$('#signpage').hide()"></a>
-				<h2 class="txcenter">Sign up<!--{cn}注册--></h2>
+				<h2 class="txcenter"><i class="fas fa-user-plus"></i>Sign up<!--{cn}注册--></h2>
 				<form method="post" id="signform">
 				<table>
 				<tr><td>Username<!--{cn}用户名--></td><td><input type="text" id="signusername"></td></tr>
@@ -113,7 +114,7 @@
 				</form>	
 			</div></div></div>
 			<div id="userpage" class="d-none">
-				<h2>User Center<!--{cn}个人中心--></h2>
+				<h2><i class="fas fa-user"></i>User Center<!--{cn}个人中心--></h2>
 				<form method="post" id="userform"><table>
 				<tr><td colspan=2><h3>User Information<!--{cn}个人信息--></h3></td></tr>
 				<tr><td>Username<!--{cn}用户名--></td><td><div id="userusername">Visitor<!--{cn}游客--></td></tr>
@@ -146,8 +147,12 @@
 				</table></form>
 			</div>
 			<footer class="site-footer">		
-				<span class="site-footer-credits"><a href="https://njzjz.win/">Jinzhe Zeng's Blog<!--{cn}曾晋哲的博客--></a>|<a href="javascript:showpage('#/about/')">About<!--{cn}关于--></a>|<a href="https://chem.njzjz.win/">Download<!--{cn}下载软件--></a>|<a href="https://github.com/njzjz">Github</a>
-				</span>
+				<p class="site-footer-credits">
+					<a href="https://njzjz.win/"><img alt="Jinzhe Zeng's Blog" src="https://img.shields.io/website-up-down-green-red/https/njzjz.win.svg?label=Jinzhe%20Zeng%27s%20Blog&style=flat"></a>
+					<a href="javascript:showpage('#/about/')"><img alt="About" src="https://img.shields.io/website-up-down-green-red/https/chemicaltools.njzjz.win.svg?label=About&style=flat"></a>
+					<a href="https://chem.njzjz.win/"><img alt="Download" src="https://img.shields.io/website-up-down-green-red/https/chem.njzjz.win.svg?label=Download&style=flat"></a>
+					<a href="https://github.com/njzjz/Chemical-Tools-web"><img alt="GitHub" src="https://img.shields.io/github/last-commit/njzjz/Chemical-Tools-web.svg?label=GitHub&style=flat"></a></p>
+				<p class="site-footer-credits">Copyright © 2016-2019 Jinzhe Zeng, Licensed under <a href="https://www.apache.org/licenses/LICENSE-2.0">the Apache License, Version 2.0.</a></p>
 			</footer>
 		</section>
 		<script src="https://lib.baomitu.com/translater.js/1.0.12/translater.min.js"></script>
