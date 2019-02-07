@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="https://lib.baomitu.com/normalize/8.0.0/normalize.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
 		<link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-		<link rel="stylesheet" type="text/css" href="stylesheets/navbar.css" media="screen">
+		<link rel="stylesheet" type="text/css" href="stylesheets/chemicaltools.css" media="screen">
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 		<link rel="apple-touch-icon" href="ico/appleicon.png" />
 		<link rel="icon" href="ico/ic_launcher.png" />
@@ -21,7 +21,7 @@
   <div><a href="javascript:if(tran.getLang()==='default'){tran.setLang('cn');}else {tran.setLang('default');}frushpage();">中文<!--{cn}English--></a></div></li></ul></div>
 		
 		<section class="main-content">
-			<div id="indexpage" style="display:none;text-align:center;column-width:15rem;">
+			<div id="indexpage" class="d-none txcenter" style="column-width:15rem;">
 				<h2><img src="ico/blue_apple.png" width=30 height=30><a href="javascript:showpage('#/element/')">Element Search<!--{cn}元素查询--></a></h2>
 				<h2><img src="ico/lime_apple.png" width=30 height=30><a href="javascript:showpage('#/mass/')">Mass Calculator<!--{cn}质量计算--></a></h2>
 				<h2><img src="ico/gray_apple.png" width=30 height=30><a href="javascript:showpage('#/acid/')">Acid-base Calculator<!--{cn}酸碱计算--></a></h2>
@@ -29,26 +29,26 @@
 				<h2><img src="ico/orange_apple.png" width=30 height=30><a href="javascript:showpage('#/exam/')">Element Memory<!--{cn}元素记忆--></a></h2>
 				<h2><img src="ico/deviation.png" width=30 height=30><a href="javascript:showpage('#/deviation/')">Deviation Calculator<!--{cn}偏差计算--></a></h2>
 			</div>
-			<div id="elementpage" style="display:none;">
+			<div id="elementpage" class="d-none">
 				<h2>Element Calculator<!--{cn}元素查询--></h2>
 				<form method="post" id="elementform">
 				<table><tr><table><tr><td>
 				<input type="text" id="elementinput" placeholder="Please input name, symbol or atomic number of the element" placeholder-cn="请输入元素名称、符号、原子序数或IUPAC名"/></td>
 				<td><input type="submit" id="elementbutton" value="Search" value-cn="查询"></td></tr></table></tr>
 				<tr><td><div id="elementoutput"></div><td></tr>
-				<tr><td><h3 style='text-align:center'>Periodic table of elements<!--{cn}元素周期表--></h3></td></tr>
+				<tr><td><h3 class="txcenter">Periodic table of elements<!--{cn}元素周期表--></h3></td></tr>
 				<tr><td><div class="elementtable" id="elementtable"></div></td></tr>
 				</table>
 				</form>
 			</div>
-			<div id="masspage" style="display:none;">
+			<div id="masspage" class="d-none">
 				<h2>Mass Calculator<!--{cn}质量计算--></h2>
 				<form method='post' id="massform"><table>
 					<tr><td><table><tr><td><input type="text" id="massinput" placeholder="Please input a chemical formula."placeholder-cn="请输入物质的化学式"/></td><td><input type="submit" value="Calculate" value-cn="计算"></td></tr></table></td></tr>
 					<tr><td><div id="massoutput"></div></td></tr>
 				</table></form>
 			</div>
-			<div id="deviationpage" style="display:none;">
+			<div id="deviationpage" class="d-none">
 				<h2>Deviation Calculator<!--{cn}偏差计算--></h2>
 				<form method='post' id="deviationform"><table><tr><td>  
 				<textarea id="deviationinput" placeholder="Please input the data" placeholder-cn="请输入数据，每行一个" rows="5"></textarea></td></tr>
@@ -56,7 +56,7 @@
 				<tr><td><div id="deviationoutput"></div></td></tr>
 				</table></form>
 			</div>
-			<div id="acidpage" style="display:none;">
+			<div id="acidpage" class="d-none">
 				<h2>Acid-base Calculator<!--{cn}酸碱计算--></h2>
 				<form method='post' id="acidform">
 				<table><tr><td>  
@@ -65,7 +65,7 @@
 				<tr><td><input type="text" id="acidc" placeholder="Analytical concentration" placeholder-cn="分析浓度"/></td><td><input type="submit" value="计算" value-cn="计算"></td></tr></table></form>
 				<div class="output" id="acidoutput"></div>
 			</div>
-			<div id="gaspage" style="display:none;">
+			<div id="gaspage" class="d-none">
 				<h2>Gas Calculator<!--{cn}气体计算--></h2>
 				<form method='post' id="gasform">
 				<table>
@@ -77,42 +77,42 @@
 				<tr><td colspan=2><div id="loading"></div></td></tr>
 				</table></form>
 			</div>
-			<div id="exampage" style="display:none;">
+			<div id="exampage" class="d-none">
 				<h2>Element Memory<!--{cn}元素记忆--></h2>
 				<table><tr><td><div id="examquestion"><td></tr>
 				<tr><td><div id="examoutput"></div></td></tr>
 				<tr><td><div id="examscore"></div></td></tr></table>
 			</div>
-			<div id="aboutpage" style="display:none;">
+			<div id="aboutpage" class="d-none">
 				<h2>About<!--{cn}关于--></h2>
 				<p><b>Author:<!--{cn}作者：--></b> Jinzhe Zeng<!--{cn}曾晋哲--></p><p><b>Email:</b> <a href="mailto:jzzeng@stu.ecnu.edu.cn">jzzeng@stu.ecnu.edu.cn</a></p><p><a href="https://github.com/njzjz"><img src="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Logo.png" width=100 height=25></a></p><p><a href="https://github.com/njzjz/Chemical-Tools-web/issues">Feedback<!--{cn}反馈--></a></p>
 			</div>
-			<div id="loginpage" style="display:none;position:relative;height:100%;background-color: rgba(0, 0, 0,.5);"><div style="position:fixed;background-color:#fcfcfc;top:50%;left:50%;width:300px;height:300px;margin-top:-150px;margin-left:-150px;display: flex;justify-content: center;flex-direction: column;"><div style="margin: 0 auto;">
-				<a style="width: 47px;    height: 20px;    float: right;    background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;" href="javascript:$('#loginpage').hide()"></a>
-				<h2 style="text-align:center;">Sign in<!--{cn}登陆--></h2>
+			<div id="loginpage" class="d-none tip"><div class="intip"><div class="inintip">
+				<a class="tipclose" href="javascript:$('#loginpage').hide()"></a>
+				<h2 class="txcenter">Sign in<!--{cn}登陆--></h2>
 				<form method="post" id="loginform">
 				<table>
 				<tr><td>Username<!--{cn}用户名--></td><td><input type="text" id="loginusername"></td></tr>
 				<tr><td>Password<!--{cn}密码--></td><td><input type="password" id="loginpassword"></td></tr>
-				<tr><td colspan=2 style="text-align:center"><input type="submit" value="Sign in" value-cn="登陆" style="width:100%" style="border:1px #FFFFFF solid" ></td></tr>
+				<tr><td colspan=2 class="txcenter"><input type="submit" value="Sign in" value-cn="登陆" class="topbutton"></td></tr>
 				<tr><td colspan=2><div class="output" id="loginoutput"></div></td></tr>
-				<tr><td colspan=2 style="text-align:center;"><a href="javascript:$('#loginpage').hide();$('#signpage').show();">Sign up<!--{cn}注册新账号--></a></td></tr>
+				<tr><td colspan=2 class="txcenter"><a href="javascript:$('#loginpage').hide();$('#signpage').show();">Sign up<!--{cn}注册新账号--></a></td></tr>
 				</table>
 				</form>	
 			</div></div></div>
-			<div id="signpage" style="display:none;position:relative;height:100%;background-color: rgba(0, 0, 0,.5);"><div style="position:fixed;background-color:#fcfcfc;top:50%;left:50%;width:300px;height:300px;margin-top:-150px;margin-left:-150px;display: flex;justify-content: center;flex-direction: column;"><div style="margin: 0 auto;">
-				<a style="width: 47px;    height: 20px;    float: right;    background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;" href="javascript:$('#signpage').hide()"></a>
-				<h2 style="text-align:center;">Sign up<!--{cn}注册--></h2>
+			<div id="signpage" class="d-none tip"><div class="intip"><div class="inintip">
+				<a class="tipclose" href="javascript:$('#signpage').hide()"></a>
+				<h2 class="txcenter">Sign up<!--{cn}注册--></h2>
 				<form method="post" id="signform">
 				<table>
 				<tr><td>Username<!--{cn}用户名--></td><td><input type="text" id="signusername"></td></tr>
 				<tr><td>Password<!--{cn}密码--></td><td><input type="password" id="signpassword"></td></tr>
-				<tr><td colspan=2 style="text-align:center"><input type="submit" value="Sign up" value-cn="注册" style="width:100%" style="border:1px #FFFFFF solid" ></td></tr>
+				<tr><td colspan=2 class="txcenter"><input type="submit" value="Sign up" value-cn="注册" class="topbutton" ></td></tr>
 				<tr><td colspan=2><div class="output" id="signoutput"></div></td></tr>
 				</table>
 				</form>	
 			</div></div></div>
-			<div id="userpage" style="display:none;">
+			<div id="userpage" class="d-none">
 				<h2>User Center<!--{cn}个人中心--></h2>
 				<form method="post" id="userform"><table>
 				<tr><td colspan=2><h3>User Information<!--{cn}个人信息--></h3></td></tr>
@@ -153,10 +153,8 @@
 		<script src="https://lib.baomitu.com/translater.js/1.0.12/translater.min.js"></script>
 		<script src="https://lib.baomitu.com/jquery/3.2.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/chemicaltools@1.0.6/bundle.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chemicaltools@1/bundle.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/string-format@2.0.0/index.min.js"></script>
 		<script src="js/ChemicalTools.js"></script>
-		<script>
-		  var tran = new Translater();
-		</script>
   </body>
 </html>

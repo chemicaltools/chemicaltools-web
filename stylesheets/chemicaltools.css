@@ -1,0 +1,87 @@
+.navbar ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333;
+}
+
+.navbar li {
+	float: left;
+}
+
+.navbar li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+.navbar li a:hover {
+	background-color: #111;
+}
+
+.question ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	background-color: #f1f1f1;
+}
+
+.question li a {
+	display: block;
+	color: #000;
+	padding: 8px 0 8px 16px;
+	text-decoration: none;
+}
+
+.question li a:hover {
+	background-color: #555;
+	color: white;
+}
+
+.d-none {
+	display: none;
+}
+
+.tip {
+	position: relative;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.intip {
+	position: fixed;
+	background-color: #fcfcfc;
+	top: 50%;
+	left: 50%;
+	width: 300px;
+	height: 300px;
+	margin-top: -150px;
+	margin-left: -150px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.inintip {
+	margin: 0 auto;
+}
+
+.tipclose {
+	width: 47px;
+	height: 20px;
+	float: right;
+	background: url(https://imgcache.qq.com/ptlogin/v4/style/40/images/icon_3_tiny.png) -221px -126px no-repeat;
+}
+
+.topbutton {
+	border: 1px #FFFFFF solid
+}
+
+.txcenter {
+	text-align: center;
+	width: 100%;
+}
