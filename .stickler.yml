@@ -1,0 +1,8 @@
+linters:
+    eslint:
+    jshint:
+    standardjs:
+files:
+  ignore:
+    - 'bower_components/*'
+    - 'node_modules/*'
