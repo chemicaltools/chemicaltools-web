@@ -1,3 +1,7 @@
+linters:
+    eslint:
+    jshint:
+    standardjs:
 files:
   ignore:
     - 'bower_components/*'
