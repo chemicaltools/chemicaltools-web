@@ -1,17 +1,13 @@
 # Chemical Tools Web (化学e+网页版)
-[![English version](http://wangchujiang.com/sb/lang/english.svg)](https://chemicaltools.njzjz.win/) [![Chinese version](https://jaywcjlove.github.io/sb/lang/chinese.svg)](https://chemicaltools.njzjz.win/?lang=cn)
+[![Web](https://img.shields.io/website-up-down-green-red/https/chem.njzjz.win.svg?label=Web)](https://chemicaltools.njzjz.win/)
 
-Essential tools for chemistry students developed with JavaScript. 
+Essential tools for chemistry students developed with JavaScript. Developed with vue.js.
 
 **Author**: Jinzhe Zeng
 
 **Email**: jzzeng@stu.ecnu.edu.cn
 
 [![Official Website](https://img.shields.io/website-up-down-green-red/https/chem.njzjz.win.svg?label=Official%20Website)](https://chem.njzjz.win/)
-
-## Packages used
-* JavaScript: [chemicaltools-js](https://github.com/njzjz/chemicaltools-js), [string-format](https://github.com/davidchambers/string-format), [Translater.js](https://github.com/jaywcjlove/translater.js), [LeanCloud JavaScript SDK](https://releases.leanapp.cn/#/leancloud/javascript-sdk/releases)
-* CSS: [Cayman](https://github.com/jasonlong/cayman-theme)
 
 ## Awards
 * The First Award in 2017 East China Normal University Computer Application Competition (2017年华东师范大学计算机应用能力大赛一等奖)
