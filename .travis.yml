@@ -10,7 +10,7 @@ deploy:
   keep-history: true
   on:
     branch: master
-martrix:
+matrix:
   include:
     language: android
     before_install: yarn global add cordova
