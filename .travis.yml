@@ -1,18 +1,18 @@
-language: node_js
-node_js: "11"
-cache: yarn
-script: yarn build
-deploy:
-  provider: pages
-  skip-cleanup: true
-  local_dir: dist
-  github-token: $GITHUB_TOKEN
-  keep-history: true
-  on:
-    branch: master
 matrix:
   include:
-    language: android
+  - language: node_js
+    node_js: "11"
+    cache: yarn
+    script: yarn build
+    deploy:
+      provider: pages
+      skip-cleanup: true
+      local_dir: dist
+      github-token: $GITHUB_TOKEN
+      keep-history: true
+      on:
+        branch: master
+  - language: android
     node_js: "11"
     before_install: yarn global add cordova
     install: yarn cordova-build-android
