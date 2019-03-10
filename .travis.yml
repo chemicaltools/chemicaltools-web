@@ -13,5 +13,6 @@ deploy:
 matrix:
   include:
     language: android
+    node_js: "11"
     before_install: yarn global add cordova
     install: yarn cordova-build-android
