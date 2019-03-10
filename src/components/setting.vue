@@ -6,9 +6,9 @@
       <v-list-tile>
         <v-list-tile-content block>
           <v-select
-            :items="testmodes"
+            :items="$t('testmodes')"
             v-model="mode"
-            label="Test mode"
+            :label="$t('message.testmode')"
             @change="updatevalue('mode',mode)"
           ></v-select>
         </v-list-tile-content>
@@ -18,7 +18,7 @@
           <v-select
             :items="testnumbers"
             v-model="number"
-            label="Limit of atomic number"
+            :label="$t('message.numberlimit')"
             @change="updatevalue('number',number)"
           ></v-select>
         </v-list-tile-content>
@@ -39,38 +39,6 @@
 <script>
 export default {
   data: () => ({
-    testmodes: [
-      {
-        value: 0,
-        text: "Answer symbols for elements according to Chinese names"
-      },
-      { value: 1, text: "Answer atomic numbers according to Chinese names" },
-      { value: 2, text: "Answer IUPAC names according to Chinese names" },
-      {
-        value: 3,
-        text: "Answer Chinese names according to symbols for elements"
-      },
-      {
-        value: 4,
-        text: "Answer atomic numbers according to symbols for elements"
-      },
-      {
-        value: 5,
-        text: "Answer IUPAC names according to symbols for elements"
-      },
-      { value: 6, text: "Answer Chinese names according to atomic numbers" },
-      {
-        value: 7,
-        text: "Answer symbols for elements according to atomic numbers"
-      },
-      { value: 8, text: "Answer IUPAC names according to atomic numbers" },
-      { value: 9, text: "Answer Chinese names according to IUPAC names" },
-      {
-        value: 10,
-        text: "Answer symbols for elements according to IUPAC names"
-      },
-      { value: 11, text: "Answer atomic numbers according to IUPAC names" }
-    ],
     testnumbers: [18, 36, 54, 86, 118],
     mode: 2,
     number: 86,

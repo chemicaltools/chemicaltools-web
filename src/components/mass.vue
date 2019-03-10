@@ -6,15 +6,21 @@
     </v-layout>
     <v-layout row wrap>
       <v-flex>
-        <div class="pt-3" v-html="output"></div>
+        <div class="pt-3" v-show="!results.length">{{ $t(output) }}</div>
+        <div class="pt-3" v-html="name" v-show="results.length"></div>
+        <div class="pt-3" v-show="results.length">
+          <strong>{{ $t("message.massvalue") }}</strong>
+          ={{mass}}
+        </div>
         <v-data-table
-          :headers="headers"
+          :headers="$t('massheader')"
           :items="results"
           v-show="results.length"
           disable-initial-sort
           hide-actions
         >
           <template v-slot:items="result">
+            <td v-show="$i18n.locale=='zh'">{{ result.item.name }}</td>
             <td>{{ result.item.iupac }}</td>
             <td class="text-xs-right">{{ result.item.symbol }}</td>
             <td class="text-xs-right">{{ result.item.atomnumber }}</td>
@@ -29,34 +35,26 @@
 <script>
 const chemicaltools = require("chemicaltools");
 const format = require("string-format");
-import {chemicalname} from '../chem.js'
+import { chemicalname } from "../chem.js";
 format.extend(String.prototype, {});
 
 export default {
   data: () => ({
-    output: "Please input the chemical formula.",
+    output: "message.inputformula",
     results: [],
     input: "",
-    headers: [
-      { text: "Name", align: "left", value: "name" },
-      { text: "Symbol", align: "right", value: "symbol" },
-      { text: "Atom Number", align: "right", value: "atomnumber" },
-      { text: "Mass", align: "right", value: "mass" },
-      { text: "mass fraction (%)", align: "right", value: "massper" }
-    ]
+    name: "",
+    mass: 0
   }),
   methods: {
     outputmass: function(input) {
       var result = chemicaltools.calculateMass(input);
       if (result) {
-        this.output = "<b>{1}</b><br><b>{0}</b>={2}".format(
-          "Mass",
-          chemicalname(result.name),
-          result.mass.toFixed(2)
-        );
+        this.name = chemicalname(result.name);
+        this.mass = result.mass.toFixed(2);
         this.results = result.peratom;
       } else {
-        this.output = "Wrong input.";
+        this.output = "message.wronginput";
         this.results = [];
       }
     }

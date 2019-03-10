@@ -16,8 +16,8 @@
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
-    <div>{{result}}</div>
-    <div>{{score}}</div>
+    <div>{{$t(result, {question:oldquestion, answer:oldanswer, correctanswer:correct_answer})}}</div>
+    <div>{{$t("message.score",{correct:correct, incorrect:incorrect})}}</div>
   </v-container>
 </template>
 <script>
@@ -30,7 +30,11 @@ export default {
     options: [],
     question: "",
     result: "",
-    score: ""
+    oldquestion: "",
+    oldanswer: "",
+    correct_answer: "",
+    correct: 0,
+    incorrect: 0
   }),
   mounted: function() {
     this.showquestion();
@@ -88,13 +92,10 @@ export default {
       var num = this.$storage.get(n, 0) + 1;
       this.$storage.set(n, num);
       this.updatescore();
-      return result.correct
-        ? "Answer correctly!"
-        : "The answer is wrong. The correct answer is {0} and the question is {1}, but your answer is {2}.".format(
-            result.correct_answer,
-            question,
-            answer
-          );
+      this.result = result.correct ? "message.correct" : "message.incorrect";
+      this.correct_answer = result.correct_answer;
+      this.oldquestion = question;
+      this.oldanswer = answer;
     },
     showquestion: function() {
       var mode = parseInt(this.$storage.get("mode", 2));
@@ -109,7 +110,7 @@ export default {
       this.options = questiondata.options;
     },
     answer: function(question, answer, mode = 2) {
-      this.result = this.correctanswer(question, answer, mode);
+      this.correctanswer(question, answer, mode);
       this.showquestion();
     },
     updatescore: function() {
@@ -119,12 +120,8 @@ export default {
       keys.forEach(function(key) {
         var num = parseInt(that.$storage.get(key, 0));
         if (!num) that.$storage.set(key, 0);
-        value[key] = num ? num : 0;
+        that[key] = num ? num : 0;
       });
-      this.score = "Answer {0} questions correctly and {1} questions incorrectly.".format(
-        value.correct,
-        value.incorrect
-      );
     }
   }
 };
