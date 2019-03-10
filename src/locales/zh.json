@@ -1,0 +1,150 @@
+{
+    "message": {
+       "chemicaltools": "化学e+",
+       "element": "元素查询",
+       "mass": "质量计算",
+       "acid": "酸碱计算",
+       "exam": "元素记忆",
+       "gas": "气体计算",
+       "deviation": "偏差计算",
+       "calculate": "计算",
+       "description": "化学专业学生的必备工具",
+       "homepage": "主页",
+       "settings": "设置",
+       "languages": "语言",
+       "search": "查询",
+       "wikipedia": "访问维基百科",
+       "elementhint": "元素名称/符号/原子序数/IUPAC名称",
+       "elementnodata": "请搜索一个元素",
+       "formula": "化学式",
+       "ab": "酸或碱",
+       "c": "分析浓度(mol/L)",
+       "question": "问题",
+       "wronginput": "输入错误！",
+       "inputdata": "请输入数据！",
+       "inputformula": "请输入化学式！",
+       "multpledata": "请输入多个数据！",
+       "massvalue": "相对分子质量",
+       "data": "数据",
+       "dataline": "每行一个数据",
+       "score": "回答正确{correct}题，回答错误{incorrect}题。",
+       "testmode": "测试模式",
+       "numberlimit": "原子序数上限",
+       "correct": "回答正确！",
+       "incorrect": "回答错误！正确答案为{correctanswer}，问题为{question}，你的答案为{answer}。"
+    },
+    "testmodes": [
+       {
+          "value": 0,
+          "text": "根据元素名称回答元素符号"
+       },
+       {
+          "value": 1,
+          "text": "根据元素名称回答原子序数"
+       },
+       {
+          "value": 2,
+          "text": "根据元素名称回答IUPAC名"
+       },
+       {
+          "value": 3,
+          "text": "根据元素符号回答元素名称"
+       },
+       {
+          "value": 4,
+          "text": "根据元素符号回答原子序数"
+       },
+       {
+          "value": 5,
+          "text": "根据元素符号回答IUPAC名"
+       },
+       {
+          "value": 6,
+          "text": "根据原子序数回答元素名称"
+       },
+       {
+          "value": 7,
+          "text": "根据原子序数回答元素符号"
+       },
+       {
+          "value": 8,
+          "text": "根据原子序数回答IUPAC名"
+       },
+       {
+          "value": 9,
+          "text": "根据IUPAC名回答元素名称"
+       },
+       {
+          "value": 10,
+          "text": "根据IUPAC名回答元素符号"
+       },
+       {
+          "value": 11,
+          "text": "根据IUPAC名回答原子序数"
+       }
+    ],
+    "massheader": [
+       {
+          "text": "元素名称",
+          "align": "left",
+          "value": "name"
+       },
+       {
+          "text": "IUPAC名称",
+          "align": "left",
+          "value": "name"
+       },
+       {
+          "text": "元素符号",
+          "align": "right",
+          "value": "symbol"
+       },
+       {
+          "text": "原子序数",
+          "align": "right",
+          "value": "atomnumber"
+       },
+       {
+          "text": "质量",
+          "align": "right",
+          "value": "mass"
+       },
+       {
+          "text": "质量分数(%)",
+          "align": "right",
+          "value": "massper"
+       }
+    ],
+    "element": {
+       "name": "元素名称",
+       "symbol": "元素符号",
+       "iupac": "IUPAC名称",
+       "number": "原子序数",
+       "mass": "相对原子质量",
+       "origin": "元素起源"
+    },
+    "ablabel": [
+       {
+          "value": true,
+          "text": "酸"
+       },
+       {
+          "value": false,
+          "text": "碱"
+       }
+    ],
+    "gas": {
+       "p": "压强/kPa",
+       "V": "体积/L",
+       "n": "物质的量/mol",
+       "T": "温度/K"
+    },
+    "deviation": {
+       "input": "输入的数据",
+       "average": "平均值",
+       "ad": "平均偏差",
+       "rad": "相对平均偏差",
+       "sd": "标准偏差",
+       "rsd": "相对标准偏差"
+    }
+ }

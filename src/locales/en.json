@@ -1,0 +1,145 @@
+{
+  "message": {
+     "chemicaltools": "Chemical Tools",
+     "element": "Element Search",
+     "mass": "Mass Calculation",
+     "acid": "Acid-Base Calculation",
+     "exam": "Element Memory",
+     "gas": "Gas Calculation",
+     "deviation": "Deviation Calculation",
+     "calculate": "Calculate",
+     "description": "Essential tools for chemistry students",
+     "homepage": "Home Page",
+     "settings": "Settings",
+     "languages": "Languages",
+     "search": "Search",
+     "wikipedia": "Visit Wikipedia",
+     "elementhint": "Element name/symbol/number",
+     "elementnodata": "Please search an element.",
+     "formula": "Chemical formula",
+     "ab": "Acid or Base",
+     "c": "Analytical concentration (mol/L)",
+     "question": "Question",
+     "wronginput": "Wrong input.",
+     "inputdata": "Please input data!",
+     "inputformula": "Please input the chemical formula.",
+     "multpledata": "Please input multiple data.",
+     "massvalue": "Mass",
+     "data": "Data",
+     "dataline": "One data each line",
+     "score": "Answer {correct} questions correctly and {incorrect} questions incorrectly.",
+     "testmode": "Test mode",
+     "numberlimit": "Limit of atomic number",
+     "correct": "Answer correctly!",
+     "incorrect": "The answer is wrong. The correct answer is {correctanswer} and the question is {question}, but your answer is {answer}."
+  },
+  "testmodes": [
+     {
+        "value": 0,
+        "text": "Answer symbols for elements according to Chinese names"
+     },
+     {
+        "value": 1,
+        "text": "Answer atomic numbers according to Chinese names"
+     },
+     {
+        "value": 2,
+        "text": "Answer IUPAC names according to Chinese names"
+     },
+     {
+        "value": 3,
+        "text": "Answer Chinese names according to symbols for elements"
+     },
+     {
+        "value": 4,
+        "text": "Answer atomic numbers according to symbols for elements"
+     },
+     {
+        "value": 5,
+        "text": "Answer IUPAC names according to symbols for elements"
+     },
+     {
+        "value": 6,
+        "text": "Answer Chinese names according to atomic numbers"
+     },
+     {
+        "value": 7,
+        "text": "Answer symbols for elements according to atomic numbers"
+     },
+     {
+        "value": 8,
+        "text": "Answer IUPAC names according to atomic numbers"
+     },
+     {
+        "value": 9,
+        "text": "Answer Chinese names according to IUPAC names"
+     },
+     {
+        "value": 10,
+        "text": "Answer symbols for elements according to IUPAC names"
+     },
+     {
+        "value": 11,
+        "text": "Answer atomic numbers according to IUPAC names"
+     }
+  ],
+  "massheader": [
+     {
+        "text": "Name",
+        "align": "left",
+        "value": "name"
+     },
+     {
+        "text": "Symbol",
+        "align": "right",
+        "value": "symbol"
+     },
+     {
+        "text": "Atom Number",
+        "align": "right",
+        "value": "atomnumber"
+     },
+     {
+        "text": "Mass",
+        "align": "right",
+        "value": "mass"
+     },
+     {
+        "text": "Mass fraction (%)",
+        "align": "right",
+        "value": "massper"
+     }
+  ],
+  "element": {
+     "name": "Chinese name",
+     "symbol": "Symbol",
+     "iupac": "IUPAC name",
+     "number": "Atomic number",
+     "mass": "Mass",
+     "origin": "Origin of the name"
+  },
+  "ablabel": [
+     {
+        "value": true,
+        "text": "Acid"
+     },
+     {
+        "value": false,
+        "text": "Base"
+     }
+  ],
+  "gas": {
+     "p": "Pressure/kPa",
+     "V": "Volume/L",
+     "n": "Amount of substance/mol",
+     "T": "Temperature/K"
+  },
+  "deviation": {
+     "input": "Input data",
+     "average": "Average",
+     "ad": "Average deviation",
+     "rad": "Relative average deviation",
+     "sd": "Standard deviation",
+     "rsd": "Relative standard deviation"
+  }
+}
