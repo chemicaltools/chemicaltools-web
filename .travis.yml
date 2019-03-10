@@ -12,9 +12,17 @@ matrix:
       keep-history: true
       on:
         branch: master
-  - language:
-    - node_js
-    - android
-    node_js: "11"
-    before_install: yarn global add cordova
-    install: yarn cordova-build-android
+  - language: android
+    jdk:
+      - oraclejdk8
+    cache: yarn
+    android:
+        components:
+            - build-tools-28.0.3
+    install: 
+    - yes | sdkmanager tools > /dev/null
+    - yes | sdkmanager --licenses > /dev/null
+    - nvm install 11
+    - yarn
+    - yarn global add cordova
+    script: yarn cordova-build-android
