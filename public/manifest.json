@@ -7,8 +7,28 @@
   "theme_color": "#4DBA87",
   "icons": [
     {
-      "src": "./logo.png",
-      "sizes": "128x128",
+      "src": "./icons/apple-touch-icon-76x76.png",
+      "sizes": "76x76",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/apple-touch-icon-120x120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/apple-touch-icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/apple-touch-icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/android-touch-icon.png",
+      "sizes": "58x58",
       "type": "image/png"
     }
   ]
