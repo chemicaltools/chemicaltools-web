@@ -10,10 +10,10 @@
         <p class="subheading font-weight-regular">{{$t('message.description')}}</p>
       </v-flex>
 
-      <v-flex mb-5 xs12>
+      <v-flex mb-3>
         <v-layout row wrap class="justify-center">
-          <v-flex v-for="(tool, i) in tools" :key="i" xs4 class="mx-5">
-            <v-btn :to="tool.to" block dark color="purple">
+          <v-flex v-for="(tool, i) in tools" :key="i" class="mx-3" style="width:200px;">
+            <v-btn :to="tool.to" block dark color="purple lighten-1">
               <v-icon class="mx-1">{{ tool.icon }}</v-icon>
               {{ $t(tool.text) }}
             </v-btn>
@@ -62,6 +62,3 @@ export default {
   })
 };
 </script>
-
-<style>
-</style>

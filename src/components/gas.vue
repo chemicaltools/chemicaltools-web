@@ -3,7 +3,7 @@
     <v-radio-group v-model="mode">
       <v-layout row wrap :key="i" v-for="(value, i) in values">
         <v-radio :label="value.text" :value="value.text"></v-radio>
-        <v-text-field :label="value.label" v-model="value.input"></v-text-field>
+        <v-text-field :label="$t(value.label)" v-model="value.input"></v-text-field>
       </v-layout>
     </v-radio-group>
     <v-btn color="success" v-on:click="outputgas">{{$t("message.calculate")}}</v-btn>
@@ -15,10 +15,10 @@ export default {
   data: () => ({
     mode: "p",
     values: [
-      { text: "p", label: "Pressure/kPa", input: "" },
-      { text: "V", label: "Volume/L", input: "" },
-      { text: "n", label: "Amount of substance/mol", input: "" },
-      { text: "T", label: "Temperature/K", input: "" }
+      { text: "p", label: "gas.p", input: "" },
+      { text: "V", label: "gas.V", input: "" },
+      { text: "n", label: "gas.n", input: "" },
+      { text: "T", label: "gas.T", input: "" }
     ]
   }),
   methods: {

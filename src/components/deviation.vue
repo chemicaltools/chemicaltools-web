@@ -1,6 +1,11 @@
 <template>
   <v-container>
-    <v-textarea name="input" label="Data" hint="One data each line" v-model="input"></v-textarea>
+    <v-textarea
+      name="input"
+      :label="$t('message.data')"
+      :hint="$t('message.dataline')"
+      v-model="input"
+    ></v-textarea>
     <v-btn color="success" v-on:click="calculateDeviation(input)">{{$t("message.calculate")}}</v-btn>
     <v-layout row wrap>
       <v-flex>
@@ -13,7 +18,7 @@
           hide-headers
         >
           <template v-slot:items="result">
-            <td>{{ result.item.name }}</td>
+            <td>{{ $t(result.item.name) }}</td>
             <td class="text-xs-right" v-html="result.item.value"></td>
           </template>
         </v-data-table>
@@ -35,7 +40,10 @@ export default {
   }),
   methods: {
     calculateDeviation: function(input) {
-      if (!input) this.output = "message.inputdata";
+      if (!input) {
+        this.output = "message.inputdata";
+        return;
+      }
       var x = input.split(/[\r\n\\s ,;]+/);
       var numnum = Infinity,
         pointnum = Infinity;
@@ -57,34 +65,37 @@ export default {
           numnum = Math.min(numnum, len);
           pointnum = Math.min(pointnum, pointlen);
         });
+        numnum -= 1;
         var result = chemicaltools.calculateDeviation(x.map(parseFloat));
         var outputinfo = [
-          { name: "Input data:", value: x.join(", ") },
-          { name: "Average", value: result.average.toFixed(pointnum) },
+          { name: "deviation.input", value: x.join(", ") },
           {
-            name: "Average deviation",
+            name: "deviation.average",
+            value: result.average.toFixed(pointnum)
+          },
+          {
+            name: "deviation.ad",
             value: result.average_deviation.toFixed(pointnum)
           },
           {
-            name: "Relative average deviation",
+            name: "deviation.rad",
             value:
-              scicount(result.relative_average_deviation * 1000, numnum - 1) +
-              "‰"
+              scicount(result.relative_average_deviation * 1000, numnum) + "‰"
           },
           {
-            name: "Standard deviation",
-            value: scicount(result.standard_deviation, numnum - 1)
+            name: "deviation.sd",
+            value: scicount(result.standard_deviation, numnum)
           },
           {
-            name: "Relative standard deviation",
+            name: "deviation.rsd",
             value:
-              scicount(result.relative_standard_deviation * 1000, numnum - 1) +
-              "‰"
+              scicount(result.relative_standard_deviation * 1000, numnum) + "‰"
           }
         ];
         this.results = outputinfo;
         this.output = "";
       } else {
+        this.results = [];
         this.output = "message.multpledata";
       }
     }

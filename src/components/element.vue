@@ -14,8 +14,12 @@
           hide-headers
         >
           <template v-slot:items="result">
-            <td>{{ result.item.name }}</td>
-            <td class="text-xs-right">{{ result.item.value }}</td>
+            <template
+              v-if="result.item.exclude?result.item.exclude.indexOf($i18n.locale)==-1:true"
+            >
+              <td>{{ $t(result.item.name) }}</td>
+              <td class="text-xs-right">{{ result.item.value }}</td>
+            </template>
           </template>
         </v-data-table>
         <div class="text-xs-center pt-2">
@@ -45,11 +49,12 @@ export default {
       var info = chemicaltools.searchElement(input);
       if (info) {
         this.results = [
-          { name: "Symbol", value: info.symbol },
-          { name: "IUPAC name", value: info.iupac },
-          { name: "Atomic number", value: info.number },
-          { name: "Mass", value: info.mass },
-          { name: "Origin of the name", value: info.origin }
+          { name: "element.name", value: info.name, exclude: ["en"] },
+          { name: "element.symbol", value: info.symbol },
+          { name: "element.iupac", value: info.iupac },
+          { name: "element.number", value: info.number },
+          { name: "element.mass", value: info.mass },
+          { name: "element.origin", value: info.origin }
         ];
         this.url = info.url;
         this.wikipedia = "https://en.wikipedia.org/wiki/" + info.iupac;
