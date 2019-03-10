@@ -1,7 +1,7 @@
 # Chemical Tools Web (化学e+网页版)
 [![Web](https://img.shields.io/website-up-down-green-red/https/chem.njzjz.win.svg?label=Web)](https://chemicaltools.njzjz.win/)
 
-Essential tools for chemistry students developed with JavaScript. Developed with vue.js.
+Essential tools for chemistry students developed with vue.js.
 
 **Author**: Jinzhe Zeng
 
