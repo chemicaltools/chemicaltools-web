@@ -27,3 +27,10 @@ matrix:
     - yarn global add cordova
     - yarn cordova-prepare
     script: yarn cordova-build-android
+    deploy:
+      provider: releases
+      api_key: $GITHUB_TOKEN
+      file: src-cordova/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
+      skip_cleanup: true
+      on:
+        tags: true
