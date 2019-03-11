@@ -25,4 +25,5 @@ matrix:
     - nvm install 11
     - yarn
     - yarn global add cordova
+    - yarn cordova-prepare
     script: yarn cordova-build-android
