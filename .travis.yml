@@ -35,6 +35,6 @@ matrix:
   - language: node_js
     node_js: "11"
     cache: yarn
-    script:
-    - yarn postinstall
-    - yarn electron:build
+    services:
+    - xvfb
+    script: xvfb-run yarn electron:build
