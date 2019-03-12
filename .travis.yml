@@ -35,4 +35,6 @@ matrix:
   - language: node_js
     node_js: "11"
     cache: yarn
-    script: yarn electron:build
+    script:
+    - yarn postinstall
+    - yarn electron:build
