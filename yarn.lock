@@ -3470,7 +3470,7 @@ electron-to-chromium@^1.3.113:
   resolved "http://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.113.tgz#b1ccf619df7295aea17bc6951dc689632629e4a9"
   integrity sha1-scz2Gd9yla6he8aVHcaJYyYp5Kk=
 
-electron@^4.0.0:
+electron@4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/electron/-/electron-4.0.8.tgz#b7998b16543d2094f081757a0c5afdb8875ea510"
   integrity sha512-FOBJIHkuv8wc15N+ZyqwDzPavYVu5CHMBEf14jHDWv7QW2vkEIpJjVK+PIT31kfZfvjsIP0j2wvA/FBsiqB7pw==
@@ -9286,7 +9286,7 @@ vue-cli-plugin-cordova@2.1.2:
     html-webpack-include-assets-plugin "^1.0.4"
     portfinder "^1.0.20"
 
-vue-cli-plugin-electron-builder@^1.1.2:
+vue-cli-plugin-electron-builder@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/vue-cli-plugin-electron-builder/-/vue-cli-plugin-electron-builder-1.1.3.tgz#684d56f8ce6c7fc89f6a202ad1099cc0ed796eeb"
   integrity sha512-uXw8aAkQJ9t1HBNgHLC8Jb4Hy++SvKJidmomU2WQHIvj5eOXrEuKVZ/CrQDov0IXfClVixNZAjQrhKqHmikTvQ==
