@@ -2300,10 +2300,10 @@ check-types@^7.3.0:
   resolved "http://registry.npm.taobao.org/check-types/download/check-types-7.4.0.tgz#0378ec1b9616ec71f774931a3c6516fad8c152f4"
   integrity sha1-A3jsG5YW7HH3dJMaPGUW+tjBUvQ=
 
-chemicaltools@1.0.15:
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/chemicaltools/-/chemicaltools-1.0.15.tgz#61e5847b5bb85bf3cf8028c5c5de2e939b594780"
-  integrity sha512-B2Bn0MjKZci4QatLTmyR+952sScE8iw2Y+/fYlLSSLegsM7dAyGn4FmBM2uuBueJ7z0jDYAf9awzVXrHOCnDlQ==
+chemicaltools@1.0.17:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/chemicaltools/-/chemicaltools-1.0.17.tgz#698962b093a5b200606ff5b4512a2b7020e2d045"
+  integrity sha512-v3QEqkXk4E1f3mDd+qLBhFh/ZNG5xQvt5z/Zv74QKpR41YchvuH6P9+3GsqLw+y7OAu9I8P+Zyt/uYrYRigqFA==
   dependencies:
     tiny-pinyin "^1.3.0"
 
