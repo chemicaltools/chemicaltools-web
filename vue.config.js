@@ -8,5 +8,6 @@ module.exports = {
       localeDir: 'locales',
       enableInSFC: false
     }
-  }
+  },
+  workboxOptions: { skipWaiting: true }
 }
