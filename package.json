@@ -19,7 +19,7 @@
     "electron:serve": "vue-cli-service electron:serve",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
-    "now-build": "yarn build"
+    "now-build": "yarn --ignore-engines && yarn build"
   },
   "dependencies": {
     "chemicaltools": "1.1.3",
