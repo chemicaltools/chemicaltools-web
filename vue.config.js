@@ -9,5 +9,7 @@ module.exports = {
       enableInSFC: false
     }
   },
-  workboxOptions: { skipWaiting: true }
+  pwa: {
+      workboxOptions: { skipWaiting: true }
+  }
 }
