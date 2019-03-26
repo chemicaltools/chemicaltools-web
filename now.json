@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "engines": {
-     "node": "^10.13.2"
-   },
   "builds": [
     {"src": "package.json", "use": "@now/static-build"}
   ],
