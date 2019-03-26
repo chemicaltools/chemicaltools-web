@@ -1,1 +1,1 @@
-yarn ignore-engines && yarn now-build
+yarn --ignore-engines && yarn now-build
