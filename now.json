@@ -1,7 +1,7 @@
 {
   "version": 2,
   "builds": [
-    {"src": "package.json", "use": "@now/static-build"}
+    {"src": "build.sh", "use": "@now/static-build"}
   ],
   "routes": [
     {"src": "^/js/(.*)", "dest": "/js/$1"},
