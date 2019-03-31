@@ -92,10 +92,6 @@
               "label": "Android app"
             },
             {
-              "path": "dist_electron/linux-unpacked",
-              "label": "linux"
-            },
-            {
               "path": "dist_electron/*_amd64.snap",
               "label": "snap"
             },
