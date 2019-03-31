@@ -34,94 +34,94 @@
   </v-container>
 </template>
 <script>
-const chemicaltools = require("chemicaltools");
+const chemicaltools = require('chemicaltools')
 export default {
   data: () => ({
     results: [],
-    input: "",
-    info: "message.elementnodata",
-    url: "",
-    wikipedia: "",
-    elementtable: ""
+    input: '',
+    info: 'message.elementnodata',
+    url: '',
+    wikipedia: '',
+    elementtable: ''
   }),
   methods: {
-    outputelement: function(input) {
-      var info = chemicaltools.searchElement(input);
+    outputelement: function (input) {
+      var info = chemicaltools.searchElement(input)
       if (info) {
         this.results = [
-          { name: "element.name", value: info.name, exclude: ["en"] },
-          { name: "element.symbol", value: info.symbol },
-          { name: "element.iupac", value: info.iupac },
-          { name: "element.number", value: info.number },
-          { name: "element.mass", value: info.mass },
-          { name: "element.origin", value: info.origin }
-        ];
-        this.url = info.url;
-        this.wikipedia = "https://en.wikipedia.org/wiki/" + info.iupac;
+          { name: 'element.name', value: info.name, exclude: ['en'] },
+          { name: 'element.symbol', value: info.symbol },
+          { name: 'element.iupac', value: info.iupac },
+          { name: 'element.number', value: info.number },
+          { name: 'element.mass', value: info.mass },
+          { name: 'element.origin', value: info.origin }
+        ]
+        this.url = info.url
+        this.wikipedia = 'https://en.wikipedia.org/wiki/' + info.iupac
       } else {
-        this.results = [];
-        this.info = "message.wronginput";
-        this.url = "";
-        this.wikipeida = "";
+        this.results = []
+        this.info = 'message.wronginput'
+        this.url = ''
+        this.wikipeida = ''
       }
     },
-    makeelementtable: function() {
-      var n = 0;
-      var output = "<table style='text-align:center;'>";
+    makeelementtable: function () {
+      var n = 0
+      var output = "<table style='text-align:center;'>"
       for (var i = 0; i <= 9; i++) {
-        output += "<tr>";
+        output += '<tr>'
         for (var j = 0; j <= 18; j++) {
           if (
-            (i == 1 && j >= 2 && j <= 17) ||
-            ((i == 2 || i == 3) && j >= 3 && j <= 12) ||
-            ((i == 8 || i == 9) && j > 15)
+            (i === 1 && j >= 2 && j <= 17) ||
+            ((i === 2 || i === 3) && j >= 3 && j <= 12) ||
+            ((i === 8 || i === 9) && j > 15)
           ) {
-            if (i == 1 && j == 2) {
-              output += "<td colspan=16></td>";
-            } else if ((i == 2 || i == 3) && j == 3) {
-              output += "<td colspan=10></td>";
+            if (i === 1 && j === 2) {
+              output += '<td colspan=16></td>'
+            } else if ((i === 2 || i === 3) && j === 3) {
+              output += '<td colspan=10></td>'
             }
           } else {
-            output += "<td style='border:1px solid;border-collapse:collapse'>";
-            if (i == 0 && j > 0) {
-              output += j;
-            } else if (i > 0 && j == 0) {
+            output += "<td style='border:1px solid;border-collapse:collapse'>"
+            if (i === 0 && j > 0) {
+              output += j
+            } else if (i > 0 && j === 0) {
               if (i < 8) {
-                output += i;
-              } else if (i == 8) {
-                output += "Lanthanide";
-              } else if (i == 9) {
-                output += "Actinide";
+                output += i
+              } else if (i === 8) {
+                output += 'Lanthanide'
+              } else if (i === 9) {
+                output += 'Actinide'
               }
             } else if (i > 0) {
-              if (i == 6 && j == 4) {
-                n = 71;
-              } else if (i == 7 && j == 4) {
-                n = 103;
-              } else if (i == 8 && j == 1) {
-                n = 56;
-              } else if (i == 9 && j == 1) {
-                n = 88;
+              if (i === 6 && j === 4) {
+                n = 71
+              } else if (i === 7 && j === 4) {
+                n = 103
+              } else if (i === 8 && j === 1) {
+                n = 56
+              } else if (i === 9 && j === 1) {
+                n = 88
               }
-              output += "<sub>{0}</sub>{1}<br>{2}<br><small>{3}</small>".format(
+              output += '<sub>{0}</sub>{1}<br>{2}<br><small>{3}</small>'.format(
                 chemicaltools.elementinfo[n].number,
                 chemicaltools.elementinfo[n].symbol,
                 chemicaltools.elementinfo[n].iupac,
                 chemicaltools.elementinfo[n].mass
-              );
-              n++;
+              )
+              n++
             }
-            output += "</td>";
+            output += '</td>'
           }
         }
-        output += "</tr>";
+        output += '</tr>'
       }
-      output += "</table>";
-      this.elementtable = output;
+      output += '</table>'
+      this.elementtable = output
     }
   },
-  mounted: function() {
-    this.makeelementtable();
+  mounted: function () {
+    this.makeelementtable()
   }
-};
+}
 </script>

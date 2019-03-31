@@ -42,18 +42,18 @@ export default {
     testnumbers: [18, 36, 54, 86, 118],
     mode: 2,
     number: 86,
-    pkw: 14,
+    pkw: 14
   }),
-  mounted: function() {
+  mounted: function () {
     var that = this;
-    ["mode", "number", "pkw"].forEach(function(setting) {
-      that[setting] = that.$storage.get(setting, that[setting]);
-    });
+    ['mode', 'number', 'pkw'].forEach(function (setting) {
+      that[setting] = that.$storage.get(setting, that[setting])
+    })
   },
   methods: {
-    updatevalue: function(name, value) {
-      this.$storage.set(name, value);
+    updatevalue: function (name, value) {
+      this.$storage.set(name, value)
     }
   }
-};
+}
 </script>

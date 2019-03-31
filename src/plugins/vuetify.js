@@ -4,5 +4,5 @@ import 'vuetify/src/stylus/app.styl'
 import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(Vuetify, {
-  iconfont: 'fa',
+  iconfont: 'fa'
 })
