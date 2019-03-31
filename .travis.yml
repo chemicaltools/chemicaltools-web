@@ -12,6 +12,7 @@ matrix:
       keep-history: true
       on:
         branch: master
+    after_deploy: npx semantic-release
   - language: android
     cache: yarn
     android:
