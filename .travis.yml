@@ -1,11 +1,6 @@
 language: android
 cache: yarn
-android:
-    components:
-        - build-tools-28.0.3
 install: 
-- yes | sdkmanager tools > /dev/null
-- yes | sdkmanager --licenses > /dev/null
 - nvm install 11
 - yarn
 - yarn global add cordova
