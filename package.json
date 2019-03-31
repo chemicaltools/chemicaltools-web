@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "lint": "vue-cli-service lint --fix",
     "cordova-build-android": "vue-cli-service cordova-build-android",
     "cordova-build-browser": "vue-cli-service cordova-build-browser",
     "cordova-build-ios": "vue-cli-service cordova-build-ios",

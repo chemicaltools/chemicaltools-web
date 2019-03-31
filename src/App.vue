@@ -81,77 +81,77 @@
 
 <script>
 export default {
-  name: "Chemical-Tools",
+  name: 'Chemical-Tools',
   data: () => ({
     drawer: null,
     tools: [
       {
-        text: "message.homepage",
-        to: "/",
-        icon: "home"
+        text: 'message.homepage',
+        to: '/',
+        icon: 'home'
       },
       {
-        text: "message.element",
-        to: "/element/",
-        icon: "fa-atom"
+        text: 'message.element',
+        to: '/element/',
+        icon: 'fa-atom'
       },
       {
-        text: "message.mass",
-        to: "/mass/",
-        icon: "fa-balance-scale"
+        text: 'message.mass',
+        to: '/mass/',
+        icon: 'fa-balance-scale'
       },
       {
-        text: "message.acid",
-        to: "/acid/",
-        icon: "fa-flask"
+        text: 'message.acid',
+        to: '/acid/',
+        icon: 'fa-flask'
       },
       {
-        text: "message.deviation",
-        to: "/deviation/",
-        icon: "fa-chart-bar"
+        text: 'message.deviation',
+        to: '/deviation/',
+        icon: 'fa-chart-bar'
       },
       {
-        text: "message.gas",
-        to: "/gas/",
-        icon: "fa-burn"
+        text: 'message.gas',
+        to: '/gas/',
+        icon: 'fa-burn'
       },
       {
-        text: "message.exam",
-        to: "/exam/",
-        icon: "fa-question"
+        text: 'message.exam',
+        to: '/exam/',
+        icon: 'fa-question'
       },
       {
-        text: "message.settings",
-        to: "/setting/",
-        icon: "fa-cog"
+        text: 'message.settings',
+        to: '/setting/',
+        icon: 'fa-cog'
       }
     ],
     links: [
-      { text: "Jinzhe Zeng's Blog", src: "https://njzjz.win/" },
-      { text: "Download", href: "https://chem.njzjz.win/" },
-      { text: "GitHub", href: "https://github.com/njzjz/Chemical-Tools-web" }
+      { text: "Jinzhe Zeng's Blog", src: 'https://njzjz.win/' },
+      { text: 'Download', href: 'https://chem.njzjz.win/' },
+      { text: 'GitHub', href: 'https://github.com/njzjz/Chemical-Tools-web' }
     ],
     languages: [
-      { value: "en", text: "English" },
-      { value: "zh", text: "中文" }
+      { value: 'en', text: 'English' },
+      { value: 'zh', text: '中文' }
     ]
   }),
   computed: {
-    username() {
-      return this.$route.params.username;
+    username () {
+      return this.$route.params.username
     }
   },
-  mounted: function() {
-    this.$i18n.locale = this.$storage.get("lang", "en");
+  mounted: function () {
+    this.$i18n.locale = this.$storage.get('lang', 'en')
   },
   methods: {
-    goBack() {
-      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    goBack () {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
     },
-    updatelang(value) {
-      this.$i18n.locale = value;
-      this.$storage.set("lang", value);
+    updatelang (value) {
+      this.$i18n.locale = value
+      this.$storage.set('lang', value)
     }
   }
-};
+}
 </script>

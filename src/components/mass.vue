@@ -33,31 +33,31 @@
   </v-container>
 </template>
 <script>
-const chemicaltools = require("chemicaltools");
-const format = require("string-format");
-import { chemicalname } from "../chem.js";
-format.extend(String.prototype, {});
+import { chemicalname } from '../chem.js'
+const chemicaltools = require('chemicaltools')
+const format = require('string-format')
+format.extend(String.prototype, {})
 
 export default {
   data: () => ({
-    output: "message.inputformula",
+    output: 'message.inputformula',
     results: [],
-    input: "",
-    name: "",
+    input: '',
+    name: '',
     mass: 0
   }),
   methods: {
-    outputmass: function(input) {
-      var result = chemicaltools.calculateMass(input);
+    outputmass: function (input) {
+      var result = chemicaltools.calculateMass(input)
       if (result) {
-        this.name = chemicalname(result.name);
-        this.mass = result.mass.toFixed(2);
-        this.results = result.peratom;
+        this.name = chemicalname(result.name)
+        this.mass = result.mass.toFixed(2)
+        this.results = result.peratom
       } else {
-        this.output = "message.wronginput";
-        this.results = [];
+        this.output = 'message.wronginput'
+        this.results = []
       }
     }
   }
-};
+}
 </script>

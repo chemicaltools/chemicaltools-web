@@ -10,6 +10,6 @@ module.exports = {
     }
   },
   pwa: {
-      workboxOptions: { skipWaiting: true }
+    workboxOptions: { skipWaiting: true }
   }
 }

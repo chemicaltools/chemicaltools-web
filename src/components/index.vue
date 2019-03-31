@@ -29,36 +29,36 @@ export default {
   data: () => ({
     tools: [
       {
-        text: "message.element",
-        to: "/element/",
-        icon: "fa-atom"
+        text: 'message.element',
+        to: '/element/',
+        icon: 'fa-atom'
       },
       {
-        text: "message.mass",
-        to: "/mass/",
-        icon: "fa-balance-scale"
+        text: 'message.mass',
+        to: '/mass/',
+        icon: 'fa-balance-scale'
       },
       {
-        text: "message.acid",
-        to: "/acid/",
-        icon: "fa-flask"
+        text: 'message.acid',
+        to: '/acid/',
+        icon: 'fa-flask'
       },
       {
-        text: "message.deviation",
-        to: "/deviation/",
-        icon: "fa-chart-bar"
+        text: 'message.deviation',
+        to: '/deviation/',
+        icon: 'fa-chart-bar'
       },
       {
-        text: "message.gas",
-        to: "/gas/",
-        icon: "fa-burn"
+        text: 'message.gas',
+        to: '/gas/',
+        icon: 'fa-burn'
       },
       {
-        text: "message.exam",
-        to: "/exam/",
-        icon: "fa-question"
+        text: 'message.exam',
+        to: '/exam/',
+        icon: 'fa-question'
       }
     ]
   })
-};
+}
 </script>
