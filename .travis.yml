@@ -1,39 +1,25 @@
-matrix:
-  include:
-  - language: node_js
-    node_js: "11"
-    cache: yarn
-    script: yarn build
-    deploy:
-      provider: pages
-      skip-cleanup: true
-      local_dir: dist
-      github-token: $GITHUB_TOKEN
-      keep-history: true
-      on:
-        branch: master
-    after_deploy: npx semantic-release
-  - language: android
-    cache: yarn
-    android:
-        components:
-            - build-tools-28.0.3
-    install: 
-    - yes | sdkmanager tools > /dev/null
-    - yes | sdkmanager --licenses > /dev/null
-    - nvm install 11
-    - yarn
-    - yarn global add cordova
-    - yarn cordova-prepare
-    script: yarn cordova-build-android
-    deploy:
-      provider: releases
-      api_key: $GITHUB_TOKEN
-      file: src-cordova/platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk
-      skip_cleanup: true
-      on:
-        tags: true
-  - language: node_js
-    node_js: "11"
-    cache: yarn
-    script: yarn electron:build
+language: android
+cache: yarn
+android:
+    components:
+        - build-tools-28.0.3
+install: 
+- yes | sdkmanager tools > /dev/null
+- yes | sdkmanager --licenses > /dev/null
+- nvm install 11
+- yarn
+- yarn global add cordova
+- yarn cordova-prepare
+script:
+- yarn build
+- yarn cordova-build-android
+- yarn electron:build
+after_deploy: npx semantic-release
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local_dir: dist
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    branch: master

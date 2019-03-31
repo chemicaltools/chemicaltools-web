@@ -83,7 +83,14 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
-      "@semantic-release/github",
+      ["@semantic-release/github", {
+        "assets": [
+          {"path": "src-cordova/platforms/android/app/build/outputs/apk/release/*.apk", "label": "Android app"},
+          {"path": "dist_electron/linux-unpacked", "label": "linux"},
+          {"path": "dist_electron/*_amd64.snap", "label": "snap"},
+          {"path": "dist_electron/*.AppImage", "label": "App Image"}
+        ]
+      }],
       "@semantic-release/git"
     ]
   }
