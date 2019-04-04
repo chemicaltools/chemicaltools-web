@@ -4,6 +4,7 @@ android:
     components:
         - build-tools-28.0.3
 install: 
+- wget -O - https://raw.githubusercontent.com/VOID001/wine-travis/master/install-wine.sh | bash
 - yes | sdkmanager tools > /dev/null
 - yes | sdkmanager --licenses > /dev/null
 - nvm install 11
@@ -15,7 +16,6 @@ script:
 - yarn cordova-build-android
 - yarn electron:build-linux
 - yarn electron:build-windows
-- yarn electron:build-macos
 after_deploy: npx semantic-release
 deploy:
   provider: pages
