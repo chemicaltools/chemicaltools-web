@@ -107,7 +107,7 @@
             {
               "path": "dist_electron/*.exe",
               "label": "Windows setup"
-            },
+            }
           ]
         }
       ],
