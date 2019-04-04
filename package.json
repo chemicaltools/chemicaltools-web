@@ -20,6 +20,8 @@
     "electron:build-windows": "vue-cli-service electron:build --windows",
     "electron:build-macos": "vue-cli-service electron:build --macos",
     "electron:serve": "vue-cli-service electron:serve",
+    "docker-linux": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn && yarn electron:build-linux\"",
+    "docker-windows": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn && yarn electron:build-windows\"",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "now-build": "yarn build"
