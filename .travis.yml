@@ -13,7 +13,9 @@ install:
 script:
 - yarn build
 - yarn cordova-build-android
-- yarn electron:build
+- yarn electron:build-linux
+- yarn electron:build-windows
+- yarn electron:build-macos
 after_deploy: npx semantic-release
 deploy:
   provider: pages
