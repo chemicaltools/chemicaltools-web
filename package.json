@@ -103,7 +103,11 @@
             {
               "path": "dist_electron/*.AppImage",
               "label": "App Image"
-            }
+            },
+            {
+              "path": "dist_electron/*.exe",
+              "label": "Windows setup"
+            },
           ]
         }
       ],
