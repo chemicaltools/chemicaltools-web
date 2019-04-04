@@ -7,13 +7,15 @@ install:
 - yes | sdkmanager tools > /dev/null
 - yes | sdkmanager --licenses > /dev/null
 - nvm install 11
+- docker pull electronuserland/electron-builder:wine
 - yarn
 - yarn global add cordova
 - yarn cordova-prepare
 script:
 - yarn build
 - yarn cordova-build-android
-- yarn electron:build
+- yarn docker-linux
+- yarn docker-windows
 after_deploy: npx semantic-release
 deploy:
   provider: pages
