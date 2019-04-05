@@ -14,8 +14,7 @@ install:
 script:
 - yarn build
 - yarn cordova-build-android
-- yarn docker-linux
-- yarn docker-windows
+- yarn docker-all
 after_deploy: npx semantic-release
 deploy:
   provider: pages
