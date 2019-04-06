@@ -1,5 +1,9 @@
 language: android
-cache: yarn
+cache:
+  yarn: true
+  directories:
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
 android:
     components:
         - build-tools-28.0.3
@@ -24,3 +28,4 @@ deploy:
   keep-history: true
   on:
     branch: master
+before_cache: rm -rf $HOME/.cache/electron-builder/wine
