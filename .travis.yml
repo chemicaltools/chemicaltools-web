@@ -1,7 +1,7 @@
 language: android
 cache:
-  yarn: true
   directories:
+  - $HOME/.cache/yarn
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
   - $HOME/.gradle/caches/
