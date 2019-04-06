@@ -4,6 +4,9 @@ cache:
   directories:
   - $HOME/.cache/electron
   - $HOME/.cache/electron-builder
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+  - $HOME/.android/build-cache
 android:
     components:
         - build-tools-28.0.3
@@ -28,4 +31,7 @@ deploy:
   keep-history: true
   on:
     branch: master
-before_cache: rm -rf $HOME/.cache/electron-builder/wine
+before_cache:
+- rm -rf $HOME/.cache/electron-builder/wine
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
