@@ -127,7 +127,7 @@ export default {
       }
     ],
     links: [
-      { text: "Jinzhe Zeng's Blog", src: 'https://njzjz.win/' },
+      { text: "Jinzhe Zeng's Blog", href: 'https://njzjz.win/' },
       { text: 'Download', href: 'https://chem.njzjz.win/' },
       { text: 'GitHub', href: 'https://github.com/njzjz/Chemical-Tools-web' }
     ],
