@@ -1,5 +1,9 @@
 language: android
-cache: yarn
+cache:
+  yarn: true
+  directories:
+  - $HOME/.cache/electron
+  - $HOME/.cache/electron-builder
 android:
     components:
         - build-tools-28.0.3
