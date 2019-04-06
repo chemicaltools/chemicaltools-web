@@ -23,7 +23,7 @@
     "electron:serve": "vue-cli-service electron:serve",
     "docker-linux": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-linux\"",
     "docker-windows": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-windows\"",
-    "docker-all": "docker run --rm -ti --env-file <(env | grep -iE 'DEBUG|NODE_|ELECTRON_|YARN_|NPM_|CI|CIRCLE|TRAVIS|APPVEYOR_|CSC_|_TOKEN|_KEY|AWS_|STRIP|BUILD_') -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.cache/electron:/root/.cache/electron -v ~/.cache/electron-builder:/root/.cache/electron-builder -v ~/.cache/yarn:/root/.cache/yarn -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-all\"",
+    "docker-all": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.cache/electron:/root/.cache/electron -v ~/.cache/electron-builder:/root/.cache/electron-builder -v ~/.cache/yarn:/root/.cache/yarn -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-all\"",
     "postinstall": "electron-builder install-app-deps",
     "postuninstall": "electron-builder install-app-deps",
     "now-build": "yarn build"
