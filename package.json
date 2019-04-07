@@ -1,7 +1,12 @@
 {
   "name": "chemicaltools-web",
   "version": "3.0.25",
-  "homepage": "https://github.com/njzjz/Chemical-Tools-web",
+  "description": "Chemical Tools PWA version for Chemistry students.",
+  "author": "Jinzhe Zeng",
+  "bugs": {
+    "url": "https://github.com/njzjz/chemicaltools-web/issues"
+  },
+  "homepage": "https://github.com/njzjz/chemicaltools-web",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build && bundlesize",
