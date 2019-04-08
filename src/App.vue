@@ -142,7 +142,7 @@ export default {
     }
   },
   mounted: function () {
-    this.$i18n.locale = this.$storage.get('lang', navigator.language || 'en')
+    this.$i18n.locale = this.$storage.get('lang', window.navigator.language || 'en')
   },
   methods: {
     goBack () {
