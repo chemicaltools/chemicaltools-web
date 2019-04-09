@@ -15,7 +15,7 @@
     <v-toolbar app color="purple" dark>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="headline">
-        <span>{{ $t($route.meta.title) }}</span>
+        <span>{{ title }}</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-title class="headline" v-show="!$vuetify.breakpoint.xs">
@@ -139,6 +139,12 @@ export default {
   computed: {
     username () {
       return this.$route.params.username
+    },
+    title() {
+      const title = this.$t(this.$route.meta.title)
+      const appname = this.$t('message.chemicaltools')
+      window.document.title = title + ' - ' + appname
+      return title
     }
   },
   mounted: function () {
