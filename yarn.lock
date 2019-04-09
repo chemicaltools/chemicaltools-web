@@ -11471,10 +11471,10 @@ vuetify-loader@1.2.1:
   dependencies:
     loader-utils "^1.1.0"
 
-vuetify@1.5.9:
-  version "1.5.9"
-  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.9.tgz#58db8af20cc2a4d226125e430ca5217d8056555b"
-  integrity sha512-Jg8Ocuk6QDiins7lV3uFB6TaEm3ePspcKIyA/XcxR5/Uwd48f4n1uUOlW9H/XBgbvy+4yHW/KWJWG9oI0ZrmzA==
+vuetify@1.5.10:
+  version "1.5.10"
+  resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-1.5.10.tgz#69108f282503da091e1e2f99b5ac9f633007b45d"
+  integrity sha512-I4EVU/Lk22A8mKM9RvonK80SLPnCg8Lk0UzG8xr14Ta3RQSJsqjz74CtDhySSpp2iGOfyDMyY3UB6zIIW0W0xw==
 
 watchpack@^1.5.0:
   version "1.6.0"
