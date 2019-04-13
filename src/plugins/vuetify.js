@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faAtom, faBalanceScale, faFlask, faChartBar, faBurn, faQuestion, faCog } from '@fortawesome/free-solid-svg-icons'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-library.add(fas)
+library.add(faAtom, faBalanceScale, faFlask, faChartBar, faBurn, faQuestion, faCog)
 
 Vue.use(Vuetify, {
   iconfont: 'faSvg'
