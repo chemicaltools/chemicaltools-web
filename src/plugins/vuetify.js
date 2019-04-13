@@ -1,56 +1,72 @@
-import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
-import 'vuetify/src/stylus/app.styl'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faAtom, faBalanceScale, faFlask, faChartBar, faBurn, faQuestion, faCog } from '@fortawesome/free-solid-svg-icons'
+import Vue from "vue";
+import Vuetify from "vuetify/lib";
+import "vuetify/src/stylus/app.styl";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {
+  faAtom,
+  faBalanceScale,
+  faFlask,
+  faChartBar,
+  faBurn,
+  faQuestion,
+  faCog
+} from "@fortawesome/free-solid-svg-icons";
 
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-library.add(faAtom, faBalanceScale, faFlask, faChartBar, faBurn, faQuestion, faCog)
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+library.add(
+  faAtom,
+  faBalanceScale,
+  faFlask,
+  faChartBar,
+  faBurn,
+  faQuestion,
+  faCog
+);
 
 Vue.use(Vuetify, {
   icons: {
-    'atom': {
+    atom: {
       component: FontAwesomeIcon,
       props: {
-        icon: ['fas', 'atom']
+        icon: ["fas", "atom"]
       }
     },
-    'balance-scale': {
+    "balance-scale": {
       component: FontAwesomeIcon,
       props: {
-        icon: ['fas', 'balance-scale']
+        icon: ["fas", "balance-scale"]
       }
     },
-    'flask': {
+    flask: {
       component: FontAwesomeIcon,
       props: {
-        icon: ['fas', 'flask']
+        icon: ["fas", "flask"]
       }
     },
-    'chart-bar': {
+    "chart-bar": {
       component: FontAwesomeIcon,
       props: {
-        icon: ['fas', 'chart-bar']
+        icon: ["fas", "chart-bar"]
       }
     },
-    'burn': {
+    burn: {
       component: FontAwesomeIcon,
       props: {
-        icon: ['fas', 'burn']
+        icon: ["fas", "burn"]
       }
     },
-    'question': {
+    question: {
       component: FontAwesomeIcon,
       props: {
-        icon: ['fas', 'question']
+        icon: ["fas", "question"]
       }
     },
-    'cog': {
+    cog: {
       component: FontAwesomeIcon,
       props: {
-        icon: ['fas', 'cog']
+        icon: ["fas", "cog"]
       }
     }
   }
-})
+});
