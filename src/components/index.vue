@@ -31,32 +31,32 @@ export default {
       {
         text: 'message.element',
         to: '/element/',
-        icon: 'fas fa-atom'
+        icon: 'atom'
       },
       {
         text: 'message.mass',
         to: '/mass/',
-        icon: 'fas fa-balance-scale'
+        icon: 'balance-scale'
       },
       {
         text: 'message.acid',
         to: '/acid/',
-        icon: 'fas fa-flask'
+        icon: 'flask'
       },
       {
         text: 'message.deviation',
         to: '/deviation/',
-        icon: 'fas fa-chart-bar'
+        icon: 'chart-bar'
       },
       {
         text: 'message.gas',
         to: '/gas/',
-        icon: 'fas fa-burn'
+        icon: 'burn'
       },
       {
         text: 'message.exam',
         to: '/exam/',
-        icon: 'fas fa-question'
+        icon: 'question'
       }
     ]
   })
