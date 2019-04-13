@@ -51,5 +51,5 @@ Vue.use(Vuetify, {
       props: {
         icon: ['fas', 'cog']
       }
-    },
+    }
 })
