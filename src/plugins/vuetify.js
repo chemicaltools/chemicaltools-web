@@ -52,4 +52,5 @@ Vue.use(Vuetify, {
         icon: ['fas', 'cog']
       }
     }
+  }
 })
