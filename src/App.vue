@@ -4,7 +4,7 @@
       <v-list dense>
         <v-list-tile v-for="(tool, i) in tools" :key="i" :to="tool.to">
           <v-list-tile-action>
-            <v-icon>{{tool.icon}}</v-icon>
+            <font-awesome-icon icon="{{tool.icon}}"/>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>{{$t(tool.text)}}</v-list-tile-title>
