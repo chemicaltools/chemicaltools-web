@@ -93,37 +93,37 @@ export default {
       {
         text: 'message.element',
         to: '/element/',
-        icon: 'atom'
+        icon: 'fas fa-atom'
       },
       {
         text: 'message.mass',
         to: '/mass/',
-        icon: 'balance-scale'
+        icon: 'fas fa-balance-scale'
       },
       {
         text: 'message.acid',
         to: '/acid/',
-        icon: 'flask'
+        icon: 'fas fa-flask'
       },
       {
         text: 'message.deviation',
         to: '/deviation/',
-        icon: 'chart-bar'
+        icon: 'fas fa-chart-bar'
       },
       {
         text: 'message.gas',
         to: '/gas/',
-        icon: 'burn'
+        icon: 'fas fa-burn'
       },
       {
         text: 'message.exam',
         to: '/exam/',
-        icon: 'question'
+        icon: 'fas fa-question'
       },
       {
         text: 'message.settings',
         to: '/setting/',
-        icon: 'cog'
+        icon: 'fas fa-cog'
       }
     ],
     links: [
