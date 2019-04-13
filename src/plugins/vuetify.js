@@ -3,17 +3,53 @@ import Vuetify from 'vuetify/lib'
 import 'vuetify/src/stylus/app.styl'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faAtom } from '@fortawesome/free-solid-svg-icons/faAtom'
-import { faBalanceScale } from '@fortawesome/free-solid-svg-icons/faBalanceScale'
-import { faFlask } from '@fortawesome/free-solid-svg-icons/faFlask'
-import { faChartBar } from '@fortawesome/free-solid-svg-icons/faChartBar'
-import { faBurn } from '@fortawesome/free-solid-svg-icons/faBurn'
-import { faQuestion } from '@fortawesome/free-solid-svg-icons/faQuestion'
-import { faCog } from '@fortawesome/free-solid-svg-icons/faCog'
+import { faAtom, faBalanceScale, faFlask, faChartBar, faBurn, faQuestion, faCog } from '@fortawesome/free-solid-svg-icons'
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 library.add(faAtom, faBalanceScale, faFlask, faChartBar, faBurn, faQuestion, faCog)
 
 Vue.use(Vuetify, {
-  iconfont: 'faSvg'
+  icons: {
+    'atom': {
+      component: FontAwesomeIcon,
+      props: {
+        icon: ['fas', 'atom']
+      }
+    },
+    'balance-scale': {
+      component: FontAwesomeIcon,
+      props: {
+        icon: ['fas', 'balance-scale']
+      }
+    },
+    'flask': {
+      component: FontAwesomeIcon,
+      props: {
+        icon: ['fas', 'flask']
+      }
+    },
+    'chart-bar': {
+      component: FontAwesomeIcon,
+      props: {
+        icon: ['fas', 'chart-bar']
+      }
+    },
+    'burn': {
+      component: FontAwesomeIcon,
+      props: {
+        icon: ['fas', 'burn']
+      }
+    },
+    'question': {
+      component: FontAwesomeIcon,
+      props: {
+        icon: ['fas', 'question']
+      }
+    },
+    'cog': {
+      component: FontAwesomeIcon,
+      props: {
+        icon: ['fas', 'cog']
+      }
+    },
 })
