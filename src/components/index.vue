@@ -14,7 +14,7 @@
         <v-layout row wrap class="justify-center">
           <v-flex v-for="(tool, i) in tools" :key="i" class="mx-3" style="width:200px;">
             <v-btn :to="tool.to" block dark color="purple lighten-1">
-              <font-awesome-icon class="mx-1" icon="{{ tool.icon }}"/>
+              <font-awesome-icon class="mx-1" v-icon="tool.icon"/>
               {{ $t(tool.text) }}
             </v-btn>
           </v-flex>
