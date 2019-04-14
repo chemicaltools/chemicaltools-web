@@ -14,7 +14,7 @@
         <v-layout row wrap class="justify-center">
           <v-flex v-for="(tool, i) in tools" :key="i" class="mx-3" style="width:200px;">
             <v-btn :to="tool.to" block dark color="purple lighten-1">
-              <v-icon class="mx-1">{{ tool.icon }}</v-icon>
+              <font-awesome-icon class="mx-1" :icon="tool.icon"/>
               {{ $t(tool.text) }}
             </v-btn>
           </v-flex>
@@ -31,32 +31,32 @@ export default {
       {
         text: 'message.element',
         to: '/element/',
-        icon: 'fa-atom'
+        icon: 'atom'
       },
       {
         text: 'message.mass',
         to: '/mass/',
-        icon: 'fa-balance-scale'
+        icon: 'balance-scale'
       },
       {
         text: 'message.acid',
         to: '/acid/',
-        icon: 'fa-flask'
+        icon: 'flask'
       },
       {
         text: 'message.deviation',
         to: '/deviation/',
-        icon: 'fa-chart-bar'
+        icon: 'chart-bar'
       },
       {
         text: 'message.gas',
         to: '/gas/',
-        icon: 'fa-burn'
+        icon: 'burn'
       },
       {
         text: 'message.exam',
         to: '/exam/',
-        icon: 'fa-question'
+        icon: 'question'
       }
     ]
   })

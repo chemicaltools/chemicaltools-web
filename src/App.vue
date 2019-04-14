@@ -4,7 +4,7 @@
       <v-list dense>
         <v-list-tile v-for="(tool, i) in tools" :key="i" :to="tool.to">
           <v-list-tile-action>
-            <v-icon>{{tool.icon}}</v-icon>
+            <font-awesome-icon :icon="tool.icon"/>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>{{$t(tool.text)}}</v-list-tile-title>
@@ -93,37 +93,37 @@ export default {
       {
         text: 'message.element',
         to: '/element/',
-        icon: 'fa-atom'
+        icon: 'atom'
       },
       {
         text: 'message.mass',
         to: '/mass/',
-        icon: 'fa-balance-scale'
+        icon: 'balance-scale'
       },
       {
         text: 'message.acid',
         to: '/acid/',
-        icon: 'fa-flask'
+        icon: 'flask'
       },
       {
         text: 'message.deviation',
         to: '/deviation/',
-        icon: 'fa-chart-bar'
+        icon: 'chart-bar'
       },
       {
         text: 'message.gas',
         to: '/gas/',
-        icon: 'fa-burn'
+        icon: 'burn'
       },
       {
         text: 'message.exam',
         to: '/exam/',
-        icon: 'fa-question'
+        icon: 'question'
       },
       {
         text: 'message.settings',
         to: '/setting/',
-        icon: 'fa-cog'
+        icon: 'cog'
       }
     ],
     links: [
