@@ -4,7 +4,7 @@
       <v-list dense>
         <v-list-tile v-for="(tool, i) in tools" :key="i" :to="tool.to">
           <v-list-tile-action>
-            <v-icon>$vuetify.icons.{{ tool.icon }}</v-icon>
+            <v-icon>{{ tool.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>{{$t(tool.text)}}</v-list-tile-title>
@@ -88,42 +88,42 @@ export default {
       {
         text: 'message.homepage',
         to: '/',
-        icon: 'home'
+        icon: '$vuetify.icons.home'
       },
       {
         text: 'message.element',
         to: '/element/',
-        icon: 'atom'
+        icon: '$vuetify.icons.atom'
       },
       {
         text: 'message.mass',
         to: '/mass/',
-        icon: 'balance-scale'
+        icon: '$vuetify.icons.balance-scale'
       },
       {
         text: 'message.acid',
         to: '/acid/',
-        icon: 'flask'
+        icon: '$vuetify.icons.flask'
       },
       {
         text: 'message.deviation',
         to: '/deviation/',
-        icon: 'chart-bar'
+        icon: '$vuetify.icons.chart-bar'
       },
       {
         text: 'message.gas',
         to: '/gas/',
-        icon: 'burn'
+        icon: '$vuetify.icons.burn'
       },
       {
         text: 'message.exam',
         to: '/exam/',
-        icon: 'question'
+        icon: '$vuetify.icons.question'
       },
       {
         text: 'message.settings',
         to: '/setting/',
-        icon: 'cog'
+        icon: '$vuetify.icons.cog'
       }
     ],
     links: [
