@@ -4,7 +4,7 @@
       <v-list dense>
         <v-list-tile v-for="(tool, i) in tools" :key="i" :to="tool.to">
           <v-list-tile-action>
-            <font-awesome-icon v-icon="tool.icon"/>
+            <v-icon>$vuetify.icons.{{ tool.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>{{$t(tool.text)}}</v-list-tile-title>
