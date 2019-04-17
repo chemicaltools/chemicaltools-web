@@ -39,7 +39,7 @@
     "string-format": "2.0.0",
     "vue": "2.6.10",
     "vue-i18n": "8.10.0",
-    "vue-router": "3.0.5",
+    "vue-router": "3.0.6",
     "vue2-storage": "3.4.0",
     "vuetify": "1.5.12"
   },
