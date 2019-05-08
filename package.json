@@ -58,7 +58,7 @@
     "electron": "5.0.1",
     "eslint": "5.16.0",
     "eslint-plugin-vue": "5.2.2",
-    "semantic-release": "15.13.3",
+    "semantic-release": "15.13.12",
     "stylus": "0.54.5",
     "stylus-loader": "3.0.2",
     "vue-cli-plugin-cordova": "2.1.3",
