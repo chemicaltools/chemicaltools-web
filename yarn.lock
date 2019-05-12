@@ -11708,10 +11708,10 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue2-storage@3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/vue2-storage/-/vue2-storage-3.4.0.tgz#ce221aa5476ddf4886a9caeb884f8c491bd7a210"
-  integrity sha512-S61D+sZhXxjzGWIVsMOtYtw+mTs9ELqKo5N7atHYAdodJKBH93S6MvlTTigB9zlpwopWkTB/GpP5/3r22n6YfQ==
+vue2-storage@4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/vue2-storage/-/vue2-storage-4.0.3.tgz#08e4586d8293861dc56b759c49fb219b4bc030ac"
+  integrity sha512-935uv4lAMDRpVj71vRts+oaL0LLp6uBeNiZCtInrVz73fnmHk1fNhQ7RGHH5HkMg/ytqWbD6BaQPoDU0nOs1WQ==
   dependencies:
     object-assign "^4.1.1"
 
