@@ -54,7 +54,7 @@
     "@vue/cli-service": "3.7.0",
     "@vue/eslint-config-standard": "4.0.0",
     "babel-eslint": "10.0.1",
-    "bundlesize": "0.17.1",
+    "bundlesize": "0.17.2",
     "electron": "5.0.1",
     "eslint": "5.16.0",
     "eslint-plugin-vue": "5.2.2",
