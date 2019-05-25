@@ -11,7 +11,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build && bundlesize",
     "lint": "vue-cli-service lint --fix",
-    "cordova-build-android": "yes | sdkmanager tools && yes | sdkmanager --licenses && vue-cli-service cordova-build-android",
+    "cordova-build-android": "vue-cli-service cordova-build-android",
     "cordova-build-browser": "vue-cli-service cordova-build-browser",
     "cordova-build-ios": "vue-cli-service cordova-build-ios",
     "cordova-build-osx": "vue-cli-service cordova-build-osx",
