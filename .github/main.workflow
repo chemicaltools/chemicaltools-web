@@ -15,14 +15,14 @@ action "yarn build" {
 }
 
 action "yarn cordova-prepare" {
-  uses = "docker://beevelop/cordova:latest"
+  uses = "docker://sapk/cordova-android:latest"
   needs = ["yarn build"]
   runs = "npm"
   args = "run cordova-prepare"
 }
 
 action "yarn cordova-build-android" {
-  uses = "docker://beevelop/cordova:latest"
+  uses = "docker://sapk/cordova-android:latest"
   needs = ["yarn cordova-prepare"]
   runs = "npm"
   args = "run cordova-build-android"
