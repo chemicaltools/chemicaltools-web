@@ -11,7 +11,7 @@ action "yarn install" {
 action "yarn build" {
   uses = "Borales/actions-yarn@master"
   needs = ["yarn install"]
-  args = "yarn build"
+  args = "build"
 }
 
 action "yarn cordova-prepare" {
