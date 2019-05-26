@@ -12,6 +12,13 @@ action "yarn build" {
   uses = "Borales/actions-yarn@master"
   needs = ["yarn install"]
   args = "build"
+  env = {
+    CI_COMMIT_MESSAGE = ""
+    CI_REPO_OWNER = "njzjz"
+    CI_REPO_NAME = "chemicaltools-web"
+    CI = "github_actions"
+  }
+  secrets = ["BUNDLESIZE_GITHUB_TOKEN"]
 }
 
 action "yarn cordova-prepare" {
