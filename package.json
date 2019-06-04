@@ -44,7 +44,7 @@
     "vuetify": "1.5.14"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "1.2.18",
+    "@fortawesome/fontawesome-svg-core": "1.2.19",
     "@fortawesome/free-solid-svg-icons": "5.8.2",
     "@fortawesome/vue-fontawesome": "0.1.6",
     "@semantic-release/git": "7.0.8",
