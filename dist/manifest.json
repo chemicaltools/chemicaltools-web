@@ -1,0 +1,36 @@
+{
+  "name": "ChemicalTools",
+  "short_name": "ChemicalTools",
+  "description": "Essential tools for chemistry students",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#4DBA87",
+  "icons": [
+    {
+      "src": "/img/icons/apple-touch-icon-76x76.png",
+      "sizes": "76x76",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/apple-touch-icon-120x120.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/apple-touch-icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/apple-touch-icon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/android-touch-icon.png",
+      "sizes": "58x58",
+      "type": "image/png"
+    }
+  ]
+}
