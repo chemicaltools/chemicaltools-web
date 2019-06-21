@@ -55,7 +55,7 @@
     "@vue/eslint-config-standard": "4.0.0",
     "babel-eslint": "10.0.2",
     "bundlesize": "0.17.2",
-    "electron": "5.0.4",
+    "electron": "5.0.5",
     "eslint": "5.16.0",
     "eslint-plugin-vue": "5.2.2",
     "semantic-release": "15.13.16",
