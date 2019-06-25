@@ -57,7 +57,7 @@
     "bundlesize": "0.17.2",
     "electron": "5.0.5",
     "eslint": "5.16.0",
-    "eslint-plugin-vue": "5.2.2",
+    "eslint-plugin-vue": "5.2.3",
     "semantic-release": "15.13.16",
     "stylus": "0.54.5",
     "stylus-loader": "3.0.2",
