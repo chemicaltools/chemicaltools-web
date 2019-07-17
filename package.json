@@ -1,6 +1,6 @@
 {
   "name": "chemicaltools-web",
-  "version": "3.0.46",
+  "version": "3.0.47",
   "description": "Chemical Tools PWA version for Chemistry students.",
   "author": "Jinzhe Zeng",
   "bugs": {
@@ -129,5 +129,7 @@
       "path": "./dist/**/*.*"
     }
   ],
-  "engines" : { "node" : ">=10.15.0" }
+  "engines": {
+    "node": ">=10.15.0"
+  }
 }
