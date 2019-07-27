@@ -1,6 +1,6 @@
 workflow "Build and deploy on push" {
   on = "push"
-  resolves = ["yarn exec semantic-release"]
+  resolves = ["Deploy to GitHub Pages"]
 }
 
 action "yarn install" {
@@ -50,7 +50,7 @@ action "Filters for GitHub Actions" {
 
 action "Deploy to GitHub Pages" {
   uses = "JamesIves/github-pages-deploy-action@master"
-  needs = ["Filters for GitHub Actions"]
+  needs = ["yarn exec semantic-release"]
   env = {
     FOLDER = "dist"
     BRANCH = "gh-pages"
@@ -60,7 +60,7 @@ action "Deploy to GitHub Pages" {
 
 action "yarn exec semantic-release" {
   uses = "Borales/actions-yarn@master"
-  needs = ["Deploy to GitHub Pages"]
+  needs = ["Filters for GitHub Actions"]
   args = "exec semantic-release"
   secrets = ["GH_TOKEN", "NPM_TOKEN"]
 }
