@@ -1,0 +1,54 @@
+on: push
+name: Build and deploy on push
+jobs:
+  yarnInstall:
+    name: yarn install
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: yarn install
+      uses: Borales/actions-yarn@master
+      with:
+        args: install
+    - name: yarn build
+      uses: Borales/actions-yarn@master
+      env:
+        BUNDLESIZE_GITHUB_TOKEN: ${{ secrets.BUNDLESIZE_GITHUB_TOKEN }}
+        CI: github_actions
+        CI_COMMIT_MESSAGE: ""
+        CI_REPO_NAME: chemicaltools-web
+        CI_REPO_OWNER: njzjz
+      with:
+        args: build
+    - name: yarn cordova-prepare
+      uses: docker://vgaidarji/docker-android-cordova:latest
+      with:
+        entrypoint: npm
+        args: run cordova-prepare
+    - name: yarn cordova-build-android
+      uses: docker://vgaidarji/docker-android-cordova:latest
+      with:
+        entrypoint: npm
+        args: run cordova-build-android
+    - name: yarn electron:build-all
+      uses: docker://electronuserland/electron-builder:wine
+      with:
+        entrypoint: yarn
+        args: electron:build-all
+    - name: Filters for GitHub Actions
+      uses: actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da
+      with:
+        args: branch master
+    - name: yarn exec semantic-release
+      uses: Borales/actions-yarn@master
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      with:
+        args: exec semantic-release
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@master
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: dist
