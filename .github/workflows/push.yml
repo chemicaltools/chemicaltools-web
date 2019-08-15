@@ -32,15 +32,14 @@ jobs:
         args: run cordova-build-android
     - name: yarn electron:build-all
       uses: docker://electronuserland/electron-builder:wine
+      env:
+        WINEPREFIX: /github/home/wine
       with:
         entrypoint: yarn
         args: electron:build-all
-    - name: Filters for GitHub Actions
-      uses: actions/bin/filter@3c0b4f0e63ea54ea5df2914b4fabf383368cd0da
-      with:
-        args: branch master
     - name: yarn exec semantic-release
       uses: Borales/actions-yarn@master
+      if: github.ref == 'refs/heads/master'
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -48,6 +47,7 @@ jobs:
         args: exec semantic-release
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@master
+      if: github.ref == 'refs/heads/master'
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
