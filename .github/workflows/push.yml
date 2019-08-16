@@ -32,8 +32,6 @@ jobs:
         args: run cordova-build-android
     - name: yarn electron:build-all
       uses: docker://electronuserland/electron-builder:wine
-      env:
-        WINEPREFIX: /github/home/wine
       with:
         entrypoint: yarn
         args: electron:build-all
