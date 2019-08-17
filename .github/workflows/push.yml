@@ -20,21 +20,6 @@ jobs:
         CI_REPO_OWNER: njzjz
       with:
         args: build
-    - name: yarn cordova-prepare
-      uses: docker://vgaidarji/docker-android-cordova:latest
-      with:
-        entrypoint: npm
-        args: run cordova-prepare
-    - name: yarn cordova-build-android
-      uses: docker://vgaidarji/docker-android-cordova:latest
-      with:
-        entrypoint: npm
-        args: run cordova-build-android
-    - name: yarn electron:build-all
-      uses: docker://electronuserland/electron-builder:wine
-      with:
-        entrypoint: yarn
-        args: electron:build-all
     - name: yarn exec semantic-release
       uses: Borales/actions-yarn@master
       if: github.ref == 'refs/heads/master'
