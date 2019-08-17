@@ -7,7 +7,7 @@ Essential tools for chemistry students developed with vue.js.
 
 **Email**: jzzeng@stu.ecnu.edu.cn
 
-[![Official Website](https://img.shields.io/website-up-down-green-red/https/chem.njzjz.win.svg?label=Official%20Website)](https://chem.njzjz.win/) [![Greenkeeper badge](https://badges.greenkeeper.io/njzjz/Chemical-Tools-web.svg)](https://greenkeeper.io/)
+[![Official Website](https://img.shields.io/website-up-down-green-red/https/chem.njzjz.win.svg?label=Official%20Website)](https://chem.njzjz.win/)
 
 ## Awards
 * The First Award in 2017 East China Normal University Computer Application Competition (2017年华东师范大学计算机应用能力大赛一等奖)

@@ -24,7 +24,7 @@
     "electron:build-linux": "vue-cli-service electron:build --linux",
     "electron:build-windows": "vue-cli-service electron:build --windows",
     "electron:build-macos": "vue-cli-service electron:build --macos",
-    "electron:build-all": "vue-cli-service electron:build --linux --windows",
+    "electron:build-all": "WINEPREFIX=/root/.wine ELECTRON_CACHE=/root/.cache/electron ELECTRON_BUILDER_CACHE=/root/.cache/electron-builder vue-cli-service electron:build --linux --windows",
     "electron:serve": "vue-cli-service electron:serve",
     "docker-linux": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-linux\"",
     "docker-windows": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-windows\"",
