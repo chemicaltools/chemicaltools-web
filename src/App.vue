@@ -2,17 +2,17 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed app>
       <v-list dense>
-        <v-list-tile v-for="(tool, i) in tools" :key="i" :to="tool.to">
-          <v-list-tile-action>
+        <v-list-item v-for="(tool, i) in tools" :key="i" :to="tool.to">
+          <v-list-item-action>
             <font-awesome-icon :icon="tool.icon"/>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>{{$t(tool.text)}}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>{{$t(tool.text)}}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app color="purple" dark>
+    <v-toolbar app color="purple">
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="headline">
         <span>{{ title }}</span>

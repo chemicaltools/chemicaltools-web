@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import './plugins/vuetify'
+import vuetify from './plugins/vuetify'
 import Vue2Storage from 'vue2-storage'
 
 import './registerServiceWorker'
@@ -21,6 +21,7 @@ Vue.filter('keepTwoNum', function (value) {
 
 new Vue({
   router,
+  vuetify,
   render: h => h(App),
-  i18n
+  i18n,
 }).$mount('#app')

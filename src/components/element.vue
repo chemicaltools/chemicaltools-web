@@ -7,7 +7,7 @@
     <v-layout row wrap>
       <v-flex>
         <v-data-table
-          :items="results"
+          :item="results"
           :no-data-text="$t(info)"
           disable-initial-sort
           hide-actions
@@ -17,8 +17,10 @@
             <template
               v-if="result.item.exclude?result.item.exclude.indexOf($i18n.locale)==-1:true"
             >
+			  <tr>
               <td>{{ $t(result.item.name) }}</td>
               <td class="text-xs-right">{{ result.item.value }}</td>
+			  </tr>
             </template>
           </template>
         </v-data-table>

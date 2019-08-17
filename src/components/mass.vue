@@ -13,19 +13,21 @@
           ={{mass}}
         </div>
         <v-data-table
-          :headers="$t('massheader')"
-          :items="results"
+          :header="$t('massheader')"
+          :item="results"
           v-show="results.length"
           disable-initial-sort
           hide-actions
         >
           <template v-slot:items="result">
+		    <tr>
             <td v-show="$i18n.locale=='zh'">{{ result.item.name }}</td>
             <td>{{ result.item.iupac }}</td>
             <td class="text-xs-right">{{ result.item.symbol }}</td>
             <td class="text-xs-right">{{ result.item.atomnumber }}</td>
             <td class="text-xs-right">{{ result.item.mass | keepTwoNum }}</td>
             <td class="text-xs-right">{{ result.item.massper | keepTwoNum }}</td>
+			</tr>
           </template>
         </v-data-table>
       </v-flex>
