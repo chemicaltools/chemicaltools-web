@@ -23,5 +23,5 @@ new Vue({
   router,
   vuetify,
   render: h => h(App),
-  i18n,
+  i18n
 }).$mount('#app')

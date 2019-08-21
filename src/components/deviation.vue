@@ -7,23 +7,25 @@
       v-model="input"
     ></v-textarea>
     <v-btn color="success" v-on:click="calculateDeviation(input)">{{$t("message.calculate")}}</v-btn>
-    <v-layout row wrap>
+    <v-row wrap>
       <v-flex>
         <div class="pt-3" v-html="$t(output)"></div>
         <v-data-table
           :items="results"
           v-show="results"
-          disable-initial-sort
-          hide-actions
-          hide-headers
+          sort-by
+          hide-default-footer
+          hide-default-header
         >
-          <template v-slot:items="result">
+          <template v-slot:item="result">
+		    <tr>
             <td>{{ $t(result.item.name) }}</td>
             <td class="text-xs-right" v-html="result.item.value"></td>
+			</tr>
           </template>
         </v-data-table>
       </v-flex>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 <script>

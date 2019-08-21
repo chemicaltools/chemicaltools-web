@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-layout text-xs-center wrap>
+    <v-layout text-center wrap>
       <v-flex xs12>
         <v-img :src="require('../assets/logo.png')" class="my-3" contain height="200"></v-img>
       </v-flex>
@@ -11,14 +11,14 @@
       </v-flex>
 
       <v-flex mb-3>
-        <v-layout row wrap class="justify-center">
+        <v-row wrap class="justify-center">
           <v-flex v-for="(tool, i) in tools" :key="i" class="mx-3" style="width:200px;">
             <v-btn :to="tool.to" block dark color="purple lighten-1">
               <font-awesome-icon class="mx-1" :icon="tool.icon"/>
               {{ $t(tool.text) }}
             </v-btn>
           </v-flex>
-        </v-layout>
+        </v-row>
       </v-flex>
     </v-layout>
   </v-container>

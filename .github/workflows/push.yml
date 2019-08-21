@@ -12,12 +12,6 @@ jobs:
         args: install
     - name: yarn build
       uses: Borales/actions-yarn@master
-      env:
-        BUNDLESIZE_GITHUB_TOKEN: ${{ secrets.BUNDLESIZE_GITHUB_TOKEN }}
-        CI: github_actions
-        CI_COMMIT_MESSAGE: ""
-        CI_REPO_NAME: chemicaltools-web
-        CI_REPO_OWNER: njzjz
       with:
         args: build
     - name: yarn exec semantic-release

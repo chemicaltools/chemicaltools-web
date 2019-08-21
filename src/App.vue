@@ -12,11 +12,9 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app color="purple">
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title class="headline">
-        <span>{{ title }}</span>
-      </v-toolbar-title>
+    <v-app-bar app color="purple" dark>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-toolbar-title class="headline">{{ title }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-title class="headline" v-show="!$vuetify.breakpoint.xs">
         {{ $t("message.chemicaltools") }}
@@ -28,22 +26,22 @@
       </v-toolbar-title>
       <v-menu attach bottom offset-y>
         <template #activator="{ on: menu }">
-          <v-btn :aria-label="$t('message.languages')" flat style="min-width: 48px" v-on="menu">
+          <v-btn :aria-label="$t('message.languages')" text style="min-width: 48px" v-on="menu">
             <v-icon>language</v-icon>
           </v-btn>
         </template>
         <v-list dense light>
-          <v-list-tile
+          <v-list-item
             v-for="language in languages"
             :key="language.value"
             avatar
             @click="updatelang(language.value)"
           >
-            <v-list-tile-title v-text="language.text"/>
-          </v-list-tile>
+            <v-list-item-title v-text="language.text"/>
+          </v-list-item>
         </v-list>
       </v-menu>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-content>
       <router-view></router-view>
@@ -54,8 +52,8 @@
             v-for="(link,i) in links"
             :key="i"
             color="white"
-            flat
-            round
+            text
+            rounded
             :href="link.href"
             target="_blank"
           >{{ link.text }}</v-btn>
@@ -63,12 +61,12 @@
             purple
             lighten-2
             py-3
-            text-xs-center
+            text-center
             xs12
           >Copyright &copy; 2016-2019 Jinzhe Zeng, Licensed under
             <v-btn
-              round
-              flat
+              rounded
+              text
               href="https://www.apache.org/licenses/LICENSE-2.0"
               target="_blank"
             >the Apache License, Version 2.0</v-btn>
@@ -140,7 +138,7 @@ export default {
     username () {
       return this.$route.params.username
     },
-    title() {
+    title () {
       const title = this.$t(this.$route.meta.title)
       const appname = this.$t('message.chemicaltools')
       window.document.title = title + ' - ' + appname

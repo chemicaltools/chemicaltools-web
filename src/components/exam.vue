@@ -5,16 +5,16 @@
       {{question}}
     </h2>
     <v-list>
-      <v-list-tile
+      <v-list-item
         v-for="(option, i) in options"
         :key="i"
         @click="answer(question, option, mode=mode)"
       >
-        <v-list-tile-action v-text="i+1"></v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title v-text="option"></v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        <v-list-item-action v-text="i+1"></v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title v-text="option"></v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
     <div>{{$t(result, {question:oldquestion, answer:oldanswer, correctanswer:correct_answer})}}</div>
     <div>{{$t("message.score",{correct:correct, incorrect:incorrect})}}</div>

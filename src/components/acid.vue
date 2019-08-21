@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <v-layout row wrap>
+    <v-row wrap>
       <v-text-field :label="AorB?'pKa':'pKb'" v-model="pKa"></v-text-field>
       <v-select :items="$t('ablabel')" :label="$t('message.ab')" v-model="AorB"></v-select>
-    </v-layout>
-    <v-layout row wrap>
+    </v-row>
+    <v-row wrap>
       <v-text-field :label="$t('message.c')" v-model="c"></v-text-field>
       <v-btn color="success" v-on:click="calacid(c,pKa,AorB)">{{$t("message.calculate")}}</v-btn>
-    </v-layout>
+    </v-row>
     <div class="pt-3" v-show="!output">{{$t("message.inputdata")}}</div>
     <div class="pt-3" v-html="output"></div>
   </v-container>
