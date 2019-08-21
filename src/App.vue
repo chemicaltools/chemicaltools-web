@@ -4,7 +4,7 @@
       <v-list dense>
         <v-list-item v-for="(tool, i) in tools" :key="i" :to="tool.to">
           <v-list-item-action>
-            <font-awesome-icon :icon="tool.icon"/>
+		    <v-icon>{{tool.icon}}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>{{$t(tool.text)}}</v-list-item-title>
@@ -86,42 +86,42 @@ export default {
       {
         text: 'message.homepage',
         to: '/',
-        icon: 'home'
+        icon: 'fa-home'
       },
       {
         text: 'message.element',
         to: '/element/',
-        icon: 'atom'
+        icon: 'fa-atom'
       },
       {
         text: 'message.mass',
         to: '/mass/',
-        icon: 'balance-scale'
+        icon: 'fa-balance-scale'
       },
       {
         text: 'message.acid',
         to: '/acid/',
-        icon: 'flask'
+        icon: 'fa-flask'
       },
       {
         text: 'message.deviation',
         to: '/deviation/',
-        icon: 'chart-bar'
+        icon: 'fa-chart-bar'
       },
       {
         text: 'message.gas',
         to: '/gas/',
-        icon: 'burn'
+        icon: 'fa-burn'
       },
       {
         text: 'message.exam',
         to: '/exam/',
-        icon: 'question'
+        icon: 'fa-question'
       },
       {
         text: 'message.settings',
         to: '/setting/',
-        icon: 'cog'
+        icon: 'fa-cog'
       }
     ],
     links: [
