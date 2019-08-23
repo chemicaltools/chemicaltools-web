@@ -13,7 +13,7 @@
       <v-flex mb-3>
         <v-row wrap class="justify-center">
           <v-flex v-for="(tool, i) in tools" :key="i" class="mx-3" style="width:200px;">
-            <v-btn :to="tool.to" block dark color="purple lighten-1">
+            <v-btn :to="tool.to" block dark color="purple lighten-1" class="ma-2">
               <v-icon>{{tool.icon}}</v-icon>
               {{ $t(tool.text) }}
             </v-btn>
