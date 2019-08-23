@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <v-layout row wrap>
+    <v-row wrap>
       <v-text-field :label="$t('message.formula')" v-model="input"></v-text-field>
       <v-btn color="success" v-on:click="outputmass(input)">{{$t("message.calculate")}}</v-btn>
-    </v-layout>
-    <v-layout row wrap>
+    </v-row>
+    <v-row wrap>
       <v-flex>
         <div class="pt-3" v-show="!results.length">{{ $t(output) }}</div>
         <div class="pt-3" v-html="name" v-show="results.length"></div>
@@ -13,23 +13,25 @@
           ={{mass}}
         </div>
         <v-data-table
-          :headers="$t('massheader')"
+          :header="$t('massheader')"
           :items="results"
           v-show="results.length"
-          disable-initial-sort
-          hide-actions
+          sort-by
+          hide-default-footer
         >
-          <template v-slot:items="result">
+          <template v-slot:item="result">
+          <tr>
             <td v-show="$i18n.locale=='zh'">{{ result.item.name }}</td>
             <td>{{ result.item.iupac }}</td>
             <td class="text-xs-right">{{ result.item.symbol }}</td>
             <td class="text-xs-right">{{ result.item.atomnumber }}</td>
             <td class="text-xs-right">{{ result.item.mass | keepTwoNum }}</td>
             <td class="text-xs-right">{{ result.item.massper | keepTwoNum }}</td>
+          </tr>
           </template>
         </v-data-table>
       </v-flex>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 <script>

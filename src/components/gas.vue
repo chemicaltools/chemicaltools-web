@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-radio-group v-model="mode">
-      <v-layout row wrap :key="i" v-for="(value, i) in values">
+      <v-layout wrap :key="i" v-for="(value, i) in values">
         <v-radio :label="value.text" :value="value.text"></v-radio>
         <v-text-field :label="$t(value.label)" v-model="value.input"></v-text-field>
       </v-layout>

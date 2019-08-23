@@ -1,35 +1,37 @@
 <template>
   <v-container>
-    <v-layout row wrap>
+    <v-row wrap>
       <v-text-field :label="$t('message.elementhint')" v-model="input"></v-text-field>
       <v-btn color="success" v-on:click="outputelement(input)">{{$t("message.search")}}</v-btn>
-    </v-layout>
-    <v-layout row wrap>
+    </v-row>
+    <v-row wrap>
       <v-flex>
         <v-data-table
           :items="results"
           :no-data-text="$t(info)"
-          disable-initial-sort
-          hide-actions
-          hide-headers
+          sort-by
+          hide-default-footer
+          hide-default-header
         >
-          <template v-slot:items="result">
+          <template v-slot:item="result">
             <template
               v-if="result.item.exclude?result.item.exclude.indexOf($i18n.locale)==-1:true"
             >
+            <tr>
               <td>{{ $t(result.item.name) }}</td>
               <td class="text-xs-right">{{ result.item.value }}</td>
+            </tr>
             </template>
           </template>
         </v-data-table>
-        <div class="text-xs-center pt-2">
+        <div class="text-center pt-2">
           <v-btn cl :href="wikipedia" v-show="wikipedia" target="_blank">{{$t("message.wikipedia")}}</v-btn>
         </div>
       </v-flex>
       <v-flex xs2 v-show="url">
         <v-img :src="url" :lazy-src="url"></v-img>
       </v-flex>
-    </v-layout>
+    </v-row>
     <div style="overflow-y:scroll;width:100%;overflow-x:none;" v-html="elementtable"></div>
   </v-container>
 </template>
