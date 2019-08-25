@@ -54,7 +54,7 @@
     "@vue/cli-plugin-pwa": "3.11.0",
     "@vue/cli-service": "3.11.0",
     "@vue/eslint-config-standard": "4.0.0",
-    "babel-eslint": "10.0.2",
+    "babel-eslint": "10.0.3",
     "bundlesize": "0.18.0",
     "electron": "6.0.4",
     "eslint": "6.2.2",
