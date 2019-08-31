@@ -47,7 +47,7 @@
     "@fortawesome/fontawesome-free": "5.10.2",
     "@fortawesome/fontawesome-svg-core": "1.2.22",
     "@fortawesome/free-solid-svg-icons": "5.10.2",
-    "@fortawesome/vue-fontawesome": "0.1.6",
+    "@fortawesome/vue-fontawesome": "0.1.7",
     "@semantic-release/git": "7.0.16",
     "@vue/cli-plugin-babel": "3.11.0",
     "@vue/cli-plugin-eslint": "3.11.0",
