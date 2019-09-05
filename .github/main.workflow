@@ -22,21 +22,21 @@ action "yarn build" {
 }
 
 action "yarn cordova-prepare" {
-  uses = "docker://vgaidarji/docker-android-cordova:latest"
+  uses = "docker://vgaidarji/docker-android-cordova:latest@sha256:0ae155bc1d48332cee820ac0103904e6f4043ec8e43d4bcfca53b3c84f2ddf5a"
   needs = ["yarn build"]
   runs = "npm"
   args = "run cordova-prepare"
 }
 
 action "yarn cordova-build-android" {
-  uses = "docker://vgaidarji/docker-android-cordova:latest"
+  uses = "docker://vgaidarji/docker-android-cordova:latest@sha256:0ae155bc1d48332cee820ac0103904e6f4043ec8e43d4bcfca53b3c84f2ddf5a"
   needs = ["yarn cordova-prepare"]
   runs = "npm"
   args = "run cordova-build-android"
 }
 
 action "yarn electron:build-all" {
-  uses = "docker://electronuserland/electron-builder:wine"
+  uses = "docker://electronuserland/electron-builder:wine@sha256:5bbb0ba3ed046f72f52125508104d9169559bf36f944402272cb9c1e8af5b1e3"
   needs = ["yarn cordova-build-android"]
   runs = "yarn"
   args = "electron:build-all"
