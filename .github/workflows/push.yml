@@ -6,22 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: yarn install
-      uses: Borales/actions-yarn@master
+    - uses: actions/setup-node@v1
       with:
-        args: install
-    - name: yarn build
-      uses: Borales/actions-yarn@master
-      with:
-        args: build
-    - name: yarn exec semantic-release
-      uses: Borales/actions-yarn@master
+        node-version: 12
+    - run: yarn install
+    - run: yarn build
+    - run: yarn exec semantic-release
       if: github.ref == 'refs/heads/master'
-      env:
-        GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-      with:
-        args: exec semantic-release
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@master
       if: github.ref == 'refs/heads/master'
