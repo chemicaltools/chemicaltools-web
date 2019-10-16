@@ -18,10 +18,10 @@
           hide-default-header
         >
           <template v-slot:item="result">
-		    <tr>
-            <td>{{ $t(result.item.name) }}</td>
-            <td class="text-xs-right" v-html="result.item.value"></td>
-			</tr>
+            <tr>
+              <td>{{ $t(result.item.name) }}</td>
+              <td class="text-xs-right" v-html="result.item.value"></td>
+            </tr>
           </template>
         </v-data-table>
       </v-flex>
