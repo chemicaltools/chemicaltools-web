@@ -4,7 +4,7 @@
       <v-list dense>
         <v-list-item v-for="(tool, i) in tools" :key="i" :to="tool.to">
           <v-list-item-action>
-		    <v-icon>{{tool.icon}}</v-icon>
+            <v-icon>{{tool.icon}}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>{{$t(tool.text)}}</v-list-item-title>
