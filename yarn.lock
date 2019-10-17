@@ -11982,11 +11982,12 @@ vue-cli-plugin-i18n@0.6.0:
     vue-i18n "^8.0.0"
     vue-i18n-extract "^0.4.13"
 
-vue-cli-plugin-vuetify@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-1.0.1.tgz#bef77be1d04d2c0f03f1771ebdcbb99f172dfe8a"
-  integrity sha512-Due6vvETiNY0MaRxa8aZnxLIQmPBU+l1hKmed3i/Ly6+kiUcSnNO3OdWt7LVL6nZ/SY71SxVk3at95ipnDe++Q==
+vue-cli-plugin-vuetify@1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-1.0.2.tgz#3f2e277e23742113592eccbc92cccfa07d7e2c6e"
+  integrity sha512-qSOBHxK0MzKw5NEEe/dCO+koN3nNY+31D2NmJIXyVCvd6le3rs7lLcJ6conVAyt6iBYseknaF2xEs3ZHWB3JnQ==
   dependencies:
+    semver "^6.0.0"
     shelljs "^0.8.3"
 
 vue-eslint-parser@^5.0.0:
