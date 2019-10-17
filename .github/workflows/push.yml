@@ -15,6 +15,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN	}}
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@master
       if: github.ref == 'refs/heads/master'
