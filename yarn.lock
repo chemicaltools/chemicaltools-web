@@ -12201,10 +12201,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
 
-vue-cli-plugin-cordova@2.3.6:
-  version "2.3.6"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-cordova/-/vue-cli-plugin-cordova-2.3.6.tgz#17d3199457ecf40e0d75b26c918979786a17792c"
-  integrity sha512-XXL8vjytziYkrzX6aYes4ju/TASTql7X/px1hLAZXJuWQsF5gfxGeU4mpVPq1OQWMgY06GPFFhu1MvGIUHJ4zg==
+vue-cli-plugin-cordova@2.3.7:
+  version "2.3.7"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-cordova/-/vue-cli-plugin-cordova-2.3.7.tgz#cd729ea4e4afa9b0977f966147cf5324d6a78101"
+  integrity sha512-9MgJSSNrjEDhGqXAK6EwvC1v+5+wEyosxlHlI+GbrZs+849b2BcybY5ShjTD09G/niV6KIwXf8g3VDErJVL/ig==
   dependencies:
     "@vue/cli-shared-utils" "^3.4.0"
     address "^1.0.3"
