@@ -2743,10 +2743,10 @@ check-types@^8.0.3:
   resolved "https://registry.yarnpkg.com/check-types/-/check-types-8.0.3.tgz#3356cca19c889544f2d7a95ed49ce508a0ecf552"
   integrity sha512-YpeKZngUmG65rLudJ4taU7VLkOCTMhNl/u4ctNC56LQS/zJTyNH0Lrtwm1tfTsbLlwvlfsA2d1c8vCf/Kh2KwQ==
 
-chemicaltools@1.2.8:
-  version "1.2.8"
-  resolved "https://registry.yarnpkg.com/chemicaltools/-/chemicaltools-1.2.8.tgz#929042a662e0a3ad1b3c2ec4d48a96d0959fd870"
-  integrity sha512-VqSDAO3acU9e0giJ5pdbr9hVc+fFHjuDuRrc6ljahPt75o9SKwvFfRF6SmIQL8ZcXQ9ymYKM80/2XJquhdE4pg==
+chemicaltools@1.2.9:
+  version "1.2.9"
+  resolved "https://registry.yarnpkg.com/chemicaltools/-/chemicaltools-1.2.9.tgz#dc53a33f31f92d8a3d371d902575c038ef0576c2"
+  integrity sha512-kElSsNX1DdwmLhap/KDUo84cJM3XiCETCFYW6DRV5CAFjBSWGbL90m11k2ExoqpIxwa+8m19zJelr4xtg1YeVg==
   dependencies:
     tiny-pinyin "^1.3.0"
 
