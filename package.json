@@ -65,7 +65,7 @@
     "semantic-release": "15.13.31",
     "stylus": "0.54.7",
     "stylus-loader": "3.0.2",
-    "vue-cli-plugin-cordova": "2.3.7",
+    "vue-cli-plugin-cordova": "2.3.8",
     "vue-cli-plugin-electron-builder": "1.4.4",
     "vue-cli-plugin-i18n": "0.6.0",
     "vue-cli-plugin-vuetify": "2.0.2",
