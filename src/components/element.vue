@@ -37,6 +37,8 @@
 </template>
 <script>
 const chemicaltools = require('chemicaltools')
+const format = require('string-format')
+format.extend(String.prototype, {})
 export default {
   data: () => ({
     results: [],
