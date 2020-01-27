@@ -13,8 +13,8 @@
           ={{mass}}
         </div>
         <v-data-table
-          :headers="$t('massheader')"
-          :items="results"
+          :header="$t('massheader')"
+          :item="results"
           v-show="results.length"
           sort-by
           hide-default-footer
