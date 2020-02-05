@@ -19,7 +19,9 @@ module.exports = {
         modules: [
           { name: 'vue', var: 'Vue', path: 'dist/vue.runtime.min.js' },
           { name: 'vue-router', var: 'VueRouter', path: 'dist/vue-router.min.js' },
-          { name: '@fortawesome/fontawesome-free', style: 'css/all.min.css', cssOnly: true }
+          { name: '@fortawesome/fontawesome-free', style: 'css/all.min.css', cssOnly: true },
+          { name: 'chemicaltools', path: 'dist/main.js' },
+          { name: 'string-format', path: 'index.min.js' }
         ]
         // publicPath: './node_modules'
       })
