@@ -2858,10 +2858,10 @@ check-types@^8.0.3:
   resolved "https://registry.yarnpkg.com/check-types/-/check-types-8.0.3.tgz#3356cca19c889544f2d7a95ed49ce508a0ecf552"
   integrity sha512-YpeKZngUmG65rLudJ4taU7VLkOCTMhNl/u4ctNC56LQS/zJTyNH0Lrtwm1tfTsbLlwvlfsA2d1c8vCf/Kh2KwQ==
 
-chemicaltools@1.2.9:
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/chemicaltools/-/chemicaltools-1.2.9.tgz#dc53a33f31f92d8a3d371d902575c038ef0576c2"
-  integrity sha512-kElSsNX1DdwmLhap/KDUo84cJM3XiCETCFYW6DRV5CAFjBSWGbL90m11k2ExoqpIxwa+8m19zJelr4xtg1YeVg==
+chemicaltools@1.2.11:
+  version "1.2.11"
+  resolved "https://registry.yarnpkg.com/chemicaltools/-/chemicaltools-1.2.11.tgz#e6f810513d6780f15e3e3dc42ba9a2638dffcae6"
+  integrity sha512-77cGwuIrWMnj+D5y5joYvqoQoVu6oMagiaYN0YLVv2dq4GyGP7a1kCR2KzARiOgzFvKtKJT7p4Nw8oYcUYUIfA==
   dependencies:
     tiny-pinyin "^1.3.0"
 
@@ -5366,7 +5366,6 @@ fsevents@^1.2.7:
   dependencies:
     bindings "^1.5.0"
     nan "^2.12.1"
-    node-pre-gyp "*"
 
 fsevents@~2.1.2:
   version "2.1.2"
@@ -8451,7 +8450,6 @@ npm@^6.10.3:
     cmd-shim "^3.0.3"
     columnify "~1.5.4"
     config-chain "^1.1.12"
-    debuglog "*"
     detect-indent "~5.0.0"
     detect-newline "^2.1.0"
     dezalgo "~1.0.3"
@@ -8466,7 +8464,6 @@ npm@^6.10.3:
     has-unicode "~2.0.1"
     hosted-git-info "^2.8.5"
     iferr "^1.0.2"
-    imurmurhash "*"
     infer-owner "^1.0.4"
     inflight "~1.0.6"
     inherits "^2.0.4"
@@ -8485,14 +8482,8 @@ npm@^6.10.3:
     libnpx "^10.2.2"
     lock-verify "^2.1.0"
     lockfile "^1.0.4"
-    lodash._baseindexof "*"
     lodash._baseuniq "~4.6.0"
-    lodash._bindcallback "*"
-    lodash._cacheindexof "*"
-    lodash._createcache "*"
-    lodash._getnative "*"
     lodash.clonedeep "~4.5.0"
-    lodash.restparam "*"
     lodash.union "~4.6.0"
     lodash.uniq "~4.5.0"
     lodash.without "~4.4.0"
