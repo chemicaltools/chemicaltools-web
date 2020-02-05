@@ -36,9 +36,6 @@
   </v-container>
 </template>
 <script>
-const chemicaltools = require('chemicaltools')
-const format = require('string-format')
-format.extend(String.prototype, {})
 export default {
   data: () => ({
     results: [],
@@ -50,6 +47,7 @@ export default {
   }),
   methods: {
     outputelement: function (input) {
+      const chemicaltools = require('chemicaltools')
       var info = chemicaltools.searchElement(input)
       if (info) {
         this.results = [
@@ -70,6 +68,9 @@ export default {
       }
     },
     makeelementtable: function () {
+      const chemicaltools = require('chemicaltools')
+      const format = require('string-format')
+      format.extend(String.prototype, {})
       var n = 0
       var output = "<table style='text-align:center;'>"
       for (var i = 0; i <= 9; i++) {
