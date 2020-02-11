@@ -10353,7 +10353,7 @@ request-promise-native@^1.0.7, request-promise-native@^1.0.8:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.45.0, request@^2.83.0, request@^2.85.0, request@^2.87.0, request@^2.88.0:
+request@^2.45.0, request@^2.83.0, request@^2.87.0, request@^2.88.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
   integrity sha512-NAqBSrijGLZdM0WZNsInLJpkJokL72XYjUpnB0iwsRgxh7dB6COrHnTBNwN0E+lHDAJzu7kLAkDeY08z2/A0hg==
@@ -11206,19 +11206,6 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
-
-sri-create@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/sri-create/-/sri-create-0.0.3.tgz#35ba419e6d9381299615cd164c96d09b1e0e2128"
-  integrity sha512-4ZL3TLvPvu0y/3YpTkZdd441ykiRnrdWJuvus99WIT7NWTS2Dl/dFdZ7j0+zuL8cZPAKG2qGSdB+OLTBMRNuyQ==
-  dependencies:
-    request "^2.85.0"
-    sri "^1.1.0"
-
-sri@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/sri/-/sri-1.1.0.tgz#0b5cf64620e490b95fd805b0c710d7669c53cdfe"
-  integrity sha1-C1z2RiDkkLlf2AWwxxDXZpxTzf4=
 
 sshpk@^1.7.0:
   version "1.16.1"
@@ -12647,12 +12634,10 @@ webpack-bundle-analyzer@^3.6.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-cdn-plugin@3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/webpack-cdn-plugin/-/webpack-cdn-plugin-3.2.0.tgz#b8dc45c3b709616644456bff8d62abc5d6c73839"
-  integrity sha512-gBNVbyG/n4TyO9Jw4DrfPu3+wMjPrGR8AXJDcqsSflRcAvQgNfVBmmlJwBQEoWIHGCxiZowAYjyXR7lRMruPkw==
-  dependencies:
-    sri-create "^0.0.3"
+webpack-cdn-plugin@3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/webpack-cdn-plugin/-/webpack-cdn-plugin-3.2.2.tgz#6d2ac2a57b18ae681cef977f2937d0b62ddd0d9d"
+  integrity sha512-E3U0I2kuRV06qthxk9INVQfP6W+daCLds2tV9ir76b1rwnTo0giZSdiiKawMuvJV7JKJEteIBHWZ28jMMjxQSQ==
 
 webpack-chain@^5.0.0:
   version "5.2.4"
