@@ -12424,10 +12424,10 @@ vue-cli-plugin-cordova@2.4.0:
     html-webpack-include-assets-plugin "^1.0.4"
     portfinder "^1.0.20"
 
-vue-cli-plugin-electron-builder@1.4.5:
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-electron-builder/-/vue-cli-plugin-electron-builder-1.4.5.tgz#0b41af1e0a48b7ca611407a0c5680bd11f324ec2"
-  integrity sha512-RwayNm/APonrFcMhwC490tOFV4oUu9dzG4Mem9H9nnMRWyZgcURBCOH6vEWhpvF6FAhdNflLVopy3gWQom9guQ==
+vue-cli-plugin-electron-builder@1.4.6:
+  version "1.4.6"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-electron-builder/-/vue-cli-plugin-electron-builder-1.4.6.tgz#5de519edc158c80ae72a67e8ae8ae983e38ecb7a"
+  integrity sha512-nHTkvhBdyyFQaJZaoAfGHf7JxxCGe8TTEthA+wXhA68cuuHLow5vX0EieApgaOXoYa0a3vkD/oWvEJXqToXrZA==
   dependencies:
     chokidar "^3.0.2"
     electron-builder "^21.2.0"
