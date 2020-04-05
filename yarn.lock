@@ -12723,10 +12723,10 @@ webpack-bundle-analyzer@^3.6.1:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-cdn-plugin@3.3.0:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/webpack-cdn-plugin/-/webpack-cdn-plugin-3.3.0.tgz#f1db862c60310f3710f5e6e98b6de0d0a5d7766a"
-  integrity sha512-rZkNwGRz77WvDsyrAYeorQJMwfssdPT+zKyfl2Hf4mX1kO8XEyPaqZ1Tztqm7ST6ywqSKAo+BNnBZkJIQPB9Ig==
+webpack-cdn-plugin@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/webpack-cdn-plugin/-/webpack-cdn-plugin-3.3.1.tgz#7e08855ab3fc0af6859f0b49620dc81f58914e23"
+  integrity sha512-xwhQ6xstFbPlgEkKNAOjXs/6YkPdzYeXl9na+CSBF7p1L88PZIGgL++vel4oiAnp+WTud7fhnSjlB79U6aN28w==
   dependencies:
     sri-create "^0.0.3"
 
