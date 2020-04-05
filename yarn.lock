@@ -10415,7 +10415,7 @@ request-promise-native@^1.0.8:
     stealthy-require "^1.1.1"
     tough-cookie "^2.3.3"
 
-request@^2.45.0, request@^2.83.0, request@^2.87.0, request@^2.88.0, request@^2.88.2:
+request@^2.45.0, request@^2.83.0, request@^2.85.0, request@^2.87.0, request@^2.88.0, request@^2.88.2:
   version "2.88.2"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.2.tgz#d73c918731cb5a87da047e207234146f664d12b3"
   integrity sha512-MsvtOrfG9ZcrOwAW+Qi+F6HbD0CWXEh9ou77uOb7FM2WPhwT7smM833PzanhJLsgXjN89Ir6V2PczXNnMpwKhw==
@@ -11268,6 +11268,19 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
+
+sri-create@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/sri-create/-/sri-create-0.0.3.tgz#35ba419e6d9381299615cd164c96d09b1e0e2128"
+  integrity sha512-4ZL3TLvPvu0y/3YpTkZdd441ykiRnrdWJuvus99WIT7NWTS2Dl/dFdZ7j0+zuL8cZPAKG2qGSdB+OLTBMRNuyQ==
+  dependencies:
+    request "^2.85.0"
+    sri "^1.1.0"
+
+sri@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/sri/-/sri-1.1.0.tgz#0b5cf64620e490b95fd805b0c710d7669c53cdfe"
+  integrity sha1-C1z2RiDkkLlf2AWwxxDXZpxTzf4=
 
 sshpk@^1.7.0:
   version "1.16.1"
@@ -12710,10 +12723,12 @@ webpack-bundle-analyzer@^3.6.1:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-cdn-plugin@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/webpack-cdn-plugin/-/webpack-cdn-plugin-3.2.2.tgz#6d2ac2a57b18ae681cef977f2937d0b62ddd0d9d"
-  integrity sha512-E3U0I2kuRV06qthxk9INVQfP6W+daCLds2tV9ir76b1rwnTo0giZSdiiKawMuvJV7JKJEteIBHWZ28jMMjxQSQ==
+webpack-cdn-plugin@3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/webpack-cdn-plugin/-/webpack-cdn-plugin-3.3.0.tgz#f1db862c60310f3710f5e6e98b6de0d0a5d7766a"
+  integrity sha512-rZkNwGRz77WvDsyrAYeorQJMwfssdPT+zKyfl2Hf4mX1kO8XEyPaqZ1Tztqm7ST6ywqSKAo+BNnBZkJIQPB9Ig==
+  dependencies:
+    sri-create "^0.0.3"
 
 webpack-chain@^5.0.0:
   version "5.2.4"
