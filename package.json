@@ -34,7 +34,7 @@
     "now-build": "yarn build"
   },
   "dependencies": {
-    "chemicaltools": "1.2.15",
+    "chemicaltools": "1.2.16",
     "register-service-worker": "1.7.1",
     "string-format": "2.0.0",
     "vue": "2.6.11",
