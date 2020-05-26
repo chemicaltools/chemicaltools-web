@@ -70,7 +70,7 @@
     "vue-cli-plugin-i18n": "1.0.1",
     "vue-cli-plugin-vuetify": "2.0.5",
     "vue-template-compiler": "2.6.11",
-    "vuetify-loader": "1.4.3",
+    "vuetify-loader": "1.4.4",
     "webpack-cdn-plugin": "3.3.1"
   },
   "eslintConfig": {
