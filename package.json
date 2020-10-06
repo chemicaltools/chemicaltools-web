@@ -46,7 +46,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "5.15.0",
     "@fortawesome/fontawesome-svg-core": "1.2.31",
-    "@fortawesome/free-solid-svg-icons": "5.15.0",
+    "@fortawesome/free-solid-svg-icons": "5.15.1",
     "@fortawesome/vue-fontawesome": "2.0.0",
     "@semantic-release/git": "9.0.0",
     "@vue/cli-plugin-babel": "4.5.6",
