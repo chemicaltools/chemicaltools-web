@@ -21,6 +21,7 @@ module.exports = {
           { name: 'vue-router', var: 'VueRouter', path: 'dist/vue-router.min.js' },
           { name: '@fortawesome/fontawesome-free', style: 'css/all.min.css', cssOnly: true }
         ],
+		prod: process.env.CDN == 'yes',
         prodUrl: "//cdn.jsdelivr.net//npm/:name@:version/:path"
         // publicPath: './node_modules'
       })
