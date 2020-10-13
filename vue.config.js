@@ -15,7 +15,7 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
-      new WebpackCdnPlugin({
+      ...(process.env.CDN == 'yes' ? [new WebpackCdnPlugin({
         modules: [
           { name: 'vue', var: 'Vue', path: 'dist/vue.runtime.min.js' },
           { name: 'vue-router', var: 'VueRouter', path: 'dist/vue-router.min.js' },
@@ -25,10 +25,9 @@ module.exports = {
           { name: 'vue-i18n', var:'VueI18n', path: 'dist/vue-i18n.min.js' },
           { name: 'vue2-storage', var: 'Vue2Storage', path: 'dist/vue2-storage.min.js' },
         ],
-		prod: process.env.CDN == 'yes',
         prodUrl: "//cdn.jsdelivr.net/npm/:name@:version/:path"
         // publicPath: './node_modules'
-      })
+      })]:[])
     ]
   }
 }
