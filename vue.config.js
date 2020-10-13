@@ -15,16 +15,15 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
-      new WebpackCdnPlugin({
+      ...(process.env.CDN == 'yes' ? [] : [new WebpackCdnPlugin({
         modules: [
           { name: 'vue', var: 'Vue', path: 'dist/vue.runtime.min.js' },
           { name: 'vue-router', var: 'VueRouter', path: 'dist/vue-router.min.js' },
           { name: '@fortawesome/fontawesome-free', style: 'css/all.min.css', cssOnly: true }
         ],
-		prod: process.env.CDN == 'yes',
         prodUrl: "//cdn.jsdelivr.net/npm/:name@:version/:path"
         // publicPath: './node_modules'
-      })
+      })]
     ]
   }
 }
