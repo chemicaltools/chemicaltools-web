@@ -15,7 +15,7 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
-      ...(process.env.CDN == 'yes' ? [] : [new WebpackCdnPlugin({
+      ...(process.env.CDN == 'yes' ? [new WebpackCdnPlugin({
         modules: [
           { name: 'vue', var: 'Vue', path: 'dist/vue.runtime.min.js' },
           { name: 'vue-router', var: 'VueRouter', path: 'dist/vue-router.min.js' },
@@ -23,7 +23,7 @@ module.exports = {
         ],
         prodUrl: "//cdn.jsdelivr.net/npm/:name@:version/:path"
         // publicPath: './node_modules'
-      })])
+      })]:[])
     ]
   }
 }
