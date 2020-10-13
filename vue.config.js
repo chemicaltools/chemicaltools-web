@@ -11,7 +11,22 @@ module.exports = {
     }
   },
   pwa: {
-    workboxOptions: { skipWaiting: true }
+    workboxOptions: {
+      skipWaiting: true,
+        runtimeCaching: [
+          {
+            urlPattern: new RegExp('https://cdn\\.jsdelivr\\.net/.*'),
+            handler: 'NetworkFirst',
+            options: {
+              networkTimeoutSeconds: 20,
+              cacheName: 'cdn-cache',
+              cacheableResponse: {
+                statuses: [200]
+              }
+            }
+          }
+        ]
+	}
   },
   configureWebpack: {
     plugins: [
