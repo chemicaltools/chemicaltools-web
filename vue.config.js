@@ -15,7 +15,7 @@ module.exports = {
       skipWaiting: true,
         runtimeCaching: [
           {
-            urlPattern: new RegExp('^https://cdn\\.jsdelivr\\.net/*'),
+            urlPattern: new RegExp('https://cdn\\.jsdelivr\\.net/.*'),
             handler: 'NetworkFirst',
             options: {
               networkTimeoutSeconds: 20,
