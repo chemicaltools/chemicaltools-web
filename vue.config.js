@@ -23,7 +23,7 @@ module.exports = {
         ],
         prodUrl: "//cdn.jsdelivr.net/npm/:name@:version/:path"
         // publicPath: './node_modules'
-      })]
+      })])
     ]
   }
 }
