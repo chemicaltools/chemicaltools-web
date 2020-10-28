@@ -40,6 +40,7 @@ module.exports = {
           { name: 'vue-i18n', var:'VueI18n', path: 'dist/vue-i18n.min.js' },
           { name: 'vue2-storage', var: 'Vue2Storage', path: 'dist/vue2-storage.min.js' },
           { name: 'vuetify', var: 'Vuetify', path: 'dist/vuetify.min.js', style: 'dist/vuetify.min.css' },
+          { name: 'core-js-bundle', path: 'minified.js' },
         ],
         prodUrl: "//cdn.jsdelivr.net/npm/:name@:version/:path"
         // publicPath: './node_modules'
