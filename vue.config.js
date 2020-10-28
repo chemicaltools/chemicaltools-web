@@ -44,5 +44,16 @@ module.exports = {
         // publicPath: './node_modules'
       })]:[])
     ]
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('js')
+      .test(/\.m?jsx?$/)
+      .use('babel-loader')
+        .loader('babel-loader')
+        .end()
+      .use('ifdef-loader')
+        .loader('ifdef-loader')
+        .end()
   }
 }
