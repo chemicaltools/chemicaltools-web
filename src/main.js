@@ -1,5 +1,3 @@
-import 'core-js-bundle'
-
 import Vue from 'vue'
 import vuetify from './plugins/vuetify'
 import Vue2Storage from 'vue2-storage'
