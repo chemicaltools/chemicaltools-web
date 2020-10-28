@@ -3761,6 +3761,11 @@ copy-webpack-plugin@^5.1.1:
     serialize-javascript "^4.0.0"
     webpack-log "^2.0.0"
 
+core-js-bundle@^3.6.5:
+  version "3.6.5"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.6.5.tgz#3a425ad66ad19aeefea89acfd48cff674ff58590"
+  integrity sha512-awf49McIBT3sDXceSex69w/i7PMXQwxI4ZqknCtaYbW4Q0u0HUZiaQLlPD6pU2nFBofIowgWIS1ANgHjqnQu4Q==
+
 core-js-compat@^3.6.2, core-js-compat@^3.6.5:
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.6.5.tgz#2a51d9a4e25dfd6e690251aa81f99e3c05481f1c"
