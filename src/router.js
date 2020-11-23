@@ -15,5 +15,5 @@ export default new Router({
     { path: '/exam/', component: () => import(/* webpackChunkName: "exam" */ './components/exam.vue'), meta: { title: 'message.exam' } },
     { path: '/setting/', component: () => import(/* webpackChunkName: "setting" */ './components/setting.vue'), meta: { title: 'message.settings' } }
   ],
-  base: process.env.CDN_COMMIT ? `//cdn.jsdelivr.net/gh/njzjz/chemicaltools-web@${process.env.CDN_COMMIT}/` : './',
+  base: process.env.CDN_COMMIT ? `//cdn.jsdelivr.net/gh/njzjz/chemicaltools-web@${process.env.CDN_COMMIT}/` : './'
 })
