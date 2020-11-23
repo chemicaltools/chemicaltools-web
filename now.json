@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "github": false,
   "builds": [
     {"src": "package.json", "use": "@now/static-build"}
   ]
