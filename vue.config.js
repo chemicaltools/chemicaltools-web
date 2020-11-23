@@ -1,6 +1,6 @@
 const WebpackCdnPlugin = require('webpack-cdn-plugin')
 module.exports = {
-  publicPath: 'https://cdn.jsdelivr.net/gh/njzjz/chemicaltools-web@gh-pages/',
+  publicPath: process.env.CDN_COMMIT ? `//cdn.jsdelivr.net/gh/njzjz/chemicaltools-web@${CDN_COMMIT}/` : './'
   pluginOptions: {
     cordovaPath: 'src-cordova',
     i18n: {
