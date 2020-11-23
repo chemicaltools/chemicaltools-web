@@ -81,4 +81,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
-          vercel-args: '--prod --build-env CSS_COMMIT=${{needs.commit.outputs.sha}}'
+          vercel-args: '--prod --build-env CDN_COMMIT=${{needs.commit.outputs.sha}}'
