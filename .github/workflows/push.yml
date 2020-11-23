@@ -7,7 +7,7 @@ on:
   pull_request:
 name: Build and deploy on push
 jobs:
-  yarnInstall:
+  build:
     name: yarn install
     runs-on: ubuntu-latest
     steps:
@@ -35,8 +35,50 @@ jobs:
       uses: JamesIves/github-pages-deploy-action@releases/v3
       if: github.ref == 'refs/heads/master'
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
         FOLDER: dist
         BASE_BRANCH: master
         CLEAN: true
+  commit:
+    name: get commit sha
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/master'
+    outputs:
+      sha: ${{ steps.get_commit.outputs.sha }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 'gh-pages'
+        fetch-depth: 1
+    - id: get_commit
+      run: echo "::set-output name=sha::$(git rev-parse HEAD)"
+  deploy_test:
+    name: test on Vercel
+    runs-on: ubuntu-latest
+    if: github.ref != 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Vercel Action
+        uses: amondnet/vercel-action@master
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+  deploy:
+    name: deploy on Vercel
+    runs-on: ubuntu-latest
+    needs: commit
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v2
+      - name: Vercel Action
+        uses: amondnet/vercel-action@master
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          vercel-org-id: ${{ secrets.ORG_ID }}
+          vercel-project-id: ${{ secrets.PROJECT_ID }}
+          vercel-args: '--prod --build-env CSS_COMMIT=${{needs.commit.outputs.sha}}'
