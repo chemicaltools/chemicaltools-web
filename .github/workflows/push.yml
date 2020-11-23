@@ -36,7 +36,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
+        BRANCH: js
         FOLDER: dist
         BASE_BRANCH: master
         CLEAN: true
@@ -50,7 +50,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: 'gh-pages'
+        ref: 'js'
         fetch-depth: 1
     - id: get_commit
       run: echo "::set-output name=sha::$(git rev-parse HEAD)"
@@ -77,17 +77,11 @@ jobs:
     - run: yarn build
       env:
         CDN_COMMIT: ${{needs.commit.outputs.sha}}
-    - run: yarn exec semantic-release
-      if: github.ref == 'refs/heads/master'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.ref == 'refs/heads/master'
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: js
+        BRANCH: gh-pages
         FOLDER: dist
         BASE_BRANCH: master
         CLEAN: true
