@@ -18,7 +18,7 @@ jobs:
     - name: Get yarn cache
       id: yarn-cache
       run: echo "::set-output name=dir::$(yarn cache dir)"
-    - uses: actions/cache@v1
+    - uses: actions/cache@v2
       with:
         path: ${{ steps.yarn-cache.outputs.dir }}
         key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -54,6 +54,57 @@ jobs:
         fetch-depth: 1
     - id: get_commit
       run: echo "::set-output name=sha::$(git rev-parse HEAD)"
+  build_again:
+    name: build again
+    runs-on: ubuntu-latest
+    needs: commit
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 14
+    - name: Get yarn cache
+      id: yarn-cache
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - uses: actions/cache@v2
+      with:
+        path: ${{ steps.yarn-cache.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - run: yarn install
+    - run: yarn build
+      env:
+        CDN_COMMIT: ${{needs.commit.outputs.sha}}
+    - run: yarn exec semantic-release
+      if: github.ref == 'refs/heads/master'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - name: Deploy to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      if: github.ref == 'refs/heads/master'
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: js
+        FOLDER: dist
+        BASE_BRANCH: master
+        CLEAN: true
+  commit_again:
+    name: get commit sha again
+    runs-on: ubuntu-latest
+    needs: build_again
+    if: github.ref == 'refs/heads/master'
+    outputs:
+      sha: ${{ steps.get_commit.outputs.sha }}
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 'gh-pages'
+        fetch-depth: 1
+    - id: get_commit
+      run: echo "::set-output name=sha::$(git rev-parse HEAD)"
   deploy_test:
     name: test on Vercel
     runs-on: ubuntu-latest
@@ -70,7 +121,7 @@ jobs:
   deploy:
     name: deploy on Vercel
     runs-on: ubuntu-latest
-    needs: commit
+    needs: commit_again
     if: github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v2
@@ -81,4 +132,4 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
-          vercel-args: '--prod --build-env CDN_COMMIT=${{needs.commit.outputs.sha}}'
+          vercel-args: '--prod --build-env CDN_COMMIT=${{needs.commit_again.outputs.sha}}'
