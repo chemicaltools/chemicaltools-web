@@ -12880,9 +12880,9 @@ vue-i18n@8.22.2, vue-i18n@^8.17.0:
   integrity sha512-rb569fVJInPUgS/bbCxEQ9DrAoFTntuJvYoK4Fpk2VfNbA09WzdTKk57ppjz3S+ps9hW+p9H+2ASgMvojedkow==
 
 "vue-loader-v16@npm:vue-loader@^16.0.0-beta.7":
-  version "16.0.0"
-  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.0.0.tgz#7ec137c7f9029f2a5990f39dc5abbca06d60ba30"
-  integrity sha512-R20f4PWe34dqhTZ9tkyFd6nfjxEbLBHbFOsN38qg0Jl8GKMfmoyc/E8vVjjRkunE6qCydpPoH7f/tW13bD6+JA==
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/vue-loader/-/vue-loader-16.1.0.tgz#e4544abf65cbb3b81f3d5360d95a3e2ae83749a1"
+  integrity sha512-fTtCdI7VeyNK0HP4q4y9Z9ts8TUeaF+2/FjKx8CJ/7/Oem1rCX7zIJe+d+jLrVnVNQjENd3gqmANraLcdRWwnQ==
   dependencies:
     chalk "^4.1.0"
     hash-sum "^2.0.0"
