@@ -65,3 +65,21 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           vercel-org-id: ${{ secrets.ORG_ID }}
           vercel-project-id: ${{ secrets.PROJECT_ID }}
+  purge:
+    name: purge cloudflare caches
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    needs: [build]
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: 'gh-pages'
+        fetch-depth: 2
+    - name: cachepurger
+      uses: njzjz/cachepurger@index
+      with:
+        url-prefix: 'https://chemicaltools.njzjz.win/'
+        zone-id: ${{ secrets.CLOUDFLAREZONEID }}
+        api-token: ${{ secrets.CLOUDFLAREAPITOKEN }}
+        from-commit: 'HEAD~1'
+        to-commit: 'HEAD'
