@@ -81,7 +81,7 @@
 export default {
   name: 'Chemical-Tools',
   data: () => ({
-  publicPath: process.env.BASE_URL,
+    publicPath: process.env.BASE_URL,
     drawer: null,
     tools: [
       {

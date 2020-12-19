@@ -27,7 +27,7 @@
 <script>
 export default {
   data: () => ({
-  publicPath: process.env.BASE_URL,
+    publicPath: process.env.BASE_URL,
     tools: [
       {
         text: 'message.element',
