@@ -11,6 +11,9 @@ module.exports = {
     }
   },
   pwa: {
+    iconPaths:{
+      maskIcon: 'chemicaltools.svg'
+    },
     workboxOptions: {
       skipWaiting: true,
         runtimeCaching: [

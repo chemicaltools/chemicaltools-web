@@ -43,7 +43,7 @@
       </v-menu>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <router-view></router-view>
 
       <v-footer height="auto" color="purple lighten-1">
@@ -73,7 +73,7 @@
           </v-flex>
         </v-layout>
       </v-footer>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
