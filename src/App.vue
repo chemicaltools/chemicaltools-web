@@ -19,7 +19,7 @@
       <v-toolbar-title class="headline" v-show="!$vuetify.breakpoint.xs">
         {{ $t("message.chemicaltools") }}
         <img
-          :src="require('./assets/logo.png')"
+          :src="`${publicPath}/chemicaltools.svg`"
           contain
           height="25"
         >
@@ -81,6 +81,7 @@
 export default {
   name: 'Chemical-Tools',
   data: () => ({
+	publicPath: process.env.BASE_URL,
     drawer: null,
     tools: [
       {

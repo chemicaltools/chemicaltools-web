@@ -2,7 +2,7 @@
   <v-container>
     <v-layout text-center wrap>
       <v-flex xs12>
-        <v-img src="/chemicaltools.svg" class="my-3" contain height="200"></v-img>
+        <v-img :src="`${publicPath}/chemicaltools.svg`" class="my-3" contain height="200"></v-img>
       </v-flex>
 
       <v-flex mb-4>
@@ -27,6 +27,7 @@
 <script>
 export default {
   data: () => ({
+	publicPath: process.env.BASE_URL,
     tools: [
       {
         text: 'message.element',
