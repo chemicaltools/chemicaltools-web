@@ -19,7 +19,7 @@
       <v-toolbar-title class="headline" v-show="!$vuetify.breakpoint.xs">
         {{ $t("message.chemicaltools") }}
         <img
-          :src="`${publicPath}/chemicaltools_white.svg`"
+          :src="`${publicPath}chemicaltools_white.svg`"
           contain
           height="25"
         >
