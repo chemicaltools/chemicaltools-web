@@ -23,6 +23,7 @@
           :src="`${publicPath}/chemicaltools.svg`"
           contain
           height="25"
+          onload="SVGInject(this)"
         >
       </v-toolbar-title>
       <v-menu attach bottom offset-y>
