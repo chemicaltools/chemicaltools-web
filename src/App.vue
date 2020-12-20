@@ -19,6 +19,7 @@
       <v-toolbar-title class="headline" v-show="!$vuetify.breakpoint.xs">
         {{ $t("message.chemicaltools") }}
         <img
+          class="logo"
           :src="`${publicPath}/chemicaltools.svg`"
           contain
           height="25"
@@ -160,3 +161,9 @@ export default {
   }
 }
 </script>
+<style>
+  .logo{
+    background-color: #fff;
+    border-radius: 50%;
+  }
+</style>
