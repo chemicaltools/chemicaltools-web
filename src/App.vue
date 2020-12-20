@@ -19,11 +19,9 @@
       <v-toolbar-title class="headline" v-show="!$vuetify.breakpoint.xs">
         {{ $t("message.chemicaltools") }}
         <img
-          class="white-icon"
           :src="`${publicPath}/chemicaltools.svg`"
           contain
           height="25"
-          onload="SVGInject(this)"
         >
       </v-toolbar-title>
       <v-menu attach bottom offset-y>
@@ -162,9 +160,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.white-icon g{
-  fill: #fff;
-}
-</style>
