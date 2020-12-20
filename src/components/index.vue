@@ -2,7 +2,7 @@
   <v-container>
     <v-layout text-center wrap>
       <v-flex xs12>
-        <v-img :src="require('../assets/logo.png')" class="my-3" contain height="200"></v-img>
+        <v-img :src="`${publicPath}/chemicaltools.svg`" class="my-3" contain height="200"></v-img>
       </v-flex>
 
       <v-flex mb-4>
@@ -14,7 +14,7 @@
         <v-row wrap class="justify-center">
           <v-flex v-for="(tool, i) in tools" :key="i" class="mx-3" style="width:200px;">
             <v-btn :to="tool.to" block dark color="purple lighten-1" class="ma-2">
-              <v-icon>{{tool.icon}}</v-icon>
+              <v-icon class="mx-3">{{tool.icon}}</v-icon>
               {{ $t(tool.text) }}
             </v-btn>
           </v-flex>
@@ -27,6 +27,7 @@
 <script>
 export default {
   data: () => ({
+    publicPath: process.env.BASE_URL,
     tools: [
       {
         text: 'message.element',
