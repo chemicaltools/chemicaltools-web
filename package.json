@@ -65,7 +65,7 @@
     "ifdef-loader": "2.1.5",
     "sass": "1.30.0",
     "sass-loader": "10.1.0",
-    "semantic-release": "17.3.0",
+    "semantic-release": "17.3.1",
     "stylus": "0.54.8",
     "stylus-loader": "4.3.1",
     "vue-cli-plugin-cordova": "2.4.1",
