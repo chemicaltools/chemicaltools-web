@@ -46,19 +46,19 @@ export default {
         this.output = 'message.inputdata'
         return
       }
-      var x = input.split(/[\r\n\\s ,;]+/)
-      var numnum = Infinity
-      var pointnum = Infinity
+      const x = input.split(/[\r\n\\s ,;]+/)
+      let numnum = Infinity
+      let pointnum = Infinity
       if (x.length > 1) {
         x.forEach(function (xi) {
-          var len = xi.length
-          var pointlen = 0
+          let len = xi.length
+          let pointlen = 0
           if (xi.substr(0, 1) === '-') len--
           if (xi.indexOf('.') >= 0) {
             len--
             pointlen = len - xi.indexOf('.')
             if (Math.abs(parseFloat(xi)) < 1) {
-              var zeronum = Math.floor(
+              const zeronum = Math.floor(
                 Math.log(Math.abs(parseFloat(xi))) / Math.LN10
               )
               len += zeronum
@@ -68,8 +68,8 @@ export default {
           pointnum = Math.min(pointnum, pointlen)
         })
         numnum -= 1
-        var result = chemicaltools.calculateDeviation(x.map(parseFloat))
-        var outputinfo = [
+        const result = chemicaltools.calculateDeviation(x.map(parseFloat))
+        const outputinfo = [
           { name: 'deviation.input', value: x.join(', ') },
           {
             name: 'deviation.average',

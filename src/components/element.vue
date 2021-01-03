@@ -50,7 +50,7 @@ export default {
   }),
   methods: {
     outputelement: function (input) {
-      var info = chemicaltools.searchElement(input)
+      const info = chemicaltools.searchElement(input)
       if (info) {
         this.results = [
           { name: 'element.name', value: info.name, exclude: ['en'] },
@@ -70,11 +70,11 @@ export default {
       }
     },
     makeelementtable: function () {
-      var n = 0
-      var output = "<table style='text-align:center;'>"
-      for (var i = 0; i <= 9; i++) {
+      let n = 0
+      let output = "<table style='text-align:center;'>"
+      for (let i = 0; i <= 9; i++) {
         output += '<tr>'
-        for (var j = 0; j <= 18; j++) {
+        for (let j = 0; j <= 18; j++) {
           if (
             (i === 1 && j >= 2 && j <= 17) ||
             ((i === 2 || i === 3) && j >= 3 && j <= 12) ||
