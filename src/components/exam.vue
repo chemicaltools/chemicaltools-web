@@ -82,14 +82,14 @@ export default {
       }
     },
     correctanswer: function (question, answer, mode = 2) {
-      var result = chemicaltools.correctAnswer(
+      const result = chemicaltools.correctAnswer(
         question,
         answer,
         this.questionname(mode),
         this.answername(mode)
       )
-      var n = result.correct ? 'correct' : 'incorrect'
-      var num = this.$storage.get(n, 0) + 1
+      const n = result.correct ? 'correct' : 'incorrect'
+      const num = this.$storage.get(n, 0) + 1
       this.$storage.set(n, num)
       this.updatescore()
       this.result = result.correct ? 'message.correct' : 'message.incorrect'
@@ -98,9 +98,9 @@ export default {
       this.oldanswer = answer
     },
     showquestion: function () {
-      var mode = parseInt(this.$storage.get('mode', 2))
-      var max = parseInt(this.$storage.get('max', 86))
-      var questiondata = chemicaltools.makeQuestion(
+      const mode = parseInt(this.$storage.get('mode', 2))
+      const max = parseInt(this.$storage.get('max', 86))
+      const questiondata = chemicaltools.makeQuestion(
         this.questionname(mode),
         this.answername(mode),
         max
@@ -114,10 +114,10 @@ export default {
       this.showquestion()
     },
     updatescore: function () {
-      var that = this
-      var keys = ['correct', 'incorrect']
+      const that = this
+      const keys = ['correct', 'incorrect']
       keys.forEach(function (key) {
-        var num = parseInt(that.$storage.get(key, 0))
+        const num = parseInt(that.$storage.get(key, 0))
         if (!num) that.$storage.set(key, 0)
         that[key] = num || 0
       })

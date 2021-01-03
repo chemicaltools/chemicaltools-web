@@ -32,15 +32,15 @@ export default {
         this.output = ''
         return
       }
-      var strpKaArray = strpKa.split(/[\r\n\\s ,;]+/)
-      var result = chemicaltools.calculateAcid(
+      const strpKaArray = strpKa.split(/[\r\n\\s ,;]+/)
+      const result = chemicaltools.calculateAcid(
         c,
         strpKaArray.map(parseFloat),
         AorB,
         pKw
       )
-      var output = '<b>{0}</b>, c={1}mol/L, '.format(AorB ? 'HA' : 'BOH', c)
-      var i = 1
+      let output = '<b>{0}</b>, c={1}mol/L, '.format(AorB ? 'HA' : 'BOH', c)
+      let i = 1
       strpKaArray.forEach(function (pKa) {
         output += 'pK<sub>{0}</sub>{1}={2}, '.format(
           AorB ? 'a' : 'b',

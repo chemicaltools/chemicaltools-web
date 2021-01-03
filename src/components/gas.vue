@@ -23,8 +23,8 @@ export default {
   }),
   methods: {
     outputgas: function () {
-      var mode = this.mode
-      var gasoutput = chemicaltools.calculateGas(
+      const mode = this.mode
+      const gasoutput = chemicaltools.calculateGas(
         ...this.values.map(function (value) {
           if (value.text === mode) return null
           return value.input
