@@ -27,7 +27,7 @@
       <v-menu attach bottom offset-y>
         <template #activator="{ on: menu }">
           <v-btn :aria-label="$t('message.languages')" text style="min-width: 48px" v-on="menu">
-            <v-icon>language</v-icon>
+            <v-icon>fa-language</v-icon>
           </v-btn>
         </template>
         <v-list dense light>
