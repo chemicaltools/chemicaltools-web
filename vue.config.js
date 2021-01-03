@@ -42,7 +42,6 @@ module.exports = {
                   { name: 'vue-router', var: 'VueRouter', path: 'dist/vue-router.min.js' },
                   { name: '@fortawesome/fontawesome-free', style: 'css/all.min.css', cssOnly: true },
                   { name: 'chemicaltools', var: 'chemicaltools', path: 'dist/main.js' },
-                  { name: 'string-format', var: 'format', path: 'index.min.js' },
                   { name: 'vue-i18n', var: 'VueI18n', path: 'dist/vue-i18n.min.js' },
                   { name: 'vue2-storage', var: 'Vue2Storage', path: 'dist/vue2-storage.min.js' }
                   // { name: 'vuetify', var: 'Vuetify', path: 'dist/vuetify.min.js', style: 'dist/vuetify.min.css' },

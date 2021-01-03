@@ -37,8 +37,6 @@
 </template>
 <script>
 const chemicaltools = require('chemicaltools')
-const format = require('string-format')
-format.extend(String.prototype, {})
 export default {
   data: () => ({
     results: [],
@@ -107,12 +105,8 @@ export default {
               } else if (i === 9 && j === 1) {
                 n = 88
               }
-              output += '<sub>{0}</sub>{1}<br>{2}<br><small>{3}</small>'.format(
-                chemicaltools.elementinfo[n].number,
-                chemicaltools.elementinfo[n].symbol,
-                chemicaltools.elementinfo[n].iupac,
-                chemicaltools.elementinfo[n].mass
-              )
+              let elementinfo = chemicaltools.elementinfo[n]
+              output += `<sub>${elementinfo.number}</sub>${elementinfo.symbol}<br>${elementinfo.iupac}<br><small>${elementinfo.mass}</small>`
               n++
             }
             output += '</td>'
