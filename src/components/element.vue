@@ -105,7 +105,7 @@ export default {
               } else if (i === 9 && j === 1) {
                 n = 88
               }
-              let elementinfo = chemicaltools.elementinfo[n]
+              const elementinfo = chemicaltools.elementinfo[n]
               output += `<sub>${elementinfo.number}</sub>${elementinfo.symbol}<br>${elementinfo.iupac}<br><small>${elementinfo.mass}</small>`
               n++
             }

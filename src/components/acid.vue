@@ -37,10 +37,10 @@ export default {
         AorB,
         pKw
       )
-      let output = `<b>${(AorB ? 'HA' : 'BOH'}</b>, c=${c}mol/L, `
+      let output = `<b>${AorB ? 'HA' : 'BOH'}</b>, c=${c}mol/L, `
       let i = 1
       strpKaArray.forEach(function (pKa) {
-        let n = strpKaArray.length > 1 ? `<sub>${i++}</sub>` : ''
+        const n = strpKaArray.length > 1 ? `<sub>${i++}</sub>` : ''
         output += `pK<sub>${AorB ? 'a' : 'b'}</sub>${n}=${pKa}, `
       })
       output += `<br>pH=${result.pH.toFixed(2)}.`
