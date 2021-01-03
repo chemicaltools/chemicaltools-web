@@ -891,7 +891,7 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fortawesome/fontawesome-free@^5.15.1":
+"@fortawesome/fontawesome-free@5.15.1":
   version "5.15.1"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-free/-/fontawesome-free-5.15.1.tgz#ccfef6ddbe59f8fe8f694783e1d3eb88902dc5eb"
   integrity sha512-OEdH7SyC1suTdhBGW91/zBfR6qaIhThbcN8PUXtXilY4GYnSBbVqOntdHbC1vXwsDnX0Qix2m2+DSU1J51ybOQ==
@@ -12932,7 +12932,7 @@ vue@2.6.12, vue@^2.6.11:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
 
-vuetify-loader@^1.6.0:
+vuetify-loader@1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vuetify-loader/-/vuetify-loader-1.6.0.tgz#05df0805b3ab2ff0de198109d34f9da3f69da667"
   integrity sha512-1bx3YeZ712dT1+QMX+XSFlP0O5k5O5Ui9ysBBmUZ9bWkAEHWZJQI9soI+qG5qmeFxUC0L9QYMCIKP0hOL/pf3Q==
