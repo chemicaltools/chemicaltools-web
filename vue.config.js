@@ -40,7 +40,7 @@ module.exports = {
                 modules: [
                   { name: 'vue', var: 'Vue', path: 'dist/vue.runtime.min.js' },
                   { name: 'vue-router', var: 'VueRouter', path: 'dist/vue-router.min.js' },
-                  // { name: '@fortawesome/fontawesome-free', style: 'css/all.min.css', cssOnly: true },
+                  { name: '@fortawesome/fontawesome-free', style: 'css/all.min.css', cssOnly: true },
                   { name: 'chemicaltools', var: 'chemicaltools', path: 'dist/main.js' },
                   { name: 'string-format', var: 'format', path: 'index.min.js' },
                   { name: 'vue-i18n', var: 'VueI18n', path: 'dist/vue-i18n.min.js' },
