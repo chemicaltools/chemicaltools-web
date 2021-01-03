@@ -45,7 +45,7 @@ export default {
     pkw: 14
   }),
   mounted: function () {
-    var that = this;
+    const that = this;
     ['mode', 'number', 'pkw'].forEach(function (setting) {
       that[setting] = that.$storage.get(setting, that[setting])
     })

@@ -50,7 +50,7 @@ export default {
   }),
   methods: {
     outputmass: function (input) {
-      var result = chemicaltools.calculateMass(input)
+      const result = chemicaltools.calculateMass(input)
       if (result) {
         this.name = chemicalname(result.name)
         this.mass = result.mass.toFixed(2)
