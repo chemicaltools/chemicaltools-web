@@ -14,17 +14,10 @@ module.exports = {
     iconPaths: {
       maskIcon: 'chemicaltools.svg'
     },
+    workboxPluginMode: 'InjectManifest',
     workboxOptions: {
-      skipWaiting: true,
-      runtimeCaching: [
-        {
-          urlPattern: /https:\/\/cdn\.jsdelivr\.net\/.*/,
-          handler: 'StaleWhileRevalidate',
-          options: {
-            cacheName: 'cdn-cache',
-          }
-        }
-      ]
+      swSrc: "./src/service-worker.js",
+      swDest: "service-worker.js",
     }
   },
   configureWebpack: {
