@@ -135,6 +135,7 @@
       "path": "./dist/**/*.*"
     }
   ],
+  "resolutions": { "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^5.1.3" },
   "engines": {
     "node": ">=10.15.0"
   }
