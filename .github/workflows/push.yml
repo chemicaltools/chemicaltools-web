@@ -12,6 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+      if: github.event_name == 'push'
+    - uses: actions/checkout@v2
+      if: github.event_name == 'pull_request_target'
+      with:
+        ref: ${{github.event.pull_request.head.ref}}
+        repository: ${{github.event.pull_request.head.repo.full_name}}
     - uses: actions/setup-node@v1
       with:
         node-version: 14
@@ -29,13 +35,13 @@ jobs:
       env:
         CDN_COMMIT: gh-pages
     - run: yarn exec semantic-release
-      if: github.ref == 'refs/heads/master'
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.ref == 'refs/heads/master'
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: gh-pages
@@ -44,7 +50,7 @@ jobs:
         CLEAN: true
     - name: Vercel Action
       uses: amondnet/vercel-action@master
-      if: github.ref == 'refs/heads/master'
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       with:
         vercel-token: ${{ secrets.VERCEL_TOKEN }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -55,9 +61,12 @@ jobs:
   deploy_test:
     name: test on Vercel
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/master'
+    if: github.event_name == 'pull_request_target'
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{github.event.pull_request.head.ref}}
+          repository: ${{github.event.pull_request.head.repo.full_name}}:  
       - name: Vercel Action
         uses: amondnet/vercel-action@master
         with:
@@ -68,7 +77,7 @@ jobs:
   purge:
     name: purge cloudflare caches
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     needs: [build]
     steps:
     - uses: actions/checkout@v2
