@@ -19,13 +19,9 @@ module.exports = {
       runtimeCaching: [
         {
           urlPattern: /https:\/\/cdn\.jsdelivr\.net\/.*/,
-          handler: 'NetworkFirst',
+          handler: 'StaleWhileRevalidate',
           options: {
-            networkTimeoutSeconds: 20,
             cacheName: 'cdn-cache',
-            cacheableResponse: {
-              statuses: [200]
-            }
           }
         }
       ]
