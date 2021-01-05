@@ -1,32 +1,14 @@
-/* eslint-disable no-console */
+/* eslint-disable */
+importScripts('https://cdn.jsdelivr.net/npm/workbox-cdn/workbox/workbox-sw.js')
 
-import { register } from 'register-service-worker'
+const { NetworkFirst, StaleWhileRevalidate, CacheFirst } = workbox.strategies
+const { registerRoute } = workbox.routing
+const { ExpirationPlugin } = workbox.expiration
+const { precacheAndRoute } = workbox.precaching
 
-if (process.env.NODE_ENV === 'production') {
-  register('/service-worker.js', {
-    ready () {
-      console.log(
-        'App is being served from cache by a service worker.\n' +
-        'For more details, visit https://goo.gl/AFskqB'
-      )
-    },
-    registered () {
-      console.log('Service worker has been registered.')
-    },
-    cached () {
-      console.log('Content has been cached for offline use.')
-    },
-    updatefound () {
-      console.log('New content is downloading.')
-    },
-    updated () {
-      console.log('New content is available; please refresh.')
-    },
-    offline () {
-      console.log('No internet connection found. App is running in offline mode.')
-    },
-    error (error) {
-      console.error('Error during service worker registration:', error)
-    }
-  })
-}
+precacheAndRoute(self.__WB_MANIFEST, {})
+
+registerRoute('/', new StaleWhileRevalidate({ cacheName: 'index', plugins: [] }), 'GET')
+registerRoute(/\.(?:js|css)$/, new StaleWhileRevalidate({ cacheName: 'js-css', plugins: [] }), 'GET')
+registerRoute(/\.(?:png|gif|jpg|jpeg|svg)$/, new CacheFirst({ cacheName: 'images', plugins: [new ExpirationPlugin({ maxEntries: 60, maxAgeSeconds: 2592000 })] }), 'GET')
+registerRoute(/^https:\/\/cdn\.jsdelivr\.net/, new StaleWhileRevalidate({ cacheName: 'jsdelivr', plugins: [] }), 'GET')
