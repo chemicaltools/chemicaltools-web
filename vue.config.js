@@ -23,7 +23,7 @@ module.exports = {
   configureWebpack: {
     plugins: [
       ...(
-        process.env.CDN === 'yes'
+        process.env.VUE_APP_CDN === 'yes'
           ? [
               new WebpackCdnPlugin({
                 modules: [

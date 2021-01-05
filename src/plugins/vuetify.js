@@ -2,7 +2,7 @@ import Vue from 'vue'
 // import Vuetify from 'vuetify'
 import Vuetify from 'vuetify/lib'
 
-/// #if process.env.CDN != 'yes'
+/// #if process.env.VUE_APP_CDN != 'yes'
 // import 'vuetify/dist/vuetify.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 /// #endif
