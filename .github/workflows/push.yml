@@ -44,29 +44,3 @@ jobs:
         FOLDER: dist
         BASE_BRANCH: master
         CLEAN: true
-    - name: Vercel Action
-      uses: amondnet/vercel-action@master
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-      with:
-        vercel-token: ${{ secrets.VERCEL_TOKEN }}
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        vercel-org-id: ${{ secrets.ORG_ID }}
-        vercel-project-id: ${{ secrets.PROJECT_ID }}
-        vercel-args: '--prod'
-        working-directory: dist
-  deploy_test:
-    name: test on Vercel
-    runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request_target'
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{github.event.pull_request.head.ref}}
-          repository: ${{github.event.pull_request.head.repo.full_name}}
-      - name: Vercel Action
-        uses: amondnet/vercel-action@master
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          vercel-org-id: ${{ secrets.ORG_ID }}
-          vercel-project-id: ${{ secrets.PROJECT_ID }}
