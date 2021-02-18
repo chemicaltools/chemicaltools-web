@@ -139,6 +139,7 @@
     ]
   },
   "resolutions": {
-    "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^6.0.0"
+    "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^6.0.0",
+	"html-webpack-plugin": "^5.1.0"
   }
 }
