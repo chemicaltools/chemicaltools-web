@@ -21,6 +21,10 @@ module.exports = {
     }
   },
   configureWebpack: {
+    output: {
+      filename: '[name].[md5:contenthash:hex:20].js',
+      chunkFilename: '[name].[md5:contenthash:hex:20].js',
+    },
     plugins: [
       ...(
         process.env.VUE_APP_CDN === 'yes'
