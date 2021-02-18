@@ -51,6 +51,10 @@ module.exports = {
       .end()
       .use('ifdef-loader')
       .loader('ifdef-loader')
-      .end()
+      .end();
+    config.module.rule('vue').uses.delete('cache-loader');
+    config.module.rule('js').uses.delete('cache-loader');
+    config.module.rule('ts').uses.delete('cache-loader');
+    config.module.rule('tsx').uses.delete('cache-loader');
   }
 }
