@@ -3,10 +3,6 @@
   "version": "3.0.47",
   "description": "Chemical Tools PWA version for Chemistry students.",
   "author": "Jinzhe Zeng",
-  "bugs": {
-    "url": "https://github.com/njzjz/chemicaltools-web/issues"
-  },
-  "homepage": "https://github.com/njzjz/chemicaltools-web",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "VUE_APP_CDN=yes vue-cli-service build && bundlesize",
@@ -20,19 +16,20 @@
     "cordova-serve-browser": "vue-cli-service cordova-serve-browser",
     "cordova-serve-ios": "vue-cli-service cordova-serve-ios",
     "cordova-serve-osx": "vue-cli-service cordova-serve-osx",
-    "electron:build": "vue-cli-service electron:build",
-    "electron:build-linux": "vue-cli-service electron:build --linux",
-    "electron:build-windows": "vue-cli-service electron:build --windows",
-    "electron:build-macos": "vue-cli-service electron:build --macos",
-    "electron:build-all": "WINEPREFIX=/root/.wine ELECTRON_CACHE=/root/.cache/electron ELECTRON_BUILDER_CACHE=/root/.cache/electron-builder vue-cli-service electron:build --linux --windows",
-    "electron:serve": "vue-cli-service electron:serve",
+    "docker-all": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.cache/electron:/root/.cache/electron -v ~/.cache/electron-builder:/root/.cache/electron-builder -v ~/.cache/yarn:/root/.cache/yarn -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-all\"",
     "docker-linux": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-linux\"",
     "docker-windows": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-windows\"",
-    "docker-all": "docker run --rm -ti -v ${PWD}:/project -v ${PWD##*/}-node-modules:/project/node_modules -v ~/.cache/electron:/root/.cache/electron -v ~/.cache/electron-builder:/root/.cache/electron-builder -v ~/.cache/yarn:/root/.cache/yarn -v ~/.electron:/root/.electron electronuserland/electron-builder:wine /bin/bash -c \"yarn --ignore-engines && yarn electron:build-all\"",
+    "electron:build": "vue-cli-service electron:build",
+    "electron:build-all": "WINEPREFIX=/root/.wine ELECTRON_CACHE=/root/.cache/electron ELECTRON_BUILDER_CACHE=/root/.cache/electron-builder vue-cli-service electron:build --linux --windows",
+    "electron:build-linux": "vue-cli-service electron:build --linux",
+    "electron:build-macos": "vue-cli-service electron:build --macos",
+    "electron:build-windows": "vue-cli-service electron:build --windows",
+    "electron:serve": "vue-cli-service electron:serve",
+    "now-build": "yarn build",
     "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps",
-    "now-build": "yarn build"
+    "postuninstall": "electron-builder install-app-deps"
   },
+  "main": "background.js",
   "dependencies": {
     "chemicaltools": "1.2.22",
     "register-service-worker": "1.7.2",
@@ -45,10 +42,10 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "5.15.2",
     "@semantic-release/git": "9.0.0",
-    "@vue/cli-plugin-babel": "4.5.11",
-    "@vue/cli-plugin-eslint": "4.5.11",
-    "@vue/cli-plugin-pwa": "4.5.11",
-    "@vue/cli-service": "4.5.11",
+    "@vue/cli-plugin-babel": "~5.0.0-alpha.3",
+    "@vue/cli-plugin-eslint": "~5.0.0-alpha.3",
+    "@vue/cli-plugin-pwa": "~5.0.0-alpha.3",
+    "@vue/cli-service": "~5.0.0-alpha.3",
     "@vue/eslint-config-standard": "6.0.0",
     "babel-eslint": "10.1.0",
     "bundlesize": "0.18.1",
@@ -67,8 +64,8 @@
     "stylus": "0.54.8",
     "stylus-loader": "5.0.0",
     "vue-cli-plugin-cordova": "2.4.1",
-    "vue-cli-plugin-electron-builder": "1.4.6",
-    "vue-cli-plugin-i18n": "1.0.1",
+    "vue-cli-plugin-electron-builder": "~2.0.0-rc.6",
+    "vue-cli-plugin-i18n": "~2.0.0-beta.1",
     "vue-cli-plugin-vuetify": "2.1.0",
     "vue-template-compiler": "2.6.12",
     "vuetify-loader": "1.7.2",
@@ -98,7 +95,18 @@
     "last 2 versions",
     "not ie <= 8"
   ],
-  "main": "background.js",
+  "bugs": {
+    "url": "https://github.com/njzjz/chemicaltools-web/issues"
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/**/*.*"
+    }
+  ],
+  "engines": {
+    "node": ">=10.15.0"
+  },
+  "homepage": "https://github.com/njzjz/chemicaltools-web",
   "release": {
     "plugins": [
       "@semantic-release/commit-analyzer",
@@ -130,13 +138,7 @@
       ]
     ]
   },
-  "bundlesize": [
-    {
-      "path": "./dist/**/*.*"
-    }
-  ],
-  "resolutions": { "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^6.0.0" },
-  "engines": {
-    "node": ">=10.15.0"
+  "resolutions": {
+    "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^6.0.0"
   }
 }
