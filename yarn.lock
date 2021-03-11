@@ -13010,10 +13010,10 @@ vue-cli-plugin-electron-builder@1.4.6:
     webpack-chain "^5.0.0"
     yargs "^14.0.0"
 
-vue-cli-plugin-i18n@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-i18n/-/vue-cli-plugin-i18n-2.0.0.tgz#26c138e591dbe995e97db21f6e816be316e171fa"
-  integrity sha512-eYQ1fQWyncOOOac6ModmB6otsBv9n4qQg3sPfnnrbuCaaitNhkudIV149P234yQFRWx6oYfY/2XSfCP7eOFTqA==
+vue-cli-plugin-i18n@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-i18n/-/vue-cli-plugin-i18n-2.0.1.tgz#758f3e456398e6a4d1a6189df39ba05226ad762e"
+  integrity sha512-EC2kVnJHqLM/F9k0J12lmvroEnJE5Av94wgIhG/FVyx7nDVbNHzOg9chQq6c6qbzce+R1eGSZP2aiTpFxRxCMg==
   dependencies:
     debug "^4.3.0"
     deepmerge "^4.2.0"
