@@ -12,10 +12,8 @@ export function chemicalname (name) {
 }
 
 export function scicount (value, num) {
-  const format = require('string-format')
-  format.extend(String.prototype, {})
   if (value === 0) return value
-  var p = Math.floor(Math.log(Math.abs(value)) / Math.LN10)
-  var n = value * Math.pow(10, -p)
-  return n.toFixed(num) + (p === 0 ? '' : '×10<sup>{0}</sup>'.format(p))
+  const p = Math.floor(Math.log(Math.abs(value)) / Math.LN10)
+  const n = value * Math.pow(10, -p)
+  return n.toFixed(num) + (p === 0 ? '' : `×10<sup>${p}</sup>`)
 }

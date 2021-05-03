@@ -37,8 +37,6 @@
 <script>
 import { chemicalname } from '../chem.js'
 const chemicaltools = require('chemicaltools')
-const format = require('string-format')
-format.extend(String.prototype, {})
 
 export default {
   data: () => ({
@@ -50,7 +48,7 @@ export default {
   }),
   methods: {
     outputmass: function (input) {
-      var result = chemicaltools.calculateMass(input)
+      const result = chemicaltools.calculateMass(input)
       if (result) {
         this.name = chemicalname(result.name)
         this.mass = result.mass.toFixed(2)

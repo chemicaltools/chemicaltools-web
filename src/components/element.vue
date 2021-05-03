@@ -37,8 +37,6 @@
 </template>
 <script>
 const chemicaltools = require('chemicaltools')
-const format = require('string-format')
-format.extend(String.prototype, {})
 export default {
   data: () => ({
     results: [],
@@ -50,7 +48,7 @@ export default {
   }),
   methods: {
     outputelement: function (input) {
-      var info = chemicaltools.searchElement(input)
+      const info = chemicaltools.searchElement(input)
       if (info) {
         this.results = [
           { name: 'element.name', value: info.name, exclude: ['en'] },
@@ -70,11 +68,11 @@ export default {
       }
     },
     makeelementtable: function () {
-      var n = 0
-      var output = "<table style='text-align:center;'>"
-      for (var i = 0; i <= 9; i++) {
+      let n = 0
+      let output = "<table style='text-align:center;'>"
+      for (let i = 0; i <= 9; i++) {
         output += '<tr>'
-        for (var j = 0; j <= 18; j++) {
+        for (let j = 0; j <= 18; j++) {
           if (
             (i === 1 && j >= 2 && j <= 17) ||
             ((i === 2 || i === 3) && j >= 3 && j <= 12) ||
@@ -107,12 +105,8 @@ export default {
               } else if (i === 9 && j === 1) {
                 n = 88
               }
-              output += '<sub>{0}</sub>{1}<br>{2}<br><small>{3}</small>'.format(
-                chemicaltools.elementinfo[n].number,
-                chemicaltools.elementinfo[n].symbol,
-                chemicaltools.elementinfo[n].iupac,
-                chemicaltools.elementinfo[n].mass
-              )
+              const elementinfo = chemicaltools.elementinfo[n]
+              output += `<sub>${elementinfo.number}</sub>${elementinfo.symbol}<br>${elementinfo.iupac}<br><small>${elementinfo.mass}</small>`
               n++
             }
             output += '</td>'

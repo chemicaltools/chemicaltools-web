@@ -19,7 +19,7 @@
       <v-toolbar-title class="headline" v-show="!$vuetify.breakpoint.xs">
         {{ $t("message.chemicaltools") }}
         <img
-          :src="require('./assets/logo.png')"
+          :src="`${publicPath}chemicaltools_white.svg`"
           contain
           height="25"
         >
@@ -27,7 +27,7 @@
       <v-menu attach bottom offset-y>
         <template #activator="{ on: menu }">
           <v-btn :aria-label="$t('message.languages')" text style="min-width: 48px" v-on="menu">
-            <v-icon>language</v-icon>
+            <v-icon>fa-language</v-icon>
           </v-btn>
         </template>
         <v-list dense light>
@@ -43,7 +43,7 @@
       </v-menu>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <router-view></router-view>
 
       <v-footer height="auto" color="purple lighten-1">
@@ -73,7 +73,7 @@
           </v-flex>
         </v-layout>
       </v-footer>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
@@ -81,6 +81,7 @@
 export default {
   name: 'Chemical-Tools',
   data: () => ({
+    publicPath: process.env.BASE_URL,
     drawer: null,
     tools: [
       {
