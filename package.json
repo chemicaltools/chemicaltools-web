@@ -65,7 +65,7 @@
     "semantic-release": "17.4.3",
     "stylus": "0.54.8",
     "stylus-loader": "6.0.0",
-    "vue-cli-plugin-i18n": "2.1.0",
+    "vue-cli-plugin-i18n": "2.1.1",
     "vue-cli-plugin-vuetify": "2.4.0",
     "vue-template-compiler": "2.6.12",
     "vuetify-loader": "1.7.2",
