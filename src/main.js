@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import vuetify from './plugins/vuetify'
 /// #if !process.env.VUE_APP_CDN
-import { Plugin } from 'vue2-storage';
+import { Plugin } from 'vue2-storage'
 /// #else
 // #code import Plugin from 'vue2-storage'
 /// #endif
