@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import vuetify from './plugins/vuetify'
-import Vue2Storage from 'vue2-storage'
-
+/// #if !process.env.VUE_APP_CDN
+import { Plugin } from 'vue2-storage'
+/// #else
+// #code import Plugin from 'vue2-storage'
+/// #endif
 import './registerServiceWorker'
 
 import App from './App.vue'
@@ -10,7 +13,7 @@ import router from './router'
 
 Vue.config.productionTip = false
 
-Vue.use(Vue2Storage, {
+Vue.use(Plugin, {
   prefix: 'app_',
   driver: 'local',
   ttl: 60 * 60 * 24 * 1000 * 365 * 10
