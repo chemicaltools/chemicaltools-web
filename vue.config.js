@@ -51,6 +51,9 @@ module.exports = {
       .end()
       .use('ifdef-loader')
       .loader('ifdef-loader')
+      .options({
+        "ifdef-uncomment-prefix": "// #code ",
+      })
       .end()
   }
 }
