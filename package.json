@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",
-    "@semantic-release/git": "9.0.1",
+    "@semantic-release/git": "10.0.0",
     "@vue/cli-plugin-babel": "4.5.13",
     "@vue/cli-plugin-eslint": "4.5.13",
     "@vue/cli-plugin-pwa": "4.5.13",
@@ -62,7 +62,7 @@
     "ifdef-loader": "2.3.0",
     "sass": "1.42.1",
     "sass-loader": "10.2.0",
-    "semantic-release": "17.4.7",
+    "semantic-release": "18.0.0",
     "stylus": "0.55.0",
     "stylus-loader": "6.1.0",
     "vue-cli-plugin-i18n": "2.1.4",
