@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "5.15.4",
-    "@semantic-release/git": "10.0.0",
+    "@semantic-release/git": "10.0.1",
     "@vue/cli-plugin-babel": "4.5.15",
     "@vue/cli-plugin-eslint": "4.5.15",
     "@vue/cli-plugin-pwa": "4.5.15",
