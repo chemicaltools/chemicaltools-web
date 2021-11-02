@@ -11497,7 +11497,12 @@ vue-i18n-extract@1.0.2:
     is-valid-glob "^1.0.0"
     yargs "^13.2.2"
 
-vue-i18n@8.26.5, vue-i18n@^8.17.0:
+vue-i18n@8.26.6:
+  version "8.26.6"
+  resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.26.6.tgz#cd8225f1d0038f6254917b6d8ab59c9bc7da68d7"
+  integrity sha512-VNiOOC845P6VZVgiuJpzSfoLSfbwZJoC+hHQlbOTF5btqL+TldagYmEjsvoVNjhJFK/7NhYXxHCGs1/MOOC53A==
+
+vue-i18n@^8.17.0:
   version "8.26.5"
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.26.5.tgz#b61e994e7ae83564c6aebd004543156bbdc7c7e9"
   integrity sha512-qYqfsFd8v2QFSLDAabqXXXpwjGvkuqJtTWqRpZPXpAFO6PArGH4A9vSplnA0HLmnB8km7OB5ZSdP8lkkX0rLew==
