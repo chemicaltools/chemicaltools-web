@@ -1,6 +1,6 @@
 const WebpackCdnPlugin = require('webpack-cdn-plugin')
 module.exports = {
-  publicPath: process.env.CDN_COMMIT ? `//cdn.jsdelivr.net/gh/chemicaltools/chemicaltools-web@${process.env.CDN_COMMIT}/` : './',
+  publicPath: './',
   pluginOptions: {
     cordovaPath: 'src-cordova',
     i18n: {
@@ -36,7 +36,7 @@ module.exports = {
                   // { name: 'vuetify', var: 'Vuetify', path: 'dist/vuetify.min.js', style: 'dist/vuetify.min.css' },
                   // { name: 'core-js-bundle', path: 'minified.js' },
                 ],
-                prodUrl: '//cdn.jsdelivr.net/npm/:name@:version/:path'
+                prodUrl: '//unpkg.com/:name@:version/:path'
                 // publicPath: './node_modules'
               })]
           : [])
