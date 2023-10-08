@@ -20,9 +20,9 @@ if (process.env.NODE_ENV === 'production') {
       // new content clear cache so user gets the new version
       caches.keys().then(cacheNames => {
         cacheNames.forEach(cacheName => {
-          caches.delete(cacheName);
-        });
-      });
+          caches.delete(cacheName)
+        })
+      })
       console.log('New content is downloading.')
     },
     updated () {
