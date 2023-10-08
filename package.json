@@ -133,7 +133,8 @@
     }
   ],
   "resolutions": {
-    "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^6.0.0"
+    "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^6.0.0",
+    "@achrinza/node-ipc": "10.1.9"
   },
   "engines": {
     "node": ">=10.15.0"
