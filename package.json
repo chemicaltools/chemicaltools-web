@@ -9,7 +9,7 @@
   "homepage": "https://github.com/njzjz/chemicaltools-web",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "VUE_APP_CDN=yes vue-cli-service build && bundlesize",
+    "build": "VUE_APP_CDN=yes NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
     "lint": "vue-cli-service lint --fix",
     "cordova-build-android": "vue-cli-service cordova-build-android",
     "cordova-build-browser": "vue-cli-service cordova-build-browser",
@@ -51,7 +51,6 @@
     "@vue/cli-service": "4.5.19",
     "@vue/eslint-config-standard": "6.1.0",
     "babel-eslint": "10.1.0",
-    "bundlesize": "0.18.1",
     "eslint": "7.32.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-node": "11.1.0",
@@ -127,13 +126,9 @@
       ]
     ]
   },
-  "bundlesize": [
-    {
-      "path": "./dist/**/*.*"
-    }
-  ],
   "resolutions": {
-    "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^6.0.0"
+    "@vue/cli-plugin-pwa/workbox-webpack-plugin": "^6.0.0",
+    "@achrinza/node-ipc": "10.1.9"
   },
   "engines": {
     "node": ">=10.15.0"
