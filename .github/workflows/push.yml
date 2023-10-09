@@ -5,6 +5,7 @@ on:
     tags:
       - v*
   pull_request:
+  merge_group:
 name: Build and deploy on push
 jobs:
   build:
@@ -26,19 +27,26 @@ jobs:
           ${{ runner.os }}-yarn-
     - run: yarn install
     - run: yarn build
-      env:
-        CDN_COMMIT: gh-pages
     - run: yarn exec semantic-release
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    - name: Upload Pages artifact
+      uses: actions/upload-pages-artifact@v2
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: dist
-        BASE_BRANCH: master
-        CLEAN: true
+        path: dist
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
