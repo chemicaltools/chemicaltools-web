@@ -59,7 +59,7 @@
     "eslint-plugin-vue": "7.20.0",
     "eslint-plugin-vuetify": "2.1.1",
     "ifdef-loader": "2.3.2",
-    "sass": "1.69.6",
+    "sass": "1.69.7",
     "sass-loader": "13.3.3",
     "semantic-release": "22.0.12",
     "stylus": "0.62.0",
