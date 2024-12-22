@@ -27,7 +27,7 @@ module.exports = {
           ? [
               new WebpackCdnPlugin({
                 modules: [
-                  { name: 'vue', var: 'Vue', path: 'dist/vue.runtime.min.js' },
+                  { name: 'vue', var: 'Vue', path: 'dist/vue.runtime.mjs' },
                   { name: 'vue-router', var: 'VueRouter', path: 'dist/vue-router.min.js' },
                   { name: '@fortawesome/fontawesome-free', style: 'css/all.min.css', cssOnly: true },
                   { name: 'chemicaltools', var: 'chemicaltools', path: 'dist/main.js' },
