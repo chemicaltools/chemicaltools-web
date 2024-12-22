@@ -4,7 +4,7 @@ import index from './components/index.vue'
 
 Vue.use(VueRouter)
 
-export default new Router({
+export default new VueRouter({
   routes: [
     { path: '/', component: index, meta: { title: 'message.homepage' } },
     { path: '/element/', component: () => import(/* webpackChunkName: "element" */ './components/element.vue'), meta: { title: 'message.element' } },
