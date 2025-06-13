@@ -51,7 +51,7 @@
     "@vue/cli-plugin-pwa": "5.0.8",
     "@vue/cli-service": "5.0.8",
     "@vue/eslint-config-standard": "8.0.1",
-    "eslint": "8.57.1",
+    "eslint": "9.29.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-n": "17.20.0",
     "eslint-plugin-promise": "7.2.1",
