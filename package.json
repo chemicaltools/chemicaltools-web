@@ -43,7 +43,7 @@
     "vuetify": "2.7.2"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "7.27.5",
+    "@babel/eslint-parser": "7.28.0",
     "@fortawesome/fontawesome-free": "6.7.2",
     "@semantic-release/git": "10.0.1",
     "@vue/cli-plugin-babel": "5.0.8",
