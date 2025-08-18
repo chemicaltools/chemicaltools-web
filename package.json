@@ -63,7 +63,7 @@
     "sass-loader": "16.0.5",
     "semantic-release": "24.2.7",
     "stylus": "0.64.0",
-    "stylus-loader": "8.1.1",
+    "stylus-loader": "8.1.2",
     "vue-cli-plugin-i18n": "2.3.2",
     "vue-cli-plugin-vuetify": "2.5.8",
     "vue-template-compiler": "2.7.16",
