@@ -61,7 +61,7 @@
     "ifdef-loader": "2.3.2",
     "sass": "1.92.1",
     "sass-loader": "16.0.5",
-    "semantic-release": "24.2.8",
+    "semantic-release": "24.2.9",
     "stylus": "0.64.0",
     "stylus-loader": "8.1.2",
     "vue-cli-plugin-i18n": "2.3.2",
